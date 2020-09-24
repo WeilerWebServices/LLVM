@@ -1,0 +1,182 @@
+{% import "utils.html" as utils %}
+{% import "reportutils.html" as reportutils %}
+{% if not only_html_body %}
+<html>
+<head>
+   <title>Daily Report: {{
+     '%04d-%02d-%02d' % (report.year, report.month, report.day) }}</title>
+</head>
+<body style="{{ styles['body'] }}">
+{% endif %}
+
+<h2 style="text-align:center">{#
+  #}(<a href="{{ts_url}}/daily_report/{{
+                 report.prior_days[1].year}}/{{
+                 report.prior_days[1].month}}/{{
+                 report.prior_days[1].day}}?{{
+		 report.get_query_parameters_string()
+		 }}">prev</a>){#
+  #}<b>&nbsp;<a href="{{ts_url}}/daily_report/{{
+                 report.prior_days[0].year}}/{{
+                 report.prior_days[0].month}}/{{
+                 report.prior_days[0].day}}?{{
+		 report.get_query_parameters_string()
+		 }}">{#
+        #}Daily Report {{ '%04d-%02d-%02d' % (
+          report.prior_days[0].year, report.prior_days[0].month,
+          report.prior_days[0].day) }}</a>&nbsp;</b>{#
+  #}(<a href="{{ts_url}}/daily_report/{{
+                 report.next_day.year}}/{{
+                 report.next_day.month}}/{{
+                 report.next_day.day}}?{{
+		 report.get_query_parameters_string()
+		 }}">next</a>){#
+#}</h2>
+<p style="text-align:center">
+(day start is considered to be at UTC+{{ "%02d:%02d" % (
+    report.day_start_offset.seconds // 3600,
+    (report.day_start_offset.seconds // 60) % 60,)}})
+</p>
+
+{% if report.error is not none %}
+
+<p>An error was encountered while producing the daily report: {{
+  report.error }}.</p>
+
+{% else %}
+
+{# Generate the table showing which run orders we are reporting on, for each
+   machine. #}
+<h3 style="{{ styles.h3 }}">Reported Machine Order</h3>
+{{ utils.regex_filter_box(input_id='filter', 
+                          selector='.searchable',
+                          placeholder="Machine name regex...",
+                          selector_part_to_search=".machine-name")
+}}
+<table border="1" style="{{ styles.table }}">
+  <thead>
+    <tr>
+      <th style="{{ styles.th }}">Machine Name</th>
+{%- for i in range(report.num_prior_days_to_include)|reverse %}
+      <th style="{{ styles.th }}">Day - {{i}}</th>
+{%- endfor %}
+    </tr>
+  </thead>
+  <tbody>
+{%- for machine in report.reporting_machines %}
+    <tr class="searchable">
+      <td class="machine-name" style="{{ styles.td }}">{{machine.name}}</td>
+{%- for i in range(report.num_prior_days_to_include)|reverse %}
+{%-   set key_run = report.get_key_run(machine, i) -%}
+{%-   if key_run -%}
+      {# FIXME: Don't hard code field name. #}
+      <td style="{{ styles.td }}">
+        <a href="{{ ts_url }}/{{ key_run.id }}">{{
+          key_run.order.llvm_project_revision}}</a></td>
+{%-   else -%}
+      <td style="{{ styles.td }}; background-color:#FF0000">N/A</td>
+{%-   endif -%}
+{%- endfor %}
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+
+<h3>Number of Tests Seen</h3>
+<table border="1" style="{{ styles.table }}; width: {{
+                            400 + report.num_prior_days_to_include*80}}px;">
+  <thead>
+    <tr>
+      <th style="{{ styles.th }}; width: 300px;">Machine Name</th>
+    {% for i in range(report.num_prior_days_to_include)|reverse %}
+      <th style="{{ styles.th }}">Day - {{i}}</th>
+    {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+  {% for machine, nr_tests_for_machine in report.nr_tests_table %}
+  <tr class="searchable">
+    <td class="machine-name" style="{{ styles.td }}">{{machine.name}}</td>
+    {% set nr_tests_prev = None %}
+    {% for nr_tests in nr_tests_for_machine|reverse %}
+        <td style="{{ styles.td }}"
+        {%- if nr_tests_prev is not none and nr_tests_prev != nr_tests %}
+            bgcolor="#dfaf5f"
+        {% endif -%}
+            >{{nr_tests}}</td>
+        {% set nr_tests_prev = nr_tests %}
+    {% endfor %}
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{# Generate the table showing the raw sample data. #}
+
+{# If the report is for mail, we put the table header on each test. This is
+   ugly, however it makes it much easier to inline comments in replies to the
+   email. Given that is the primary purpose of the email, we trade off wasted
+   space for convenience. #}
+{% macro result_header() %}
+<table border="1" style="{{ styles.table }}; width: {{
+                            400 + report.num_prior_days_to_include*80}}px;">
+  <thead>
+    <tr>
+      <th style="{{ styles.th }}; width: 100px;">Test Name</th>
+      <th style="{{ styles.th }}; width: 300px;">Machine Name</th>
+{%- for i in range(report.num_prior_days_to_include)|reverse %}
+      <th style="{{ styles.th }}">Day - {{i}}</th>
+{%- endfor %}
+      <th style="{{ styles.th }}">Sparkline</th>
+    </tr>
+  </thead>
+{% endmacro %}
+
+{% for field,field_results in report.result_table|reverse %}
+{%- if field_results -%}
+<h3>Result Table ({{ field.display_name }})</h3>
+{{ result_header()+"\n  <tbody>" if not report.for_mail }}
+{%- for test,visible_results in field_results -%}
+{{ result_header()+"\n  <tbody>" if report.for_mail }}
+  <tr>
+    <td style="{{ styles.td }}" colspan="2"> <b>{{test.name}}</b></td>
+    <td style="{{ styles.td }}" colspan="{{report.num_prior_days_to_include + 1}}">&nbsp;</td>
+  </tr>
+{%-   for machine,day_results in visible_results -%}
+{%-   set key_run = report.get_key_run(machine, 0) %}
+  <tr class="searchable">
+    <td style="{{ styles.td }}">&nbsp;</td>
+    <td class="machine-name" style="{{ styles.td }}"><a href="{{
+      ts_url}}/graph?plot.0={{machine.id}}.{{test.id}}.{{
+        report.ts.get_field_index(field)}}&amp;highlight_run={{key_run.id}}">{{
+          machine.name}}</a></td>
+{%-    set first_result_shown = false -%}
+{%-    for day_result in day_results|reverse -%}
+{%-      if day_result is none %}
+    <td style="{{ styles.td }}">-</td>
+{%-      else -%}
+{%-        if first_result_shown -%}
+    {{ reportutils.get_cell_value(day_result, analysis, styles) }}
+{%-        else -%}
+{%-        set first_result_shown = true -%}
+{{ reportutils.get_initial_cell_value(day_result, field, analysis, styles) }}
+{%-        endif -%}
+{%-      endif -%}
+{%-    endfor %}
+    <td>{{ reportutils.spark_plot(day_results) }}</td>
+  </tr>
+{%-  endfor %}
+{{ "</tbody></table><p>" if report.for_mail }}
+{%- endfor %}
+{{ "</tbody></table>" if not report.for_mail }}
+{%- else -%}
+<h3>No significant {{ field.display_name }} changes found.</h3>
+{%- endif -%}
+{%- endfor -%}
+
+{% endif %}
+
+{% if not only_html_body %}
+</body>
+</html>
+{% endif %}

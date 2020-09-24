@@ -1,0 +1,143 @@
+{% macro render_popup_begin(id, title, hidden, element = 'span', depth=1) -%}
+  <div class="accordion" id="{{id}}-accordion">
+    <div class="accordion-group">
+      <div class="accordion-heading">
+          <{{element}}><a class="accordion-toggle" data-toggle="collapse" data-parent="#{{id}}-accordion" href="#{{id}}-collapse">{{ title }}</a></{{element}}>
+      </div>
+      <div id="{{id}}-collapse" class="accordion-body {{ 'collapse' if hidden else 'collapse in' }}">
+        <div class="accordion-inner">
+{%- endmacro %}
+{% macro render_popup_end() -%}
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endmacro %}
+
+{% macro render_result(r) -%}
+<a href="{{v4_url_for('.v4_run', id=r.id)}}">View Results</a>
+{%- endmacro %}
+
+{% macro render_machine(m) -%}
+<a href="{{v4_url_for('.v4_machine', id=m.id)}}">{{m.name}}:{{m.id}}</a>
+{%- endmacro %}
+
+{% macro render_regression(regress) -%}
+<a href="{{v4_url_for('.v4_regression_detail', id=regress.id)}}">{{regress.title}}:{{regress.id}}</a>
+{%- endmacro %}
+
+{% macro render_bug(bug) -%}
+{% if bug %}
+<a href="{{bug}}">{{bug}}</a>
+{% endif %}
+{%- endmacro %}
+
+{% macro render_profile_link(profile, compare_profile, run_id, compare_run_id, test_id) -%}
+  {% if v4_url_available() %}
+    {% if compare_profile and profile %}
+
+      <a href="{{ v4_url_for('.v4_profile_fwd2', run1_id=run_id, run2_id=compare_run_id, testid=test_id) }}"
+         class="btn btn-mini pull-right">Profile <i class="icon-eye-open"></i></a>
+ 
+    {% elif profile %}
+      
+      <a href="{{ v4_url_for('.v4_profile_fwd', run1_id=run_id, testid=test_id) }}"
+         class="btn btn-mni pull-right profile-but-no-prev" data-toggle="tooltip"
+         title="This run has a profile, but the run being compared to does not">Profile <i class="icon-exclamation-sign"></i></a>
+      
+    {% elif compare_profile %}
+      
+      <a href="{{ v4_url_for('.v4_profile_fwd', run1_id=compare_run_id, testid=test_id) }}"
+         class="bt btn-mini pull-right profile-prev-only" data-toggle="tooltip"
+         title="This run does not have a profile, but the run being compared to does">Profile <i class="icon-exclamation-sign"></i></a>
+      
+    {% endif %}
+  {% endif %}
+{%- endmacro %}
+
+{% macro regex_filter_box(input_id, selector, placeholder,
+                          selector_part_to_search=None) -%}
+<div class="input-group"> <span class="input-group-addon">Filter</span>
+    <input id="{{input_id}}" type="text" class="form-control"
+           placeholder="{{placeholder}}"/>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+    (function ($) {
+        $('#{{input_id}}').keyup(function () {
+            var filter_regex = new RegExp($(this).val(), 'i');
+            $('{{selector}}').hide();
+            $('{{selector}}').filter(function () {
+                var text=
+{% if selector_part_to_search is none %}
+                    $(this).text();
+{% else %}
+                    $(this).find("{{selector_part_to_search|safe}}").text();
+{% endif %}
+                return filter_regex.test(text);
+            }).show();
+        })
+    }(jQuery));
+});
+</script>
+{%- endmacro %}
+
+{% macro get_regression_cell_value(cr, analysis) %}
+  {% set test_status = cr.get_test_status() %}
+  {% set value_status = cr.get_value_status(ignore_small=True) %}
+  {% set run_cell_value = "None" if cr.current is none else "%.4f" % cr.current %}
+
+
+  {% set cell_color = none %}
+  {% if test_status == analysis.REGRESSED %}
+    {% set cell_color = (233,128,128) %}
+  {% elif test_status == analysis.IMPROVED %}
+    {% set cell_color = (143,223,95) %}
+  {% elif test_status == analysis.UNCHANGED_FAIL %}
+    {% set cell_color = (255,195,67) %}
+  {% endif %}
+
+  {% if (value_status == analysis.REGRESSED or
+         value_status == analysis.IMPROVED) %}
+    {{ cr.pct_delta|aspctcell(reverse=cr.bigger_is_better)|safe }}
+  {% else %}
+    {{ cr.pct_delta|aspctcell(reverse=cr.bigger_is_better)|safe}}
+  {% endif %}
+
+{% endmacro %}
+
+
+{% macro render_field(field) %}
+    {%  if field.errors %}
+    <div class="control-group error">
+    {% else %}
+    <div>
+    {% endif %}
+
+    <dl>
+    <dt class="control-label">{{ field.label }}</dt>
+    <dd>
+        <div class="controls">
+            {{ field(**kwargs)|safe }}
+        </div>
+    </dd>
+    </dl>
+    <ul class="help-inline">
+    {% for error in field.errors %}
+      <li>{{ error }}</li>
+    {% endfor %}
+    </ul>
+
+    </div>
+{% endmacro %}
+
+{% macro newline_to_br(value) %}
+  {# Split lines in multi-line values. #}
+  {% if '\n' in value|string %}
+    {% for ln in (value|string).split('\n') %}
+      {{ ln }}<br/>
+    {% endfor %}
+  {% else %}
+    {{value}}
+  {% endif %}
+{% endmacro %}

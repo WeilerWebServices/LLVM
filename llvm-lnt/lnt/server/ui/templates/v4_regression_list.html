@@ -1,0 +1,121 @@
+{% import "utils.html" as utils %}
+{% set db = request.get_db() %}
+
+{% extends "layout.html" %}
+{% set components = [(testsuite_name, v4_url_for(".v4_recent_activity"))] %}
+{% block title %}Regression List: {{title}}{% endblock %}
+
+{% block body %}
+<section id="Regressions" />
+<h3>Regressions List: {{title}}</h3>
+
+
+<form method="POST" action="{{ v4_url_for(".v4_regression_list", state=state_filter) }}">
+    
+    
+<table id="regression_list" class="table table-striped table-hover table-condensed">
+ 
+  <thead>
+  <tr>
+    <th>X</th>
+    <th>Title</th>
+    <th>State</th>
+    <th>Age</th>
+    <th>Size</th>
+    <th>Old</th>
+    <th>New</th>
+    <th>%</th>
+    <th>Bug</th>
+  </tr>
+  </thead>
+  <tbody>
+      {# Show the active submissions. #}
+      {% for form_regression in form.regression_checkboxes%}
+          {% set regress = regressions[loop.index -1] %}
+          {% set size = sizes[loop.index -1] %}
+          {% set impact = impacts[loop.index -1] %}
+          {% set age = ages[loop.index -1] %}
+
+    <tr>
+        <td>{{ form_regression }}</td>
+        <td>{{utils.render_regression(regress)}} {% if regress.id|int == highlight|int %} <span class="label label-success">Updated</span> {% endif %} </td>
+        <td>{{RegressionState.names.get(regress.state,"Missing")}}</td>
+        <td data-order="{{ age.strftime("%s") }}"><span class="reltime" data-time="{{age.isoformat()}}" data-toggle="tooltip" title="{{age}}">{{ age.isoformat() }}</span></td>
+        <th>{{ size }}</th>
+        <td>{{ impact.previous }}</td><td>{{ impact.current }}</td>
+        {{ utils.get_regression_cell_value(impact, analysis)}}
+        <td>{{utils.render_bug(regress.bug)}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<!-- Button to trigger modal -->
+<a role="button" onclick="toggle_checks()" class="btn">Toggle</a>
+
+<!-- Button to trigger modal -->
+<a href="#mergeRegressionModal" role="button" class="btn" data-toggle="modal">Merge</a>
+ <!-- Button to trigger modal -->
+<a href="#delRegressionModal" role="button" class="btn" data-toggle="modal">Delete</a>
+
+<!-- Modal -->
+<div id="mergeRegressionModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="mergeRegressionModal" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="editRegressionModal">Merge Regression</h3>
+  </div>
+     
+  <div class="modal-body">
+    Merge selected changes into new regression. Are you sure?
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <input name="merge_btn" class="btn btn-primary" type="submit" value="Merge Regressions"/>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div id="delRegressionModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="delRegressionModal" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="editRegressionModal">Delete Regression(s)</h3>
+  </div>
+
+  <div class="modal-body">
+    Delete selected changes. Are you sure?
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <input name="merge_btn" class="btn btn-primary" type="submit" value="Delete Regressions"/>
+  </div>
+</div>
+
+
+</form> 
+
+<script type="text/javascript">
+$(document).ready( function () {
+    var settings = {"dom": '<"top"if>rt<"bottom"Flp>',
+                    "aLengthMenu": [[50, -1],
+                                    [50, "All"]]};
+    dt = $('#regression_list').DataTable(settings);
+    $('input[type=search]').attr('autocomplete', 'off');
+    $('input[type=search]').attr('autocorrect', 'off');
+    $('input[type=search]').attr('spellcheck', 'off');
+
+});
+
+/** Toggle the checkbox state of all the visible checkboxes.
+ *
+ */
+function toggle_checks() {
+     var checkBoxes = $('input:checkbox');
+     checkBoxes.prop("checked", !checkBoxes.prop("checked"));
+     checkBoxes.trigger('change');
+}
+
+
+</script>
+
+{% endblock %}

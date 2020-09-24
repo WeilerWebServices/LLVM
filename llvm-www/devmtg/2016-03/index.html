@@ -1,0 +1,1286 @@
+<!--#include virtual="../../header.incl" -->
+
+<div class="www_sectiontitle">2016 European LLVM Developers' Meeting</div>
+
+<h2><b>SPONSORED BY:
+<br />
+<br />
+&nbsp; &nbsp; &nbsp;
+<a href="http://www.arm.com">ARM</a>,
+<a href="http://www.hsafoundation.com">HSA Foundation</a>,
+<a href="http://www.google.com">Google</a>,
+<a href="http://www.intel.com">Intel</a>,
+<a href="http://www.codeplay.com/">Codeplay</a>,
+<a href="http://www.microsoft.com/en-us/">Microsoft</a>,
+<a href="http://research.microsoft.com/en-us/">Microsoft Research</a>
+<br />
+</b>
+</h2>
+
+<p>The hacker's lab &amp; networking session is sponsored by
+<a href="http://www.solidsands.nl/"><b>Solid Sands</b></a>
+</p>
+
+<table>
+        <tr><td valign="top">
+<ol>
+        <li><a href="#about">About</a></li>
+        <li><a href="#schedule">Schedule</a></li>
+        <li><a href="#SlidesAndVideos">Slides &amp; Videos</a></li>
+        <li><a href="#PresentationsAbstracts">Presentations abstracts</a></li>
+        <li><a href="#TutorialsAbstracts">Tutorials abstracts</a></li>
+        <li><a href="#LightningTalksAbstracts">Lightning talks abstracts</a></li>
+        <li><a href="#PostersAbstracts">Posters abstracts</a></li>
+        <li><a href="#BoFsAbstracts">BoFs abstracts</a></li>
+</ol>
+</td><td>
+<ul>
+  <li><b>What</b>: The sixth European LLVM meeting</li>
+  <li><b>When</b>: March 17-18, 2016</li>
+  <li><b>Where</b>: <a href="http://www.princesasofia.com/en">Hotel Princesa Sofia</a>, Barcelona, Spain</li>
+</ul>
+</td></tr></table>
+
+<div class="www_sectiontitle" id="about">About</div>
+<p>
+The LLVM Foundation announces the sixth annual European LLVM Developers' Meeting
+will be held March 17th and 18th in Barcelona, Spain.
+</p>
+
+<p>
+This year, the conference will be collocated with <a href="http://cgo.org/cgo2016/">CGO</a>
+and <a href="http://cc2016.eew.technion.ac.il/">CC</a>, enabling collaboration and
+exchange of ideas with the research community.
+</p>
+
+<p>
+The conference will be 2 full days that include technical talks, BoFs, hacker’s lab,
+tutorials, and a poster session.
+</p>
+
+<p>
+The meeting serves as a forum for <a href="http://llvm.org">LLVM</a>,
+<a href="http://clang.llvm.org">Clang</a>, <a href="http://lldb.llvm.org">LLDB</a> and 
+other LLVM project developers and users to get acquainted, learn how LLVM is used, and 
+exchange ideas about LLVM and its (potential) applications. More broadly, we
+believe the event will be of particular interest to the following people:
+</p>
+
+<ul>
+<li>Active developers of projects in the LLVM Umbrella
+(LLVM core, Clang, LLDB, libc++, compiler_rt, klee, dragonegg, lld, etc).</li>
+<li>Anyone interested in using these as part of another project.</li>
+<li>Compiler, programming language, and runtime enthusiasts.</li>
+<li>Those interested in using compiler and toolchain technology in novel 
+and interesting ways.</li>
+</ul>
+
+<p>
+Please sign up for the
+<a href="http://lists.llvm.org/mailman/listinfo/llvm-devmeeting">LLVM Developers' Meeting list</a>
+for future announcements and to ask questions. 
+</p>
+
+<p>
+You may also contact the organizer: <a href="mailto:vladimir.subotic@bsc.es">Vladimir Subotic</a>
+</p>
+
+<!--
+<div class="www_sectiontitle" id="CFP">Call for Paper</div>
+
+<p>
+We invite academic, industrial and hobbyist speakers to present their work on
+developing or using LLVM, Clang, etc. Proposals for technical presentations,
+posters, workshops, demonstrations and BoFs are welcome. Material will be chosen
+to cover a broad spectrum of themes and topics at various depths, some technical
+deep-diving, some more community focused.
+</p>
+
+<p>
+We are looking for:
+</p>
+<ul>
+<li>Keynote speakers.</li>
+<li>Technical presentations (30 minutes plus questions and discussion) related to the
+  development of LLVM, Clang, LLD, LLDB, Polly, ...</li>
+<li>Presentations relating to academic or commercial use of LLVM, Clang etc.</li>
+<li>Lightning talks (5 minutes, no questions, no discussion).</li>
+<li>Workshops and in-depth tutorials (1-2 hours - please specify in your submission).</li>
+<li>Poster presentations.</li>
+<li>Birds of a Feather sessions (BoFs).</li>
+</ul>
+
+<p>
+The deadline for receiving submissions is <del>January 25, 2016</del> <ins>January 29, 2016</ins>.
+</p>
+
+<p>
+Submissions should be done using the <a href="https://easychair.org/conferences/?conf=eurollvm2016"> Easychair</a> platform.
+</p>
+
+<p>
+Please note that presentation materials and videos for the technical sessions
+will be posted on llvm.org after the conference. We have reserved additional
+spots for speakers, such that they can attend the conference even though we
+have reached our registration limit.
+</p>
+
+<p>
+In terms of submission style, we are looking for:
+</p>
+<ul>
+  <li>A title and an extended abstract,</li>
+</ul>
+<p>
+            OR
+</p>
+<ul>
+  <li>A title, abstract and slides.</li>
+</ul>
+
+<p>
+Please make clear the status of the slides (are they a skeleton of your
+presentation with the detail missing ?), or, perhaps a section of detail that
+lacks introduction and conclusions?  Also make sure to give enough information
+in the extended abstract: the more you can give us and tell us the easier it
+will be for us to be positive about your submission. 
+</p>
+
+<p>
+Proposals that are not sufficiently detailed (talks lacking a comprehensive
+abstract for example) are likely to be rejected. Slides and posters must be
+in PDF format.
+</p>
+
+<p>
+The call for paper is over since January 29, 2016.
+</p>
+
+<p>
+The program committee is now working hard at reviewing all submissions.
+</p>
+
+<p>
+The program committee attempts to reflects the diversity of our community.
+It consists of David Chisnall, Sanjoy Das, Tobias Edler von Koch,
+Arnaud de Grandmaison, Hal Finkel, Renato Golin, Tobias Grosser,
+Tanya Lattner, David Majnemer, James Molloy, Adam Nemet.
+</p>
+
+<p>
+Speakers will be notified of acceptance or rejection by February 15th, 2016.
+</p>
+-->
+
+<div class="www_sectiontitle" id="schedule">Schedule</div>
+
+<p>
+The schedule may be found here: <a href="https://2016europeanllvmdevelopersmeetin.sched.org">https://2016europeanllvmdevelopersmeetin.sched.org</a>
+</p>
+
+<div class="www_sectiontitle" id="SlidesAndVideos">Slides &amp; Videos</div>
+<table id="devmtg">
+  <tr><th>Media</th><th>Talk / Presenter(s)</th></tr>
+  <tr><td>
+    <a href="Presentations/Clang-LibCPlusPlus-CPlusPlusStandard.pdf"><b>Slides</b></a></br>
+    <a href="https://youtu.be/zQ9tT8fbtSo"><b>Video</b></a>
+  </td><td>
+    <b><a href="#presentation1">Clang, libc++ and the C++ standard</a></b><br>
+    <i>Marshall Clow - Qualcomm</i><br>
+    <i>Richard Smith - Google</i>
+  </td></tr>
+
+  <tr><td>
+    <a href="Presentations/CodeletExtractorAndREplayer.pdf"><b>Slides</b></a><br>
+    <a href="https://youtu.be/7sVnjJlZTW4"><b>Video</b></a>
+  </td><td>
+    <b><a href="#presentation2">Codelet Extractor and REplayer</a></b><br>
+    <i>Chadi Akel - Exascale Computing Research</i>
+  </td></tr>
+
+  <tr><td>
+    <a href="Presentations/EuroLLVM 2016- New LLD linker for ELF.pdf"><b>Slides</b></a><br>
+    <a href="https://youtu.be/CYCRqjVa6l4"><b>Video</b></a>
+  </td><td>
+    <b><a href="#presentation3">New LLD linker for ELF</a></b><br>
+    <i>Rui Ueyama - Google</i>
+  </td></tr>
+
+  <tr><td>
+    <a href="Presentations/X86CodeSizePDF.pdf"><b>Slides</b></a><br>
+    <a href="https://youtu.be/yHexQSFud3w"><b>Video</b></a>
+  </td><td>
+    <b><a href="#presentation4">Improving LLVM Generated Code Size for X86 Processors</a></b><br>
+    <i>David Kreitzer - Intel</i><br>
+    <i>Zia Ansari - Intel</i>
+  </td></tr>
+
+  <tr><td>
+    <a href="Presentations/Beyls2016_AmelioratingMeasurmentBias.pdf"><b>Slides</b></a><br>
+    <a href="https://youtu.be/COmfRpnujF8"><b>Video</b></a>
+  </td><td>
+    <b><a href="#presentation5">Towards ameliorating measurement bias in evaluating performance of generated code</a></b><br>
+    <i>Kristof Beyls - ARM</i>
+  </td></tr>
+
+  <tr><td>
+    <a href="Presentations/AnastasiaStulova_OpenCL20_EuroLLVM2016.pdf"><b>Slides</b></a><br>
+    <a href="https://youtu.be/3yzL2loPtgM"><b>Video</b></a>
+  </td><td>
+    <b><a href="#presentation6">A journey of OpenCL 2.0 development in Clang</a></b><br>
+    <i>Anastasia Stulova - ARM</i>
+  </td></tr>
+
+  <tr><td>
+    <a href="Presentations/BOLT_EuroLLVM_2016.pdf"><b>Slides</b></a><br>
+    <a href="https://youtu.be/gw3iDO3By5Y"><b>Video</b></a>
+  </td><td>
+    <b><a href="#presentation7">Building a binary optimizer with LLVM</a></b><br>
+    <i>Maksim Panchenko - Facebook</i>
+  </td></tr>
+
+  <tr><td>
+    <a href="Presentations/SVF_EUROLLVM2016.pdf"><b>Slides</b></a><br>
+    <a href="https://youtu.be/nD-i-enA8rc"><b>Video</b></a>
+  </td><td>
+    <b><a href="#presentation8">SVF: Static Value-Flow Analysis in LLVM</a></b><br>
+    <i>Yulei Sui - University of New South Wales</i>
+  </td></tr>
+
+  <tr><td>
+    <a href="Presentations/EuroLLVM_ChrisDiamand.pdf"><b>Slides</b></a><br>
+    <a href="https://youtu.be/duoA1eWwE0E"><b>Video</b></a>
+  </td><td>
+    <b><a href="#presentation9">Run-time type checking with clang, using libcrunch</a></b><br>
+    <i>Chris Diamand - University of Cambridge</i>
+  </td></tr>
+
+  <tr><td>
+    <a href="Presentations/Molly.pdf"><b>Slides</b></a><br>
+    <a href="https://youtu.be/fKW3yjhcrh0"><b>Video</b></a>
+  </td><td>
+    <b><a href="#presentation10">Molly: Parallelizing for Distributed Memory using LLVM</a></b><br>
+    <i>Michael Kruse - INRIA/ENS</i>
+  </td></tr>
+
+  <tr><td>
+    <a href="Presentations/polly-gpu-eurollvm.pdf"><b>Slides</b></a><br>
+    <a href="https://youtu.be/MOX4TxRIijg"><b>Video</b></a>
+  </td><td>
+    <b><a href="#presentation11">How Polyhedral Modeling enables compilation to Heterogeneous Hardware</a></b><br>
+    <i>Tobias Grosser - ETH</i>
+  </td></tr>
+
+  <tr><td>
+    <a href="Presentations/EuroLLVM2016-E.Crawford_and_L.Drummond-Bringing_RenderScript_to_LLDB.pdf"><b>Slides</b></a><br>
+    <a href="https://youtu.be/BBC61L0QKCM"><b>Video</b></a>
+  </td><td>
+    <b><a href="#presentation12">Bringing RenderScript to LLDB</a></b><br>
+    <i>Luke Drummond - Codeplay</i><br>
+    <i>Ewan Crawford - Codeplay</i>
+  </td></tr>
+
+  <tr><td>
+    <a href="Presentations/Offload-EuroLLVM2016.pdf"><b>Slides</b></a><br>
+    <a href="https://youtu.be/YKX6EMEib4g"><b>Video</b></a>
+  </td><td>
+    <b><a href="#presentation13">C++ on Accelerators: Supporting Single-Source SYCL and HSA Programming Models Using Clang</a></b><br>
+    <i>Victor Lomuller - Codeplay</i>
+  </td></tr>
+
+  <tr><td>
+    <a href="Presentations/eurollvm-2016-arm-code-size.pdf"><b>Slides</b></a><br>
+    <a href="https://youtu.be/cFgwEEBw7U0"><b>Video</b></a>
+  </td><td>
+    <b><a href="#presentation14">A closer look at ARM code size</a></b><br>
+    <i>Tilmann Scheller - Samsung Electronics</i>
+  </td></tr>
+
+  <tr><td>
+    <a href="Presentations/Barcelona2016report.pdf"><b>Slides</b></a><br>
+    <a href="https://youtu.be/2YSzLyBO4yM"><b>Video</b></a>
+  </td><td>
+    <b><a href="#presentation15">Scalarization across threads</a></b><br>
+    <i>Alexander Timofeev - Luxoft</i>
+  </td></tr>
+
+  <tr><td>
+    <a href="Tutorials/LLDB-tutorial.pdf"><b>Slides</b></a><br>
+    <a href="https://youtu.be/9hhDZeV0fYU"><b>Video</b></a>
+  </td><td>
+    <b><a href="#tuto1">LLDB Tutorial: Adding debugger support for your target</a></b><br>
+    <i>Deepak Panickal - Codeplay</i><br>
+    <i>Andrzej Warzynski - Codeplay</i>
+  </td></tr>
+
+  <tr><td>
+    <a href="Tutorials/applied-polyhedral-compilation.pdf"><b>Slides</b></a><br>
+    <a href="https://youtu.be/mXve_W4XU2g"><b>Video</b></a>
+  </td><td>
+    <b><a href="#tuto2">Analyzing and Optimizing your Loops with Polly</a></b><br>
+    <i>Tobias Grosser - ETH</i><br>
+    <i>Johannes Doerfert - Saarland University</i>
+  </td></tr>
+
+  <tr><td>
+    <a href="Tutorials/Tutorial.pdf"><b>Slides</b></a><br>
+    <a href="https://youtu.be/Z5KcwVaak3s"><b>Video</b></a>
+  </td><td>
+    <b><a href="#tuto3">Building, Testing and Debugging a Simple out-of-tree LLVM Pass</a></b><br>
+    <i>Serge Guelton - Quarkslab</i><br>
+    <i>Adrien Guinet - Quarkslab</i>
+  </td></tr>
+
+  <tr><td>
+    <a href="https://youtu.be/TkanbGAG_Fo"><b>Video</b></a>
+  </td><td>
+    <b><a href="#LightningTalksAbstracts">Lightning talks</a></b>
+  </td></tr>
+</table>
+
+<div class="www_sectiontitle" id="PresentationsAbstracts">Presentations abstracts</div>
+<p>
+<b><a id="presentation1">Clang, libc++ and the C++ standard</a></b><br>
+<i>Marshall Clow - Qualcomm</i><br>
+<i>Richard Smith - Google</i><br>
+<a href="Presentations/Clang-LibCPlusPlus-CPlusPlusStandard.pdf"><b>Slides</b></a>
+<a href="https://youtu.be/zQ9tT8fbtSo"><b>Video</b></a><br>
+The C++ standard is evolving at a fairly rapid pace. After almost 15 years of
+little change (1998-2010), we've had major changes in 2011, 2014, and soon
+(probably) 2017. There are many parallel efforts to add new functionality to
+the language and the standard library.
+</p><p>
+In this talk, we will discuss upcoming changes to the language and the standard
+library, how they will affect existing code, and their implementation status in
+LLVM. 
+</p>
+
+<p>
+<b><a id="presentation2">Codelet Extractor and REplayer</a></b><br>
+<i>Chadi Akel - Exascale Computing Research</i><br>
+<i>Pablo De Oliveira Castro - University of Versailles</i><br>
+<i>Michel Popov - University of Versailles</i><br>
+<i>Eric Petit - University of Versailles</i><br>
+<i>William Jalby - University of Versailles</i><br>
+<a href="Presentations/CodeletExtractorAndREplayer.pdf"><b>Slides</b></a>
+<a href="https://youtu.be/7sVnjJlZTW4"><b>Video</b></a><br>
+Codelet Extractor and REplayer (CERE) is an LLVM-based framework that finds and
+extracts hotspots from an application as isolated fragments of code. Codelets
+can be modified, compiled, run, and measured independently from the original
+application. Through performance signature clustering, CERE extracts a minimal
+but representative codelet set from applications, which can significantly
+reduce the cost of benchmarking and iterative optimization. Codelets have
+proved successful in auto-tuning target architecture, compiler optimization or
+amount of parallelism. To do so, CERE goes trough multiple llvm passes. It
+first outlines at IR level the loop to capture into a function using
+CodeExtractor pass. Then, depending on the mode, CERE inserts the necessary
+instructions to either capture or replay the loop. Probes can also be inserted
+at IR level around loops to enable instrumentation through externals libraries.
+Finally CERE also provides a python interface to easily use the tool.
+</p>
+
+<p>
+<b><a id="presentation3">New LLD linker for ELF</a></b><br>
+<i>Rui Ueyama - Google</i><br>
+<a href="Presentations/EuroLLVM 2016- New LLD linker for ELF.pdf"><b>Slides</b></a>
+<a href="https://youtu.be/CYCRqjVa6l4"><b>Video</b></a><br>
+Since last year, we have been working to rewrite the ELF support in LLD, the
+LLVM linker, to create a high-performance linker that works as a drop-in
+replacement for the GNU linker. It is now able to bootstrap LLVM, Clang, and
+itself and pass all tests on x86-64 Linux and FreeBSD. The new ELF linker is
+small and fast; it is currently fewer than 10k lines of code and about 2x
+faster than GNU gold linker.
+</p><p>
+In order to achieve this performance, we made a few important decisions in the
+design. This talk will present the design and the performance of the new ELF LLD.
+</p>
+
+<p>
+<b><a id="presentation4">Improving LLVM Generated Code Size for X86 Processors</a></b>
+<i>David Kreitzer - Intel</i><br>
+<i>Zia Ansari - Intel</i><br>
+<i>Andrey Turetskiy - Intel</i><br>
+<i>Anton Nadolsky - Intel</i><br>
+<a href="Presentations/X86CodeSizePDF.pdf"><b>Slides</b></a>
+<a href="https://youtu.be/yHexQSFud3w"><b>Video</b></a><br>
+Minimizing the size of compiler generated code often takes a back seat to other
+optimization objectives such as maximizing the runtime performance. For some
+applications, however, code size is of paramount importance, and this is an
+area where LLVM has lagged gcc when targeting x86 processors. Code size is of
+particular concern in the microcontroller segment where programs are often
+constrained by a relatively small and fixed amount of memory. In this
+presentation, we will detail the work we did to improve the generated code size
+for the SPEC CPU2000 C/C++ benchmarks by 10%, bringing clang/LLVM to within 2%
+of gcc. While the quoted numbers were measured targeting Intel&reg; Quark&trade;
+microcontroller D2000, most of the individual improvements apply to all X86
+targets. The code size improvement was achieved via new optimizations, tuning
+of existing optimizations, and fixing existing inefficiencies. We will describe
+our analysis methodology, explain the impact and LLVM compiler fix for each
+improvement opportunity, and describe some opportunities for future code size
+improvements with an eye toward pushing LLVM ahead of gcc on code size.
+</p>
+
+<p>
+<b><a id="presentation5">Towards ameliorating measurement bias in evaluating performance of generated code</a></b><br>
+<i>Kristof Beyls - ARM</i><br>
+<a href="Presentations/Beyls2016_AmelioratingMeasurmentBias.pdf"><b>Slides</b></a>
+<a href="https://youtu.be/COmfRpnujF8"><b>Video</b></a><br>
+To make sure LLVM continues to optimize code well, we use both post-commit
+performance tracking and pre-commit evaluation of new optimization patches. As
+compiler writers, we wish that the performance of code generated could be
+characterized by a single number, making it straightforward to decide from an
+experiment whether code generation is better or worse. Unfortunately,
+performance of generated code needs to be characterized as a distribution,
+since effects not completely under control of the compiler, such as heap, stack
+and code layout or initial state in the processors prediction tables, have a
+potentially large influence on performance. For example, it's not uncommon when
+benchmarking a new optimization pass that clearly makes code better, the
+performance results do show some regressions. But are these regressions due to
+a problem with the patch, or due to noise effects not under the control of the
+compiler?  Often, the noise levels in performance results are much larger than
+the expected improvement a patch will make. How can we properly conclude what
+the true effect of a patch is when the noise is larger than the signal we're
+looking for?
+</p><p>
+When we see an experiment that shows a regression while we know that on
+theoretical grounds the generated code is better, we see a symptom of only
+measuring a single sample out of the theoretical space of all
+not-under-the-compiler's-control factors, e.g. code and data layout variation.
+</p><p>
+In this presentation I'll explain this problem in a bit more detail; I'll
+summarize suggestions for solving this problem from academic literature; I'll
+indicate what features in LNT we already have to try and tackle this problem;
+and I'll show the results of my own experiments on randomizing code layout to
+try and avoid measurement bias.
+</p>
+
+<p>
+<b><a id="presentation6">A journey of OpenCL 2.0 development in Clang</a></b><br>
+<i>Anastasia Stulova - ARM</i><br>
+<a href="Presentations/AnastasiaStulova_OpenCL20_EuroLLVM2016.pdf"><b>Slides</b></a>
+<a href="https://youtu.be/3yzL2loPtgM"><b>Video</b></a><br>
+In this talk we would like to highlight some of the recent collaborative work
+among several institutions (namely ARM, Intel, Tampere University of
+Technology, and others) for supporting OpenCL 2.0 compilation in Clang. This
+work is represented by several patches to Clang upstream that enable
+compilation of the new standard. While the majority of this work is already
+committed, some parts are still a work in progress that should be finished in
+the upcoming months. 
+</p><p>
+OpenCL is a C99 based language, standardized and developed by the Khronos Group
+(<a href="http://www.khronos.org">www.khronos.org</a>), intended to describe
+data-parallel general purpose computations. OpenCL 2.0 provides several new
+features that require compiler support, i.e. generic address space, atomics,
+program scope variables, pipes, and device side enqueue. In this talk we will
+give a quick overview of each of these features and the compiler support that
+had/has to be added. We will focus on the benefits of reusing existing C/OpenCL
+compiler features as well as difficulties not foreseen with the previous
+design. At the end of this session we would like to invite people to
+participate in discussions on improvements and future work, and get an opinion
+of what they think could be useful for them.
+</p>
+
+<p>
+<b><a id="presentation7">Building a binary optimizer with LLVM</a></b><br>
+<i>Maksim Panchenko - Facebook</i><br>
+<a href="Presentations/BOLT_EuroLLVM_2016.pdf"><b>Slides</b></a>
+<a href="https://youtu.be/gw3iDO3By5Y"><b>Video</b></a><br>
+Large-scale applications in data centers are built with the highest level of
+compiler optimizations and typically use a carefully tuned set of compiler
+options as every single percent of performance could result in vast savings of
+power and CPU time. However, code and code-layout optimizations don't stop at
+compiler level, as further improvements are possible at link-time and beyond
+that.
+</p><p>
+At Facebook we use a linker script for an optimal placement of functions in
+HHVM binary to eliminate instruction-cache misses. Recently, we've developed a
+binary optimization technology that allows us to further cut instruction cache
+misses and branch mis-predictions resulting in even greater performance wins.
+</p><p>
+In this talk we would like to share technical details of how we've used LLVM's
+MC infrastructure and ORC layered approach to code generation to build in a
+short time a system that is being deployed to one of the world's biggest data
+centers.  The static binary optimization technology we've developed, uses
+profile data generated in multi-threaded production environment, and is
+applicable to any binary compiled from well-formed C/C++ and even assembly. At
+the moment we use it on a 140MB of X86 binary code compiled from C/C++. The
+input binary has to be un-stripped and does not have any special requirements
+for compiler or compiler options.  In our current implementation we were able
+to improve I-cache misses by 7% on top of a linker script for HHVM binary.
+Branch mis-predictions were improved by 5%.
+</p><p>
+As with many projects at Facebook, our plan is to open source our binary
+optimizer. 
+</p>
+
+<p>
+<b><a id="presentation8">SVF: Static Value-Flow Analysis in LLVM</a></b><br>
+<i>Yulei Sui - University of New South Wales</i><br>
+<i>Peng Di - University of New South Wales</i><br>
+<i>Ding Ye - University of New South Wales</i><br>
+<i>Hua Yan - University of New South Wales</i><br>
+<i>Jingling Xue - University of New South Wales</i><br>
+<a href="Presentations/SVF_EUROLLVM2016.pdf"><b>Slides</b></a>
+<a href="https://youtu.be/nD-i-enA8rc"><b>Video</b></a><br>
+This talk presents SVF, a research tool that enables scalable and precise
+interprocedural Static Value-Flow analysis for sequential and multithreaded C
+programs by leveraging recent advances in sparse analysis. SVF, which is fully
+implemented in LLVM (version 3.7.0) with over 50 KLOC core C++ code, allows
+value-flow construction and pointer analysis to be performed in an iterative
+manner, thereby providing increasingly improved precision for both. SVF accepts
+points-to information generated by any pointer analysis (e.g., Andersen's
+analysis) and constructs an interprocedural memory SSA form, in which the
+def-use chains of both top-level and address-taken variables are captured. Such
+value-flows can be subsequently exploited to support various forms of program
+analysis or enable more precise pointer analysis (e.g., flow-sensitive
+analysis) to be performed sparsely. SVF provides an extensible interface for
+users to write their own analysis easily. SVF is publicly available at
+<a href="http://unsw-corg.github.io/SVF">http://unsw-corg.github.io/SVF</a>.
+</p><p>
+We first describe the design and internal workings of SVF, based on a
+years-long effort in developing the state-of-the-art algorithms of precise
+pointer analysis, memory SSA construction and value-flow analysis for C
+programs. Then, we describe the implementation details with code examples in
+the form of LLVM IR. Next, we discuss some usage scenarios and our previous
+experiences in using SVF in several client applications including detecting
+software bugs (e.g., memory leaks, data races), and accelerating dynamic
+program analyses (e.g., MSAN, TSAN). Finally, our future work and some open
+discussions.
+</p><p>
+Note: this presentation will be shared with CC.
+</p>
+
+<p>
+<b><a id="presentation9">Run-time type checking with clang, using libcrunch</a></b><br>
+<i>Chris Diamand - University of Cambridge</i><br>
+<i>Stephen Kell - Computer Laboratory, University of Cambridge</i><br>
+<i>David Chisnall - Computer Laboratory, University of Cambridge</i><br>
+<a href="Presentations/EuroLLVM_ChrisDiamand.pdf"><b>Slides</b></a>
+<a href="https://youtu.be/duoA1eWwE0E"><b>Video</b></a><br>
+Existing sanitizers ASan and MSan add run-time checking for memory
+errors, both spatial and temporal. However, currently there is no
+analogous way to check for type errors. This talk describes a system for
+adding run-time type checks, largely checking pointer casts, at the
+Clang AST level.
+</p><p>
+Run-time type checking is important for three reasons. Firstly, type
+bugs such as bad pointer casts can lead to type-incorrect accesses that
+are spatially valid (in bounds) and temporally valid (accessing live
+memory), so are missed by MSan or ASan. Secondly, type-incorrect
+accesses which do trigger memory errors often do so only many
+instructions later, meaning that spatial or temporal violation warnings
+fail to pinpoint the root problem, making debugging difficult. Finally,
+given an awareness of type, it becomes possible to perform more precise
+spatial and temporal checking -- for example, recalculating pointer
+bounds after a cast, or perhaps even mark-and-sweep garbage collection.
+</p><p>
+Although still a research prototype, libcrunch can cope well with real C
+codebases, and supports a good complement of awkward language features.
+Experience shows that libcrunch reliably finds questionable pointer use,
+and often uncovers minor other bugs. It also naturally detects certain
+format string exploits. However, its main value is in debugging fresh,
+not-yet-committed code ("why is this segfaulting?"). Beside the warnings
+generated by failing checks, the runtime API is also available from the
+debugger, so can interactively answer questions like "what type is this really
+pointing to?". 
+</p>
+
+<p>
+<b><a id="presentation10">Molly: Parallelizing for Distributed Memory using LLVM</a></b><br>
+<i>Michael Kruse - INRIA/ENS</i><br>
+<a href="Presentations/Molly.pdf"><b>Slides</b></a>
+<a href="https://youtu.be/fKW3yjhcrh0"><b>Video</b></a><br>
+Motivated by modern day physics which in addition to experiments also tries to
+verify and deduce laws of nature by simulating the state-of-the-art physical
+models using large computers, we explore means of accelerating such simulations
+by improving the simulation programs they run. The primary focus is Lattice
+Quantum Chromodynamics (QCD), a branch of quantum field theory, running on IBM
+newest supercomputer, the Blue Gene/Q.
+</p><p>
+Molly is an LLVM compiler extension, complementary to Polly, which optimizes
+the distribution of data and work between the nodes of a cluster machine such
+as Blue Gene/Q. Molly represents arrays using integer polyhedra and uses
+another already existing compiler extension Polly which represents statements
+and loops using polyhedra. When Molly knows how data is distributed among the
+nodes and where statements are executed, it adds code that manages the data
+flow between the nodes. Molly can also permute the order of data in memory.
+</p><p>
+Molly's main task is to cluster data into sets that are sent to the same target
+into the same buffer because single transfers involve a massive overhead. We
+present an algorithm that minimizes the number of transfers for unparametrized
+loops using anti-chains of data flows. In addition, we implement a heuristic
+that takes into account how the programmer wrote the code. Asynchronous
+communication primitives are inserted right after the data is available
+respectively just before it is used. A runtime library implements these
+primitives using MPI. Molly manages to distribute any code that is
+representable in the polyhedral model, but does so best for stencils codes such
+as Lattice QCD. Compiled using Molly, the Lattice QCD stencil reaches 2.5% of
+the theoretical peak performance. The performance gap is mostly because all the
+other optimizations are missing, such as vectorization. Future versions of
+Molly may also effectively handle non-stencil codes and use make use of all the
+optimizations that make the manually optimized Lattice QCD stencil fast.
+</p>
+
+<p>
+<b><a id="presentation11">How Polyhedral Modeling enables compilation to Heterogeneous Hardware</a></b><br>
+<i>Tobias Grosser - ETH</i><br>
+<a href="Presentations/polly-gpu-eurollvm.pdf"><b>Slides</b></a>
+<a href="https://youtu.be/MOX4TxRIijg"><b>Video</b></a><br>
+Polly, as a polyhedral loop optimizer for LLVM, is not only a sophisticated
+tool for data locality optimizations, but also has precise information about
+loop behavior that can be used to automatically generate accelerator code.
+</p><p>
+In this presentation we present a set of new Polly features that have been
+introduced throughout the last two years (and as part of two GSoC projects)
+that enable the use of Polly in the context of compilation for heterogeneous
+systems. As part of this presentation we discuss how we use Polly to derive the
+precise memory footprints of compute regions for both flat arrays as well as
+multi-dimensional arrays of parametric size. We then present a new, high-level
+interface that allows for the automatic remapping of memory access functions to
+new locations or data-layouts and show how this functionality can be used to
+target software managed caches. Finally, we present our latest results in terms
+of automatic PTX/CUDA code generation using Polly as a core component. 
+</p>
+
+<p>
+<b><a id="presentation12">Bringing RenderScript to LLDB</a></b><br>
+<i>Luke Drummond - Codeplay</i><br>
+<i>Ewan Crawford - Codeplay</i><br>
+<a href="Presentations/EuroLLVM2016-E.Crawford_and_L.Drummond-Bringing_RenderScript_to_LLDB.pdf"><b>Slides</b></a>
+<a href="https://youtu.be/BBC61L0QKCM"><b>Video</b></a><br>
+RenderScript is Android's compute framework for parallel computation via
+heterogeneous acceleration. It supports multiple target architectures and uses
+a two-stage compilation process, with both off-line and on-line stages, using
+LLVM bitcode as its intermediate representation. This split allows code to be
+written and compiled once, before execution on multiple architectures
+transparently from the perspective of the programmer.
+</p><p>
+In this talk, we give a technical tour of our upstream RenderScript LLDB
+plugin, and how it interacts with Android applications executing RenderScript
+code. We provide a brief overview of RenderScript, before delving into the LLDB
+specifics. We will discuss some of the challenges that we encountered in
+connecting to the runtime, and present some of the specific implementation
+techniques we used to hook into it and inspect its state. In addition, we will
+describe how we tweaked LLDB's JIT compiler for expression evaluation, and how
+we added commands specific to RenderScript data objects. This talk will cover
+topics such as the plug-in architecture of LLDB, the debugger's powerful hook
+mechanism, remote debugging, and generating debug information with LLVM.
+</p>
+
+<p>
+<b><a id="presentation13">C++ on Accelerators: Supporting Single-Source SYCL and HSA Programming Models Using Clang</a></b><br>
+<i>Victor Lomuller - Codeplay</i><br>
+<i>Ralph Potter - Codeplay</i><br>
+<i>Uwe Dolinsky - Codeplay</i><br>
+<a href="Presentations/Offload-EuroLLVM2016.pdf"><b>Slides</b></a>
+<a href="https://youtu.be/YKX6EMEib4g"><b>Video</b></a><br>
+Heterogeneous systems have been massively adopted across a wide range of
+devices. Multiple initiatives, such as OpenCL and HSA, have appeared to
+efficiently program these types of devices.
+</p><p>
+Recent initiatives attempt to bring modern C++ applications to heterogeneous
+devices. The Khronos Group published SYCL in mid-2015. SYCL offers a
+single-source C++ programming environment built on top of OpenCL. Codeplay and
+the University of Bath are currently collaborating on a C++ front-end for HSAIL
+(HSA Intermediate Language) from the HSA Foundation. Both models use a similar
+single-source C++ approach, in which the host and device kernel C++ code is
+interleaved. A kernel always starts using specific function calls, which take a
+functor object. To support the compilation of these two high-level programming
+models, Codeplay's compilers rely on a common engine based on Clang and LLVM to
+extract and manipulate those kernels.
+</p><p>
+In this presentation we will briefly present both programming models and then
+focus on Codeplay's usage of Clang to manage both models.
+</p>
+
+<p>
+<b><a id="presentation14">A closer look at ARM code size</a></b><br>
+<i>Tilmann Scheller - Samsung Electronics</i><br>
+<a href="Presentations/eurollvm-2016-arm-code-size.pdf"><b>Slides</b></a>
+<a href="https://youtu.be/cFgwEEBw7U0"><b>Video</b></a><br>
+The ARM LLVM backend has been around for many years and generates high quality
+code which executes very efficiently. However, LLVM is also increasingly used
+for resource-constrained embedded systems where code size is more of an issue.
+Historically, very few code size optimizations have been implemented in LLVM.
+When optimizing for code size, GCC typically outperforms LLVM significantly.
+</p><p>
+The goal of this talk is to get a better understanding of why the GCC-generated
+code is more compact and also about finding out what we need to do on the LLVM
+side to address those code size deficiencies. As a case study we will have a
+detailed look at the generated code of an application running on a
+resource-constrained microcontroller.
+</p>
+
+<p>
+<b><a id="presentation15">Scalarization across threads</a></b><br>
+<i>Alexander Timofeev - Luxoft</i><br>
+<i>Boris Ivanovsky - Luxoft</i><br>
+<a href="Presentations/Barcelona2016report.pdf"><b>Slides</b></a>
+<a href="https://youtu.be/2YSzLyBO4yM"><b>Video</b></a><br>
+Some of the modern highly parallel architectures include separate vector
+arithmetic units to achieve better performance on parallel algorithms. On the
+other hand, real world applications never operate on vector data only. In most
+cases whole data flow is intended to be processed by vector units. In fact,
+vector operations on some platforms (for instance, with massive data
+parallelism) may be expensive, especially for parallel memory operations.
+Sometimes instructions operating on vectors of identical values could be
+transformed into corresponding scalar form.
+</p><p>
+The goal of this presentation is to outline a technique which allows to split
+program data flow to separate vector and scalar parts so that they can be
+executed on vector and scalar arithmetic units separately.
+</p><p>
+The analysis has been implemented in the HSA compiler as an iterative solver
+over SSA form. The result of the analysis is a set of memory operations
+legitimate to be transformed into a scalar form. The subsequent transformations
+resulted in a small performance increase across the board, and gain up to 10%
+increase in a few benchmarks, one of them being HEVC decoder. 
+</p>
+
+<div class="www_sectiontitle" id="TutorialsAbstracts">Tutorials abstracts</div>
+<p>
+<b><a id="tuto1">LLDB Tutorial: Adding debugger support for your target</a></b><br>
+<i>Deepak Panickal - Codeplay</i><br>
+<i>Andrzej Warzynski - Codeplay</i><br>
+<a href="Tutorials/LLDB-tutorial.pdf"><b>Slides</b></a>
+<a href="https://youtu.be/9hhDZeV0fYU"><b>Video</b></a><br>
+This tutorial explains how to get started with adding a new architecture to
+LLDB. It walks through all the major steps required and how LLDB's various
+plugins work together in making this a maintainable and easily approachable
+task. It will cover: basic definition of the architecture, implementing
+register read/write through adding a RegisterContext, manipulating breakpoints,
+single-stepping, adding an ABI for stack walking, adding support for
+disassembly of the architecture, memory read/write through modifying Process
+plugins, and everything else that is needed in order to provide a usable
+debugging experience. The required steps will be demonstrated for a RISC
+architecture not yet supported in LLDB, but simple enough so that no expert
+knowledge of the underlying target is required. Practical debugging tips, as
+well as solutions to common issues, will be given.
+</p>
+
+<p>
+<b><a id="tuto2">Analyzing and Optimizing your Loops with Polly</a></b><br>
+<i>Tobias Grosser - ETH</i><br>
+<i>Johannes Doerfert - Saarland University</i><br>
+<i>Zino Benaissa - Quic Inc.</i><br>
+<a href="Tutorials/applied-polyhedral-compilation.pdf"><b>Slides</b></a>
+<a href="https://youtu.be/mXve_W4XU2g"><b>Video</b></a><br>
+The Polly Loop Optimizer is a framework for the analysis and optimization of
+(possibly imperfectly) nested loops. It provides various transformations such
+as loop fusion, loop distribution, loop tiling as well as outer loop
+vectorization. In this tutorial we introduce the audience to the Polly loop
+optimizer and show how Polly can be used to analyze and improve the performance
+of their code. We start off with basic questions such as "Did Polly understand
+my loops?", "What information did Polly gather?", "How does the optimized loop
+nest look like?", "Can I provide more information to enable better
+optimizations?", and "How can I utilize Polly's analysis for other purposes?".
+Starting from these foundations we continue with a deeper look in more advanced
+uses of Polly: This includes the analysis and optimization of some larger
+benchmarks, the programming interfaces to Polly as well as the connection
+between Polly and other LLVM-IR passes. At the end of this tutorial we expect
+the audience to not only be able to optimize their codes with Polly, but also
+to have a first understanding of how to use it as a framework to implement
+their own loop transformations.
+</p>
+
+<p>
+<b><a id="tuto3">Building, Testing and Debugging a Simple out-of-tree LLVM Pass</a></b><br>
+<i>Serge Guelton - Quarkslab</i><br>
+<i>Adrien Guinet - Quarkslab</i><br>
+<a href="Tutorials/Tutorial.pdf"><b>Slides</b></a>
+<a href="https://youtu.be/Z5KcwVaak3s"><b>Video</b></a><br>
+This tutorial aims at providing solid ground to develop out-of-tree LLVM passes.
+It presents all the required building blocks, starting from scratch: cmake
+integration, llvm pass management, opt / clang integration. It presents the core
+IR concepts through two simple obfuscating passes: the SSA form, the CFG, PHI
+nodes, IRBuilder etc. We also take a quick tour on analysis integration through
+dominators. Finally, it showcases how to use cl and lit to parametrize and test
+the toy passes developed in the tutorial.
+</p><p>
+Note from the program committee: this was a succesful tutorial at the 2015 US
+LLVM dev meeting, and we thought it made sense to have it again for a EuroLLVM
+audience, especially when considering we are collocated with CGO and CC.
+</p>
+
+<div class="www_sectiontitle" id="LightningTalksAbstracts">Lightning talks abstracts</div>
+<p>
+<a href="https://youtu.be/TkanbGAG_Fo"><b>Video</b></a> for all lightning talks.<br>
+<p>
+<b><a id="lightning1">Random Testing of the LLVM Code Generator</a></b><br>
+<i>Bevin Hansson - SICS Swedish ICT</i><br>
+<a href="Lightning-Talks/RandomTestingOfTheLLVMCodeGenerator.pdf"><b>Slides</b></a><br>
+LLVM is a large, complex piece of software with many interlocking components.
+Testing a system of this magnitude is an arduous task. Random testing is an
+increasingly popular technique used to test complex systems. A successful
+example of this is Csmith, a tool which generates random, semantically valid C
+programs.
+</p><p>
+We present a generic method to generate random but structured intermediate
+representation code. Our method is implemented in LLVM to generate random
+Machine IR code for testing the post-instruction selection stages of code
+generation.
+</p>
+
+<p>
+<b><a id="lightning2">ARCHER: Effectively Spotting Data Races in Large OpenMP Applications</a></b><br>
+<i>Simone Atzeni - University of Utah</i><br>
+<i>Ganesh Gopalakrishnan - University of Utah</i><br>
+<i>Zvonimir Rakamaric - University of Utah</i><br>
+<i>Dong H. Ahn - Lawrence Livermore National Laboratory</i><br>
+<i>Ignacio Laguna - Lawrence Livermore National Laboratory</i><br>
+<i>Martin Schulz - Lawrence Livermore National Laboratory</i><br>
+<i>Gregory L. Lee - Lawrence Livermore National Laboratory</i><br>
+<a href="Lightning-Talks/Archer_talk-EuroLLVM-2016.pdf"><b>Slides</b></a><br>
+Although the importance OpenMP as a parallel programming model and its adoption
+in Clang/LLVM is increasing (OpenMP 3.1 is now fully supported by Clang/LLVM
+3.7), existing data-race checkers for OpenMP have high overheads and generate
+many false positives. In this work, we propose the first OpenMP data race
+checker, ARCHER, that achieves high accuracy and low overheads on large OpenMP
+applications. Built on top of LLVM/Clang and the ThreadSanitizer (TSan) dynamic
+race checker, ARCHER incorporates scalable happens-before tracking, and
+exploits structured parallelism via combined static and dynamic analysis, and
+modularly interfaces with OpenMP runtimes. ARCHER significantly outperforms
+TSan and Intel Inspector XE, while providing the same or better precision. It
+has helped detect critical data races in the Hypre library that is central to
+many projects at the Lawrence Livermore National Laboratory (LLNL) and
+elsewhere.
+</p><p>
+Note: this lightning has an associated <a href="#poster1">poster</a>
+</p>
+
+<p>
+<b><a id="lightning3">Hierarchical Graph Coloring Register Allocation in LLVM</a></b><br>
+<i>Aaron Smith - Microsoft Research</i><br>
+<a href="Lightning-Talks/HierarchicalGraphColoringRegAlloc-asmith.pdf"><b>Slides</b></a><br>
+This talk will present a new register allocator for LLVM based on a
+hierarchical graph coloring approach. In this allocator a program's control
+structure is represented as a tree of tiles and a two phase algorithm colors
+the tiles based on both local and global information. This talk will describe
+our implementation in LLVM along with an initial comparison to LLVM's existing
+greedy allocator.
+</p>
+
+<p>
+<b><a id="lightning4">Retargeting LLVM to an Explicit Data Graph Execution (EDGE) Architecture</a></b><br>
+<i>Aaron Smith - Microsoft Research</i><br>
+<a href="Lightning-Talks/RetargetingLLVMToEDGEArchitecture-asmith.pdf"><b>Slides</b></a><br>
+This talk will describe recent work to retarget LLVM to an Explicit Data Graph
+Execution (EDGE) architecture. EDGE architectures utilize a hybrid von
+Neumann/dataflow execution model which provides out of order execution with
+near in-order power efficiency. We will describe the challenges with targeting
+an EDGE ISA with LLVM and compare our LLVM based EDGE compiler with a mature
+production quality Visual Studio based EDGE toolchain.
+</p>
+
+<p>
+<b><a id="lightning5">Optimal Register Allocation and Instruction Scheduling for LLVM</a></b><br>
+<i>Roberto Casta&ntilde;eda Lozano - SICS &amp; Royal Institute of Technology (KTH)</i><br>
+<i>Gabriel Hjort Blindell - Royal Institute of Technology (KTH)</i><br>
+<i>Mats Carlsson - SICS</i><br>
+<i>Christian Schulte - SICS &amp; Royal Institute of Technology (KTH)</i><br>
+<a href="Lightning-Talks/unison.pdf"><b>Slides</b></a><br>
+This talk presents Unison - a simple, flexible and potentially optimal tool
+that solves register allocation and instruction scheduling simultaneously.
+Experiments using MediaBench and Hexagon show that Unison can speed up the code
+code generated by LLVM by up to 30%.
+</p><p>
+Unison is fully integrated with LLVM's code generator and hence can be used as
+a complement to the existing heuristic algorithms. From a LLVM developer's
+perspective, the ability to deliver optimal code makes Unison a powerful tool
+to design and evaluate heuristics. From a user's perspective, Unison allows
+compilation time to be traded for code quality beyond the usual -O{0,1,2,3,..}
+optimization levels.
+</p>
+
+<p>
+<b><a id="lightning6">Towards fully open source GPU accelerated molecular dynamics simulation</a></b><br>
+<i>Vedran Mileti&cacute; - Heidelberg Institute for Theoretical Studies</i><br>
+<i>Szil&aacute;rd P&aacute;ll - Royal Institute of Technology (KTH)</i><br>
+<i>Frauke Gr&auml;ter - Heidelberg Institute for Theoretical Studies</i><br>
+<a href="Lightning-Talks/miletic-gromacs-amdgpu.pdf"><b>Slides</b></a><br>
+Molecular dynamics is a simulation method for studying movements of atoms and
+molecules, usually applied in the study of biomolecules and materials. GROMACS
+open source molecular dynamics simulator supports GPU acceleration using both
+CUDA and OpenCL. While using CUDA is limited to NVIDIA GPUs and NVIDIA
+proprietary drivers, compilers and libraries, OpenCL in GROMACS targets both
+NVIDIA and AMD GPUs. Until this point, OpenCL in GROMACS was only tested on
+proprietary drivers from NVIDIA and AMD.
+</p><p>
+Advances in AMDGPU LLVM backend and radeonsi Gallium compute stack for Radeon
+Graphics Core Next (GCN) GPUs are steadily closing the feature gap between the
+open source and proprietary drivers. Recent announcement from AMD regarding the
+plan to support the existing open source OpenCL driver and open source their
+(currently proprietary) OpenCL driver makes it feasible to run GPU accelerated
+molecular dynamics on fully open source OpenCL stack.
+</p><p>
+Under the guidance and with help from AMD's developers working on LLVM, we are
+working on improving AMDGPU LLVM backend, radeonsi Gallium compute stack, and
+libclc to support the OpenCL features GROMACS requires to run. The lightning
+talk will present the challenges we encountered in the process.
+</p>
+
+<p>
+<b><a id="lightning7">CSiBE in the LLVM ecosystem</a></b><br>
+<i>Gabor Ballabas - Department of Software Engineering, University of Szeged</i><br>
+<i>Gabor Loki - Department of Software Engineering, University of Szeged</i><br>
+<a href="Lightning-Talks/EuroLLVM_2016_paper_22.pdf"><b>Slides</b></a><br>
+More than a decade ago, we have started to set up a code size benchmarking
+environment for compilers - called CSiBE - which became the official code size
+benchmark of GNU GCC. Since then, lots of open source and industrial compilers
+and testing frameworks have integrated it in their system for benchmarking and
+testing purpose. Nowadays CSiBE is getting increasing attention on the field of
+IoT again. Since the benchmark environment of CSiBE feels old and complex for
+the current modularized world, we have started to update its core. We are
+extending CSiBE with a user friendly interface, modularized testbeds, support
+for embedders and support for LLVM-based compilers (e.g., Clang and Rust). We
+will share our experiences and the possibilities about CSiBE for the community.
+</p>
+
+<div class="www_sectiontitle" id="PostersAbstracts">Posters abstracts</div>
+<p>
+<b><a id="poster1">ARCHER: Effectively Spotting Data Races in Large OpenMP Applications</a></b><br>
+<i>Simone Atzeni - University of Utah</i><br>
+<i>Ganesh Gopalakrishnan - University of Utah</i><br>
+<i>Zvonimir Rakamaric - University of Utah</i><br>
+<i>Dong H. Ahn - Lawrence Livermore National Laboratory</i><br>
+<i>Ignacio Laguna - Lawrence Livermore National Laboratory</i><br>
+<i>Martin Schulz - Lawrence Livermore National Laboratory</i><br>
+<i>Gregory L. Lee - Lawrence Livermore National Laboratory</i><br>
+Although the importance OpenMP as a parallel programming model and its adoption
+in Clang/LLVM is increasing (OpenMP 3.1 is now fully supported by Clang/LLVM
+3.7), existing data-race checkers for OpenMP have high overheads and generate
+many false positives. In this work, we propose the first OpenMP data race
+checker, ARCHER, that achieves high accuracy and low overheads on large OpenMP
+applications. Built on top of LLVM/Clang and the ThreadSanitizer (TSan) dynamic
+race checker, ARCHER incorporates scalable happens-before tracking, and
+exploits structured parallelism via combined static and dynamic analysis, and
+modularly interfaces with OpenMP runtimes. ARCHER significantly outperforms
+TSan and Intel Inspector XE, while providing the same or better precision. It
+has helped detect critical data races in the Hypre library that is central to
+many projects at the Lawrence Livermore National Laboratory (LLNL) and
+elsewhere.
+</p><p>
+Note: this poster has an associated <a href="#lightning2">lightning talk</a>
+</p>
+
+<p>
+<b><a id="poster2">Design-space exploration of LLVM pass order with simulated annealing</a></b><br>
+<i>Nicholas Timmons - Cambridge University</i><br>
+<i>David Chisnall - Cambridge University</i><br>
+We undertook an automated design space exploration of the optimisation pass
+order and inliner thresholds in Clang using simulated annealing. It was
+performed separately on multiple input programs so that the results could be
+validated against each other. Superior configurations to the preset
+optimisation levels were found, such as those which produce similar run times
+to the presets whilst reducing build times, and those which offer improved
+run-time performance than the '-O3' optimisation level. Contrary to our
+expectation, we also found that the preset optimisation levels did not provide
+a uniform distribution in the tradeoff space between run and build-time
+performance.
+</p>
+
+<p>
+<b><a id="poster3">ConSerner: Compiler Driven Context Switches between Accelerators and CPUs</a></b><br>
+<i>Ramy Gad - Johannes Gutenberg University</i><br>
+<i>Tim Suess - University of Mainz</i><br>
+<i>Andre Brinkmann - Johannes Gutenberg-Universit&auml;t Mainz</i><br>
+Computer systems provide different heterogeneous resources (e.g., GPUs, DSPs
+and FPGAs) that accelerate applications and that can reduce the energy
+consumption by using them. Usually, these resources have an isolated memory and
+a require target specific code to be written. There exist tools that can
+automatically generate target specific codes for program parts, so-called
+kernels. The data objects required for a target kernel execution need to be
+moved to the target resource memory. It is the programmers' responsibility to
+serialize these data objects used in the kernel and to copy them to or from the
+resource's memory. Typically, the programmer writes his own serializing
+function or uses existing serialization libraries. Unfortunately, both
+approaches require code modifications, and the programmer needs knowledge of
+the used data structure format. There is a need for a tool that is able to
+automatically extract the original kernel data objects, serialize them, and
+migrate them to a target resource without requiring intervention from the
+programmer.
+</p><p>
+In this work, we present a tool collection ConSerner that automatically
+identifies, gathers, and serializes the context of a kernel and migrates it to
+a target resource's memory where a target specific kernel is executed with this
+data. This is all done transparently to the programmer. Complex data structures
+can be used without making a modification of the program code by a programmer
+necessary. Predefined data structures in external libraries (e.g., the STL's
+vector) can also be used as long as the source code of these libraries is
+available.
+</p>
+
+<p>
+<b><a id="poster4">Evaluation of State-of-the-art Static Checkers for Detecting Objective-C Bugs in iOS Applications</a></b><br>
+<i>Thai San Phan - University of New South Wales</i><br>
+<i>Yulei Sui - University of New South Wales</i><br>
+The pervasive usage of mobile phone applications is now changing the way
+people use traditional software. Smartphone apps generated an impressive USD
+35 billion in full-year 2014, and in total 138 billion apps were
+downloaded in the year. The last few years have seen an unprecedented number
+of people rushing to develop mobile apps. Apple iOS has always played a major
+role in the smart-devices industry ever since the evolution of it. On average,
+around 45,000 newly developed apps are submitted for release to the iTunes
+App Store in 2014. Similar as desktop software, any mobile applications are
+prone to bugs and it is difficult to completely make them bug-free. As a
+fundamental tool to help programmers effectively locate program defects during
+compile time, static analysis approximates the runtime behaviour of a program
+without actually executing it. It is extremely helpful to catch bugs earlier during
+software development cycle before the produced is shipped in order to avoid
+high maintenance cost. This poster is hence to evaluate the state-of-the-art static
+checkers for detecting Objective-C bugs to systematically investigate the
+advantages and disadvantages of using different checkers on a wide variety bug
+patterns in iOS applications.
+</p><p>
+Objective-C, as the primary language for iOS application, is an object-oriented
+superset of C such that it inherits syntax, primitive types and flow control
+statements of C. Though it has many new features that distinguish it from C
+such as message passing (equivalent to C or Java's method calling), interface
+and implementation for objects (equivalent to "class" in C++), garbage collector
+or now ARC (C does not have this feature), and most importantly, it is a
+runtime-driven language where decisions such as memory allocations, object
+creation, reflection API are decided at runtime as oppose to be determined
+during compilation. All these features significantly complicated scalable and
+precise static analysis.
+</p>
+
+<p>
+<b><a id="poster5">Stack Size Estimation on Machine-Independent Intermediate Code for OpenCL Kernels</a></b><br>
+<i>Stefano Cherubin - Politecnico di Milano</i><br>
+<i>Michele Scandale - Politecnico di Milano</i><br>
+<i>Giovanni Agosta - Politecnico di Milano</i><br>
+Stack size is an important factor in the mapping decision when dealing with
+embedded heterogeneous architectures, where fast memory is a scarce resource.
+Trying to map a kernel onto a device with insufficient memory may lead to
+reduced performance or even failure to run the kernel. OpenCL kernels are
+often compiled just-in-time, starting from the source code or an intermediate
+machine-independent representation. Precise stack size information, however,
+is only available in machine-dependent code. We provide a method for computing
+the stack size with sufficient accuracy on machine-independent code, given
+knowledge of the target ABI and register file architecture. This method can be
+applied to make mapping decisions early, thus avoiding to compile multiple
+times the code for each possible accelerator in a complex embedded
+heterogeneous system. 
+</p>
+
+<p>
+<b><a id="poster6">AAP: The Compiler Writer's Architecture from hell</a></b><br>
+<i>Simon Cook - Embecosm</i><br>
+<i>Edward Jones - Embecosm</i><br>
+<i>Jeremy Bennett - Embecosm</i><br>
+Contending with the blistering pace of LLVM advancement is a challenge for out
+of tree targets. Many out of tree targets, often for widely used embedded
+processors, have hardware features which are not well represented by the
+mainstream LLVM project.
+</p><p>
+We introduced An Altruistic Processor (AAP) at EuroLLVM 2015. AAP's
+architecture encapsulates as many of these features as possible. AAP is a
+RISC, Harvard architecture with up to 64kB of byte addressed data, up to 16MW of
+word addressed code, and a configurable register bank of between 4 and 64
+registers.
+</p><p>
+In this poster we will present an update on the AAP architecture. We'll look
+at some of the most challenging features, and how we have extended LLVM to
+support them. This includes :
+</p>
+<ul>
+  <li>different sizes of code and address pointers,</li>
+  <li>how to handle code pointers that do not fit in the default address space,</li>
+  <li>operations where stack access is cheaper than register access,</li>
+  <li>how to relax call/return when you have multiple return address sizes.</li>
+</ul>
+
+<p>
+<b><a id="poster7">Automatic Identification of Accelerators for Hybrid HW-SW Execution</a></b><br>
+<i>Georgios Zacharopoulos - University of Lugano</i><br>
+<i>Giovanni Ansaloni - University of Lugano</i><br>
+<i>Laura Pozzi - University of Lugano</i><br>
+While the number of transistors that can be put on a chip significantly
+increases, as suggested by Moore's law, the dark silicon problem rises. This is
+due to the power consumption not dropping at a corresponding rate, which
+generates overheating issues. Accelerator-enhanced architectures can provide an
+efficient solution to this and lead us to a hybrid HW-SW execution, where
+computationally intensive parts can be performed by custom hardware. An
+automation of this process is needed, so that applications in high-level
+languages can be mapped to hardware and software directly. The process needs,
+first, an automatic technique for identifying the parts of the computation that
+should be accelerated, and secondly, an automated way of synthesising these
+parts onto hardware. Under the scope of this paper, we are focusing on the
+first part of this process, and we present the automatic identification of the
+most computationally demanding parts, also known as custom instructions. The
+state-of-the-art identification approaches have certain limitations, as custom
+instruction selection is mostly performed within the scope of single Basic
+Blocks. We introduce a novel selection strategy, implemented within the LLVM
+framework, that carries out identification beyond the scope of a single Basic
+Block and identifies Regions within the Control Flow Graph, as subgraphs of it.
+Specific I/O constraints and area occupation metrics are taken into
+consideration, in order to obtain Regions that would provide maximum speedup,
+under architectural constraints, when transferred to hardware. For our final
+experimentation and evaluation phase, kernels from the signal and image
+processing domain are evaluated, and promising initial results show that the
+identification technique proposed is often capable of mimicking manual designer
+decisions.
+</p>
+
+<p>
+<b><a id="poster8">Static Analysis for Automated Partitioning of Single-GPU Kernels</a></b><br>
+<i>Alexander Matz - Ruprecht-Karls University of Heidelberg</i><br>
+<i>Christoph Klein - Ruprecht-Karls University of Heidelberg</i><br>
+<i>Holger Fr&ouml;ning - Ruprecht-Karls University of Heidelberg</i><br>
+GPUs have established themselves in the computing landscape, convincing users
+and designers by their excellent performance and energy efficiency. They differ
+in many aspects from general-purpose CPUs, for instance their highly parallel
+architecture, their thread-collective bulk-synchronous execution model, and
+their programming model. Their use has been pushed by the introduction of
+data-parallel languages like CUDA or OpenCL.
+</p><p>
+The inherent domain decomposition principle for these languages ensures a fine
+granularity when partitioning the code, typically resulting in a mapping of one
+single output element to one thread and reducing the need for work
+agglomeration.
+</p><p>
+The BSP programming paradigm and its associated slackness regarding the ratio
+of virtual to physical processors allows effective latency hiding techniques
+that make large caching structures obsolete. At the same time, a typical BSP
+code exhibits substantial amounts of locality, as the rather flat memory
+hierarchy of thread-parallel processors has to rely on large amounts of data
+reuse to keep their vast amount of processing units busy.
+</p><p>
+While these languages are rather easy to learn and use for single GPUs,
+programming multiple GPUs has to be done in an explicit and manual fashion that
+dramatically increases the complexity. The user has to manually orchestrate
+data movements and kernel launches on the different processors. Even though
+there exist concepts that span up global addresses like shared-virtual memory,
+the significant bandwidth disparity between on-device (GDDR) and off-device
+(PCIe) accesses usually results in no performance gains.
+</p><p>
+We leverage these observations for deriving a methodology to scale out
+single-device programs to an execution on multiple devices, aggregating compute
+and memory resources. Our approach comprises three steps: 1. collect
+information about data dependency and memory access patterns using static code
+analysis 2. merge information in order to choose an appropriate partitioning
+strategy 3. apply code transformations to implement the chosen partitioning and
+insert calls to a dynamic runtime library.
+</p>
+
+<div class="www_sectiontitle" id="BoFsAbstracts">BoFs abstracts</div>
+<p>
+<b><a id="bof1">LLVM Foundation</a></b><br>
+<i>LLVM Foundation board of directors</i><br>
+<a href="BoF-Minutes/LLVMFoundation.pdf"><b>BoF notes</b></a><br>
+This BoF will give the EuroLLVM attendees a chance to talk with some of the
+board members of the LLVM Foundation. We will discuss the Code of Conduct and
+Apache2 license proposal and answer any questions about the LLVM Foundation.
+</p>
+
+<p>
+<b><a id="bof2">Compilers in Education</a></b><br>
+<i>Roel Jordans - Eindhoven University of Technology</i><br>
+<i>Henk Corporaal - Eindhoven University of Technology</i><br>
+<a href="BoF-Minutes/CompilersInEducation.pdf"><b>BoF notes</b></a><br>
+While computer architecture and hardware optimization is generally well covered
+in education, compilers are still often a poorly represented subject. Classical
+compiler lecture series seem to mostly cover the front-end parts of the
+compiler but usually lack an in-depth discussion of newer optimization and code
+generation techniques. Important aspects such as auto-vectorization, complex
+instruction support for DSP architectures, and instruction scheduling for
+highly parallel for VLIW architectures are often touched only lightly. However,
+creating new processor designs requires a properly optimizing compiler in order
+for it to be usable by your customers. As such, there is a good market for
+well-trained compiler engineers which does not match with the classical style
+of teaching compilers in education.
+</p><p>
+At Eindhoven University of Technology, we are currently starting a new compiler
+course that should provide such an improved lecture series to our
+students and we plan to make this available to the wider community. The
+focus of this lecture series is on tool-flow organization of modern
+parallelizing compilers, their internal techniques, and the advantages
+and limitations of these techniques. We try to train the students so that
+they can understand how the compiler works internally, but also apply
+this new knowledge in writing C program code that allows the compiler to
+utilize its advanced optimizations to generate better and portable code.
+As a result, we hope to provide better qualified compiler engineers, but
+also train them to write better high-performance code at a high-level by
+applying their compiler knowledge in guiding the compiler to an efficient
+implementation of the program.
+</p><p>
+As part this process we would like to get in contact with institutes and
+companies that will be taking advantage of our newly educated students
+and discuss with them the contents of our lecture series. What do you
+guys think are important topics that new engineers should know about to
+be useful in your organization and what would make this course
+interesting for yourself? 
+</p>
+
+<p>
+<b><a id="bof3">Surviving Downstream</a></b><br>
+<i>Paul Robinson - Sony Computer Entertainment America</i><br>
+<a href="BoF-Minutes/SurvivingDowntream.pdf"><b>BoF notes</b></a><br>
+We presented "Living Downstream Without Drowning" as a tutorial/BOF
+session at the US LLVM meeting in October. After the session, Paul
+had people coming to talk to him for most of the evening social event
+and half of the next day (and so missed several other talks!).
+Clearly a lot of people are in this situation and there are many
+good ideas to share.
+</p><p>
+Come to this follow-up BOF and share your practices, problems and
+solutions for surviving the "flood" of changes from the upstream
+LLVM projects.
+</p>
+
+<p>
+<b><a id="bof4">Polly - Loop Optimization Infrastructure</a></b><br>
+<i>Tobias Grosser - ETH</i><br>
+<i>Johannes Doerfert - Saarland University</i><br>
+<i>Zino Benaissa - Quic Inc.</i><br>
+<a href="BoF-Minutes/PollyLoopOptimizationInfrastructure.pdf"><b>BoF notes</b></a><br>
+The Polly Loop Optimization infrastructure has seen active development
+throughout 2015 with contributions from a larger group of developers located at
+various places around the globe. With three successful Polly sessions at the US
+developers meeting and larger interest at the recent HiPEAC conference in Prag,
+we expect various Polly developers to be able to attend EuroLLVM. To facilitate
+in-persona collaboration between the core developers and to reach out to the
+wider loop optimization community, we propose a BoF session on Polly and the
+LLVM loop optimization infrastructure. Current hot topics are the
+usability of Polly in an '-O3' compiler pass sequence, profile driven
+optimizations as well as the definition of future development milestones.
+The Polly developers community will present ideas on these topics, but
+very much invites input from interested attendees.
+</p>
+
+<p>
+<b><a id="bof5">LLVM on PowerPC and SystemZ</a></b><br>
+<i>Ulrich Weigand - IBM</i><br>
+<a href="BoF-Minutes/PowerPCAndSystemZ.pdf"><b>BoF notes</b></a><br>
+This Birds of a Feather session is intended to bring together
+developers and users interested in LLVM on the two IBM platforms
+PowerPC and SystemZ.
+</p><p>
+Topics for discussion include:
+</p>
+<ul>
+  <li> Status of platform support in the two LLVM back ends: feature
+       completeness, architecture support, performance, ...</li>
+  <li> Platform support in other parts of the overall LLVM portfolio: LLD, LLDB, sanitizers, ...</li>
+  <li> Support for new languages and other emerging use cases: Swift, Rust, Impala, ...</li>
+  <li> Any other features currently in development for the platform(s)</li>
+  <li> User experiences on the platform(s), additional requirements</li>
+</ul>
+
+<p>
+<b><a id="bof6">How to make LLVM more friendly to out-of-tree consumers ?</a></b><br>
+<i>David Chisnall - Computer Laboratory, University of Cambridge</i><br>
+<a href="BoF-Minutes/HowToMakeLLVMMoreFriendly.pdf"><b>BoF notes</b></a><br>
+LLVM has always had the goal of a library-oriented design.  This implicitly
+assumes that the libraries that are parts of LLVM can be used by consumers that
+are not part of the LLVM umbrella.  In this BoF, we will discuss how well LLVM
+has achieved this objective and what it could do better.  Do you use LLVM in an
+external project?  Do you track trunk, or move between releases?  What has
+worked well for you, what has caused problems?  Come along and share your
+experiences.
+</p>
+
+<!-- *********************************************************************** -->
+<hr>
+
+<!--#include virtual="../../footer.incl" -->

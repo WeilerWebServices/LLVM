@@ -1,0 +1,1883 @@
+<!--#include virtual="header.incl" -->
+
+<div class="www_sectiontitle">Open LLVM Projects</div>
+
+<ul>
+  <li>Google Summer of Code Ideas & Projects
+    <ul>
+      <li>
+        <a href="#gsoc20">Google Summer of Code 2020</a>
+      <ul>
+        <li>
+          <b>LLVM Core</b>
+          <ul>
+            <li><a href="#llvm_optimized_debugging">Improve debugging of optimized code</a></li>
+            <li><a href="#llvm_ipo">Improve inter-procedural analyses and optimizations</a></li>
+            <li><a href="#llvm_par">Improve parallelism-aware analyses and optimizations</a></li>
+            <li><a href="#llvm_dbg_invariant">Make LLVM passes debug info invariant</a></li>
+            <li><a href="#llvm_mergesim">Improve MergeFunctions to incorporate MergeSimilarFunction patches and ThinLTO Support</a></li>
+            <li><a href="#llvm_dwarf_yaml2obj">Add DWARF support to yaml2obj</a></li>
+            <li><a href="#llvm_hotcold">Improve hot cold splitting to aggressively outline small blocks</a></li>
+            <li><a href="#llvm_pass_order">Advanced Heuristics for Ordering Compiler Optimization Passes</a></li>
+            <li><a href="#llvm_ml_scc">Machine learning and compiler optimizations: using inter-procedural analysis to select optimizations</a></li>
+            <li><a href="#llvm_postdominators">Add PostDominatorTree in LoopStandardAnalysisResults</a></li>
+            <li><a href="#llvm_loopnest">Create loop nest pass</a></li>
+            <li><a href="#llvm_instdump">Instruction properties dumper and checker</a></li>
+            <li><a href="#llvm_movecode">Unify ways to move code or check if code is safe to be moved</a></li>
+          </ul>
+          <li><a href="http://clang.llvm.org/"><b>Clang</b></a>
+            <ul>
+              <li><a href="#clang-template-instantiation-sugar">Extend clang AST to
+                provide information for the type as written in template
+                instantiations</a>
+              </li>
+              <li><a href="#clang-sa-cplusplus-checkers">Find null smart pointer dereferences
+                                                         with the Static Analyzer</a>
+              </li>
+            </ul>
+          </li>
+         <li><a href="http://lldb.llvm.org/"><b>LLDB</b></a></li>
+          <ul>
+            <li><a href="#lldb-autosuggestions">Support autosuggestions in LLDB's command line</a></li>
+            <li><a href="#lldb-more-completions">Implement the missing tab completions for LLDB's command line</a></li>
+            <li><a href="#lldb-reimplement-lldb-cmdline">Reimplement LLDB's command-line commands using the public SB API.</a></li>
+            <li><a href="#lldb-batch-testing">Add support for batch-testing to the LLDB testsuite.</a></li>
+          </ul>
+          <li>
+            <b>MLIR</b>
+            <ul>
+              <li>See the <a href="https://mlir.llvm.org/getting_started/openprojects/">MLIR open project list</a></li>
+            </ul>
+        </li>
+      </ul>
+
+      </li>
+      <li><a href="#gsoc19">Google Summer of Code 2019</a>
+      <ul>
+        <li>
+          <b>LLVM Core</b>
+          <ul>
+            <li><a href="#debuginfo_codegen_mismatch">Debug Info should have no
+              effect on codegen</a></li>
+            <li><a href="#llvm_function_attributes">Improve (function) attribute
+              inference</a></li>
+            <li><a href="#improve_binary_utilities">Improve LLVM binary utilities
+            </a></li>
+          </ul>
+        </li>
+        <li><a href="http://clang.llvm.org/"><b>Clang</b></a>
+          <ul>
+            <li><a href="#clang-astimporter-fuzzer">Implement an ASTImporter
+              fuzzer</a>
+            </li>
+            <li><a href="#improve-autocompletion">Improve shell autocompletion
+              for Clang</a>
+            </li>
+            <li><a href="#analyze-llvm">Apply the Clang Static Analyzer to LLVM-based
+              Projects</a>
+            </li>
+            <li><a href="#header-generation">Generate annotated sources based on
+              LLVM-IR analyses</a>
+            </li>
+            <li><a href="#header-clang-diagnostic">Improve Clang diagnostics</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+      <li><a href="#gsoc18">Google Summer of Code 2018</a></li>
+      <li><a href="#gsoc17">Google Summer of Code 2017</a></li>
+    </ul></li>
+  <li><a href="#what">What is this?</a></li>
+  <li><a href="#subprojects">LLVM Subprojects: Clang and more</a></li>
+  <li><a href="#improving">Improving the current system</a>
+  <ol>
+    <li><a href="#target-desc">Factor out target descriptions</a></li>
+    <li><a href="#code-cleanups">Implementing Code Cleanup bugs</a></li>
+    <li><a href="#programs">Compile programs with the LLVM Compiler</a></li>
+    <li><a href="#llvmtest">Add programs to the llvm-test suite</a></li>
+    <li><a href="#benchmark">Benchmark the LLVM compiler</a></li>
+    <li><a href="#statistics">Benchmark Statistics and Warning System</a></li>
+    <li><a href="#coverage">Improving Coverage Reports</a></li>
+    <li><a href="#misc_imp">Miscellaneous Improvements</a></li>
+  </ol></li>
+
+  <li><a href="#new">Adding new capabilities to LLVM</a>
+  <ol>
+    <li><a href="#llvm_ir">Extend the LLVM intermediate representation</a></li>
+    <li><a href="#pointeranalysis">Pointer and Alias Analysis</a></li>
+    <li><a href="#profileguided">Profile-Guided Optimization</a></li>
+    <li><a href="#compaction">Code Compaction</a></li>
+    <li><a href="#xforms">New Transformations and Analyses</a></li>
+    <li><a href="#codegen">Code Generator Improvements</a></li>
+    <li><a href="#misc_new">Miscellaneous Additions</a></li>
+  </ol></li>
+
+  <li><a href="#using">Project using LLVM</a>
+  <ol>
+    <li><a href="#machinemodulepass">Add a MachineModulePass</a></li>
+    <li><a href="#encodeanalysis">Encode Analysis Results in MachineInstr IR</a></li>
+    <li><a href="#codelayoutjit">Code Layout in the LLVM JIT</a></li>
+    <li><a href="#fieldlayout">Improved Structure Splitting and Field Reordering</a></li>
+    <li><a href="#slimmer">Finish the Slimmer Project</a></li>
+  </ol></li>
+</ul>
+
+<div class="doc_author">
+  <p>Written by the <a href="/">LLVM Team</a></p>
+</div>
+
+<!-- *********************************************************************** -->
+<div class="www_sectiontitle">
+  <a name="gsoc20">Google Summer of Code 2020</a>
+</div>
+<!-- *********************************************************************** -->
+
+<div class="www_text">
+  <p>
+    Welcome prospective Google Summer of Code 2020 Students! This document is your
+    starting point to finding interesting and important projects for LLVM, Clang,
+    and other related sub-projects. This list of projects is not only developed for
+    Google Summer of Code, but open projects that really need developers to work on
+    and are very beneficial for the LLVM community. </p>
+
+  <p>We encourage you to look through this list and see which projects excite you
+    and match well with your skill set. We also invite proposals not on this
+    list. You must propose your idea to the LLVM community through our
+    developers' mailing list (llvm-dev@lists.llvm.org or specific subproject mailing
+    list). Feedback from the community is a requirement for your proposal to be
+    considered and hopefully accepted.
+  </p>
+
+  <p>The LLVM project has participated in Google Summer of Code for several years
+    and has had some very successful projects. We hope that this year is no
+    different and look forward to hearing your proposals. For information on how to
+    submit a proposal, please visit the Google Summer of Code
+    main <a href="https://developers.google.com/open-source/gsoc/">website.</a></p>
+</div>
+
+<!-- *********************************************************************** -->
+<div class="www_subsection">
+  <a>LLVM</a>
+</div>
+<!-- *********************************************************************** -->
+
+<!-- *********************************************************************** -->
+<div class="www_subsubsection">
+  <a name="llvm_ipo">Improve inter-procedural analyses and optimizations</a>
+</div>
+<!-- *********************************************************************** -->
+
+<div class="www_text">
+  <p><b>Description of the project:</b>
+    This is a short description, please reach out to Johannes (jdoerfert on IRC)
+    if it sounds interesting.
+
+    During the GSoC'19 we build the Attributor framework to improve the
+    inter-procedural capabilities of LLVM. This is useful on its own but
+    especially in situations where inlining is impossible or undesirable.
+
+    In this GSoC project we will look at capabilities not yet available in the
+    Attributor and for the potential to connect the Attributor with existing
+    intra- and inter-procedural optimizations.
+
+    In this project there is a lot of freedom to determine the actual tasks but
+    we will provide a pool of smaller and medium sized tasks that can be chosen
+    from as well.
+  </p>
+
+  <p><b>Preparation resources:</b> The Attributor YouTube videos from the
+  LLVM Developers Meeting 2019 and the recording of the IPO panel from the same
+  meeting. The Attributor framework as well as other existing inter-procedural
+  analyses and optimizations in LLVM.</p>
+
+  <p><b>Expected results:</b> Measurable better IPO, especially visible in cases
+                              where inlining is not an option or undesirable.</p>
+
+  <p><b>Confirmed Mentor:</b> Johannes Doerfert</p>
+  <p><b>Desirable skills:</b> Intermediate knowledge of C++, self motivation.</p>
+</div>
+
+<!-- *********************************************************************** -->
+<div class="www_subsubsection">
+  <a name="llvm_par">Improve parallelism-aware analyses and optimizations</a>
+</div>
+<!-- *********************************************************************** -->
+
+<div class="www_text">
+  <p><b>Description of the project:</b>
+    This is a short description, please reach out to Johannes (jdoerfert on IRC)
+    if it sounds interesting.
+
+    With the OpenMPOpt pass (<a href='https://reviews.llvm.org/D69930'>under
+      review</a>) we started to teach the LLVM optimization pipeline about
+    OpenMP parallelism encoded as OpenMP runtime calls.
+
+    In this GSoC project we will look at capabilities not yet available in the
+    OpenMPOpt pass and for the potential to connect existing intra- and
+    inter-procedural optimizations, e.g. the Attributor.
+
+    In this project there is a lot of freedom to determine the actual tasks but
+    we will provide a pool of smaller and medium sized tasks that can be chosen
+    from as well.
+  </p>
+
+  <p><b>Preparation resources:</b> The "Optimizing Indirections, using
+  abstractions without remorse" video on YouTube from the LLVM Developers
+  Meeting 2018. The paper "Compiler Optimizations for OpenMP" and "Compiler
+  Optimizations For Parallel Programs" both by J. Doerfert and H. Finkel (the
+  slides for these are potentially even more useful).</p>
+
+  <p><b>Expected results:</b> Measurable better performance or program analysis
+  results for parallel programs with a focus on OpenMP.</p>
+
+  <p><b>Confirmed Mentor:</b> Johannes Doerfert</p>
+  <p><b>Desirable skills:</b> Intermediate knowledge of C++, self motivation.</p>
+</div>
+
+<!-- *********************************************************************** -->
+<div class="www_subsubsection">
+  <a name="llvm_dbg_invariant">Make LLVM passes debug info invariant</a>
+</div>
+<!-- *********************************************************************** -->
+
+<div class="www_text">
+  <p><b>Description of the project:</b>
+    Generating debug information is one of the fundamental tasks a compiler
+    typically fulfills. It is clear that executable generated code should not
+    depend on the presence of debug information.
+    <br><br>
+    Unfortunately there are known cases in LLVM were code generation differs
+    depending on whether debug information is enabled (`-g`) or not. These kind
+    of bugs can lead to bad debug experience ranging from unexpected execution
+    behaviour to the point of programs running fine in debug mode while crashing
+    without debug information.
+    <br><br>
+    The issue has likely not a single cause but is triggered during different
+    passes on different architectures. One such reason is the insertion of Call
+    Frame Information (CFI) in the compiler backend during frame lowering and
+    other later passes. The presence of CFI instructions seems to change
+    instruction scheduling which therefore leads to different generated code.
+  </p>
+
+  <p><b>Preparation resources:</b>
+    <ul>
+      <li>
+        <a href="https://bugs.llvm.org/show_bug.cgi?id=37728">PR37728</a> is a
+        meta-bug that collects several related issues of differing codegen.
+      </li>
+      <li>
+        <a href="https://bugs.llvm.org/show_bug.cgi?id=37240">PR37240</a> is a
+        bug discussing the CFI issue mentioned above.
+      </li>
+      <li>
+        The following
+        <a href="http://lists.llvm.org/pipermail/llvm-dev/2019-September/135433.html">
+        RFC</a> discusses some possible mitigation strategies and gives some
+        background information on the CFI issue.
+      </li>
+    </ul>
+  </p>
+  <p><b>Expected results:</b>
+    <ul>
+    <li>
+      Write some tooling based on existing scripts to automatically generate
+      examples of differing codegen. This is intended as a starting task to get
+      to know the existing LLVM tools, learn to read LLVM's internal outputs etc.
+    </li>
+    <li>
+      Choose one or more (depending on the difficulty) bugs that cause codegen
+      differences and try to provide patches to fix them. We would be
+      particularly interested in the mentioned CFI issue but working on some of
+      the other related bugs is also absolutely fine.
+    </li>
+    </ul>
+  </p>
+
+  <p><b>Confirmed Mentors:</b> Paul Robinson and David Tellenbach</p>
+
+  <p><b>Desirable skills:</b>
+    Intermediate knowledge of C++, some familarity with general computer
+    architecture, some familarity with the x86 or Arm/AArch64 instruction set.
+  </p>
+</div>
+
+<!-- *********************************************************************** -->
+
+<div class="www_subsubsection">
+  <a name="llvm_mergesim">Improve MergeFunctions to incorporate MergeSimilarFunction patches and ThinLTO Support</a>
+</div>
+<!-- *********************************************************************** -->
+
+ <div class="www_text">
+  <p><b>Description of the project:</b> MergeSimilarFunctions pass is able to
+    merge not just identical functions, but also functions with small differences in
+    their instructions to reduce code size. It does this by inserting control flow
+    and an additional argument in the merged function to account for the
+    differences.
+
+    This work was presented at
+    the <a href="http://llvm.org/devmtg/2013-11/#talk3">LLVM Dev Meeting in
+    2013</a> A more detailed description was published in a paper at
+    <a href="http://dl.acm.org/citation.cfm?id=2597811">LCTES 2014</a>. The code
+    was released to the community at the time. Meanwhile, the pass has been in
+    production use at QuIC for the past few years and has been actively
+    maintained internally. In order to magnify the impact of
+    MergeSimilarFunctions, it has been ported to ThinLTO and the patches have
+    been upstreamed (see stack of 5 patches mentioned below). But instead of
+    replacing the existing MergeFunctions pass in LLVM-upstream the community
+    suggested we improve the existing one with the ideas from
+    MergeSimilarFunctions.  And then leverage the ThinLTO on top of that. The
+    MergeSimilarFunction used in ThinLTO gives impressive code size reduction
+    across a wide range of workloads and the work was presented at
+    <a href="https://llvm.org/devmtg/2018-10/talk-abstracts.html#talk2">LLVM-dev
+    2018</a>. The LLVM project would greatly benefit from this code size
+    optimization as most embedded systems (think SmartPhones) applications are
+    constrained on code-size.
+  </p>
+  <p><b>Preparation resources:</b>
+  <ul>
+    <li>
+      Stack of patches:
+      <ul>
+        <li>
+          <a href="https://reviews.llvm.org/D52896">MergeSimilarFunctions 1/n: a code size pass to merge functions with small differences</a>
+        </li>
+        <li>
+          <a href="https://reviews.llvm.org/D52898">[Porting MergeSimilarFunctions 2/n] Changes to DataLayout</a>
+        </li>
+        <li>
+          <a href="https://reviews.llvm.org/D52966">[Merge SImilar Function ThinLTO 3/n] Add hash code to function summary</a>
+        </li>
+        <li>
+          <a href="https://reviews.llvm.org/D53253">[Merge SImilar Function ThinLTO 4/n] Make merge function decisions before the thin-lto stage</a>
+        </li>
+        <li>
+          <a href="https://reviews.llvm.org/D53254">[Merge SImilar Function ThinLTO 5/n] Set up similar function to be imported</a>
+        </li>
+      </ul>
+      The paches can be easily applied to LLVM-trunk and would give a developer a decent head start ;).
+    </li>
+    <li>List of llvm-dev mailing list posts on previous discussions around Merge Functions
+      <ul>
+        <li><a href="http://lists.llvm.org/pipermail/llvm-dev/2019-January/129835.html">Link1</li>
+        <li><a href="http://lists.llvm.org/pipermail/llvm-dev/2019-March/131066.html">Link2</li>
+        <li><a href="http://lists.llvm.org/pipermail/llvm-dev/2019-February/129863.html">Link3</li>
+        <li><a href="http://lists.llvm.org/pipermail/llvm-dev/2019-January/129832.html">Link4</li>
+      </ul>
+    </li>
+    <li>
+      <a href="http://dl.acm.org/citation.cfm?id=2597811">The original paper: LCTES 2014</a>
+    </li>
+    <li>
+      <a href="https://llvm.org/devmtg/2018-10/talk-abstracts.html#talk2">Video and slides of the presentation</a>
+    </li>
+  </ul>
+  </p>
+  <p><b>Expected results:</b>
+    <ul>
+      <li>
+	Improve MergeFunctions to have feature parity with MergeSimilarFunctions.
+      </li>
+      <li>
+	Enable MergeFunctions to ThinLTO.
+      </li>
+    </ul>
+  </p>
+
+  <p><b>Confirmed Mentors:</b>Aditya Kumar (hiraditya on IRC and phabricator), JF Bastien (jfb on phabricator)</p>
+
+  <p><b>Desirable skills:</b>
+    Course on compiler design, SSA Representation,
+    Intermediate knowledge of C++, Familiarity with LLVM Core.
+  </p>
+</div>
+
+<!-- *********************************************************************** -->
+<div class="www_subsubsection">
+  <a name="llvm_dwarf_yaml2obj">Add DWARF support to yaml2obj</a>
+</div>
+<!-- *********************************************************************** -->
+
+<div class="www_text">
+  <p><b>Description of the project:</b>
+    LLVM provides a tool called yaml2obj which coverts a YAML document into an
+    object file, for various different file formats such as ELF, COFF and
+    Mach-O, along with obj2yaml which does the inverse. The tool is commonly
+    used to test parts of LLVM, as YAML is often easier to use to describe an
+    object file than raw assembly and more maintainable than a pre-built binary.
+    DWARF is a debugging file format commonly used by LLVM. Many of the tests
+    for LLVM’s DWARF emission are written in assembly, but it would be nicer to
+    write them in YAML. However, yaml2obj does not properly support emission of
+    DWARF sections. This project is to add functionality to yaml2obj to make
+    writing test inputs for DWARF tests simpler, particularly for ELF objects.
+  </p>
+
+  <p><b>Preparation resources:</b>
+    Reading up on the DWARF file format will be useful, in particular the
+    standards available at http://dwarfstd.org/Download.php. Also, familiarising
+    yourself with the basics of the ELF file format, as described here
+    https://www.sco.com/developers/gabi/latest/contents.html, may be beneficial.
+  </p>
+  <p><b>Expected results:</b>
+    The ability to use yaml2obj to generate DWARF sections for object files.
+    Particularly important is ensuring the input YAML can be more easily
+    understood than the equivalent assembly.
+  </p>
+
+  <p><b>Confirmed Mentors:</b> James Henderson</p>
+
+  <p><b>Desirable skills:</b>
+    Intermediate knowledge of C++.
+  </p>
+</div>
+
+<!-- *********************************************************************** -->
+
+<div class="www_subsubsection">
+  <a name="llvm_hotcold">Improve hot cold splitting to aggressively outline small blocks</a>
+</div>
+<!-- *********************************************************************** -->
+
+<div class="www_text">
+ <p><b>Description of the project:</b> Hot Cold Splitting in LLVM is an IR level
+   function splitting transformation. The goal of hot/cold splitting is to improve
+   the memory locality of code and helps reduce startup working set. The splitting pass
+   does this by identifying cold blocks and moving them into separate functions. Because it
+   is implemented at the IR level all the back end target benefit from it.
+
+   It is a relatively new optimization and it was recently presented at
+   the <a href="https://llvm.org/devmtg/2019-10/talk-abstracts.html#tech8">LLVM Dev Meeting in
+   2019</a> and the slides are <a href="https://llvm.org/devmtg/2019-10/slides/Kumar-HotColdSplitting.pdf">here</a>
+   Because most of the benefit comes from outlining small blocks e.g., __assert_rtn. The goal of this project
+   is to identify potential blocks via static analysis e.g., exception handling code, optimizing personality functions.
+
+   Use cost-model to ensure outlining reduces the code size of the caller, use tail call whenever appropriate to save
+   instructions.
+
+ </p>
+ <p><b>Preparation resources:</b>
+ <ul>
+   <li>
+     <a href="http://lists.llvm.org/pipermail/llvm-dev/2019-January/129606.html">Update on hot cold splitting</a>
+   </li>
+   <li>
+     The following two papers provide earlier work on hot cold splitting. While these papers are a good start, LLVM's
+     HCS has completely different implementation in two aspects a) It is implemented at IR level and outlines basic
+     blocks as function rather than naked branches. b) It is based on regions and outlines a set of basic blocks.
+     <ul>
+       <li>
+         <a href="http://pages.cs.wisc.edu/~fischer/cs701.f05/code.positioning.pdf">Original paper on hot cold splitting by
+           Pettis and Hansen.</a>Section 5 on procedure splitting is interesting one. It has nice examples ;) to help
+         understand why HCS works.
+       </li>
+       <li>
+         <a href="https://www.cs.cmu.edu/afs/cs/academic/class/15745-s07/www/papers/p80-cohn.pdf">Paper on hot cold
+           splitting</a> The paper provides some details on one approach to split functions. This is helpful to get a
+         different perspective and may help get new ideas.
+       </li>
+     </ul>
+   </li>
+   <li>
+     <a href="https://llvm.org/devmtg/2019-10/talk-abstracts.html#tech8">Video and slides of the presentation</a>
+   </li>
+ </ul>
+ </p>
+ <p><b>Expected results:</b>
+   <ul>
+     <li>
+       Improve Hot Cold Splitting to detect and outline cold blocks from program via static analysis or profile
+       information. Use appropriate cost model to weigh benefit of HCS.
+       In case compile time overhead becomes quadratic, come up with a cost model to detect when quadratic behavior
+       gets triggered and bail out based on a compiler flag.
+     </li>
+   </ul>
+ </p>
+
+ <p><b>Confirmed Mentors:</b>Aditya Kumar (hiraditya on IRC and phabricator)</p>
+
+ <p><b>Desirable skills:</b>
+   Course on compiler design, SSA Representation,
+   Intermediate knowledge of C++, Familiarity with LLVM Core.
+ </p>
+</div>
+
+<!-- *********************************************************************** -->
+
+<div class="www_subsubsection">
+  <a name="llvm_pass_order">Advanced Heuristics for Ordering Compiler Optimization Passes</a>
+</div>
+<!-- *********************************************************************** -->
+
+<div class="www_text">
+ <p><b>Description of the project:</b>
+Selecting optimization passes for given application is very important but
+non-trivial problem because of the huge size of the compiler transformation
+space (incl. pass ordering). While the existing heuristics can provide high
+performance code for certain applications, they cannot easily benefit a wide
+range of application codes. The goal of the project is to learn the interplay
+between LLVM transformation passes and code structures, then improve the
+existing heuristics (or replace the heuristics with machine learning-based
+models) so that the LLVM compiler can provide a superior order of the passes
+customized per application.
+ </p>
+ <p><b>Expected results (possibilities):</b>
+ <ul>
+   <li>
+Insights about (implicit) dependences between existing passes.
+   </li>
+   <li>
+New pass pipelines (think -O3a, -O3b, ...) selectable by the user that tend to perform substantially better on certain kinds of programs.
+   </li>
+   <li>
+An improved LLVM pass heuristic or new machine learning-based models that can select
+the best order for LLVM transformation passes based on code structures.
+   </li>
+  </ul>
+ </p>
+
+ <p><b>Preparation resources:</b>
+ <ul>
+   <li>
+HERCULES: Strong Patterns towards More Intelligent Predictive Modeling, Eunjung Park; Christos Kartsaklis; John Cavazos, IEEE ICPP’14
+https://ieeexplore.ieee.org/abstract/document/6957226
+   </li>
+
+   <li>
+Predictive Modeling in a Polyhedral Optimization Space, Eunjung Park, John Cavazos, Louis-Noël Pouchet, Cédric Bastoul, Albert Cohen & P. Sadayappan, IJPP’13
+https://link.springer.com/article/10.1007/s10766-013-0241-1
+   </li>
+
+   <li>
+Machine Learning in Compiler Optimization, Zheng Wang and Michael O’Boyle, IEEE Magazine 2018.
+https://ieeexplore.ieee.org/document/8357388
+   </li>
+ </ul>
+ </p>
+
+ <p><b>Confirmed Mentors:</b>EJ Park, Giorgis Georgakoudis, Johannes Doerfert</p>
+
+ <p><b>Desirable skills:</b>
+    C++, Python, experience with LLVM and learning-based prediction preferable.
+ </p>
+</div>
+
+<!-- *********************************************************************** -->
+
+<div class="www_subsubsection">
+  <a name="llvm_ml_scc">Machine learning and compiler optimizations: using inter-procedural analysis to select optimizations</a>
+</div>
+<!-- *********************************************************************** -->
+
+<div class="www_text">
+ <p><b>Description of the project:</b>
+Current machine learning models for compiler optimization select the best
+optimization strategies for functions based on isolated per function analysis.
+In this approach, the constructed models are not aware of any relationships
+with other functions around it (callers or callees) which can be helpful to
+decide the best optimization strategies for each function. In this project, we
+want to explore the SCC (Strongly Connected Components) call graph to add
+inter-procedural features in constructing machine learning-based models to find
+the best optimization strategies per function. Moreover, we want to explore the
+case that it is helpful to group strongly related functions together and
+optimize them as a group, instead of per function.
+ </p>
+ <p><b>Expected results (possibilities):</b>
+ <ul>
+   <li>
+Improved heuristics for existing (inter-procedural) passes, e.g. to weight inlining versus function cloning based on code features.
+   </li>
+   <li>
+Machine learning models to select the best optimizations using code features
+and inter-procedural analysis. This model can be used for functions in
+isolation or groups of functions, e.g., CGSCCs.
+   </li>
+ </ul>
+ </p>
+
+ <p><b>Preparation resources:</b>
+ <ul>
+   <li>
+HERCULES: Strong Patterns towards More Intelligent Predictive Modeling, Eunjung Park; Christos Kartsaklis; John Cavazos, IEEE ICPP’14
+https://ieeexplore.ieee.org/abstract/document/6957226
+   </li>
+
+   <li>
+Predictive Modeling in a Polyhedral Optimization Space, Eunjung Park, John Cavazos, Louis-Noël Pouchet, Cédric Bastoul, Albert Cohen & P. Sadayappan, IJPP’13
+https://link.springer.com/article/10.1007/s10766-013-0241-1
+   </li>
+
+   <li>
+Machine Learning in Compiler Optimization, Zheng Wang and Michael O’Boyle, IEEE Magazine 2018.
+https://ieeexplore.ieee.org/document/8357388
+   </li>
+ </ul>
+ </p>
+
+ <p><b>Confirmed Mentors:</b>EJ Park, Giorgis Georgakoudis, Johannes Doerfert</p>
+
+ <p><b>Desirable skills:</b>
+    C++, Python, experience with LLVM and learning-based prediction preferable.
+ </p>
+</div>
+
+<!-- *********************************************************************** -->
+
+<div class="www_subsubsection">
+  <a name="llvm_postdominators"></a>
+</div>
+<!-- *********************************************************************** -->
+
+<div class="www_text">
+  <p><b>Description of the project:</b>
+    There is currently no easy way to use the result of
+    PostDominatorTreeAnalysis in a loop pass, as PostDominatorTreeAnalysis is a
+    function analysis, and it is not included in LoopStandardAnalysisResults. If one adds
+    PostDominatorTreeAnalysis in LoopStandardAnalysisResults, then all loop passes
+    need to preserve it, meaning that all loop passes need to make sure the result is up to
+    date. In this project, we want to modify some commonly used utilities to generate a
+    list of updates, which can be consume by different updaters, e.g. DomTreeUpdater to
+    update DominatorTree and PostDominatorTree, and MSSAU to update MemorySSA,
+    etc, instead of only updating the DominatorTree. In additional, we want to change
+    existing loop passes to preserve the PostDominatorTree. Finally, adding
+    PostDominatorTree in LoopStandardAnalysisResults.
+  </p>
+  <p><b>Expected results (possibilities):</b>
+    PostDominatorTree added in LoopStandardAnalysisResults, and
+    can be used by loop passes. More common utilities change to generate list of updates
+    to be easily obtained by different updaters.
+  </p>
+  <p><b>Confirmed Mentors:</b>
+    Whitney Tsang, Ettore Tiotto, Bardia Mahjour
+  </p>
+  <p><b>Desirable skills:</b>
+    Intermediate knowledge of C++, self-motivation.
+  </p>
+  <p><b>Preparation resources:</b>
+    <a href="https://reviews.llvm.org/rL336163"></a>
+    <a href="http://llvm.org/doxygen/classllvm_1_1DomTreeUpdater.html"></a>
+    <a href="https://llvm.org/doxygen/classllvm_1_1PostDominatorTreeAnalysis.html"></a>
+    <a href="http://llvm.org/doxygen/structllvm_1_1LoopStandardAnalysisResults.html"></a>
+</div>
+
+<!-- *********************************************************************** -->
+
+<div class="www_subsubsection">
+  <a name="llvm_loopnest">Create LoopNest Pass</a>
+</div>
+<!-- *********************************************************************** -->
+
+<div class="www_text">
+  <p><b>Description of the project:</b>
+    Currently if you want to write a pass that works on a loop
+    nest, you have to pick from either a function pass or a loop pass. If you chose to write
+    it as a function pass, then you lose the ability to add loops dynamically back to the
+    pipeline. If you decide to write it as a loop pass, then you are wasting compile time to
+    traverse to your pass and return right away when the given loop is not the outermost
+    loop. In this project, we want to create a LoopNestPass, where transformations
+    intended for loop nest can inherit from it, and have the same ability as the LoopPass to
+    dynamically add loops to the pipeline. In addition, create all the adaptors requires to
+    add loop nest passes at different points of the pass builder.
+  </p>
+  <p><b>Expected results (possibilities):</b>
+    Transformations/Analyses can be written as LoopNestPass,
+    without compromising compile time or usability.
+  </p>
+  <p><b>Confirmed Mentors:</b>
+    Whitney Tsang, Ettore Tiotto
+  </p>
+  <p><b>Desirable skills:</b>
+    Intermediate knowledge of C++, self-motivation.
+  </p>
+  <p><b>Preparation resources:</b>
+    <a href="https://reviews.llvm.org/D68789"</a>
+    <a href="https://llvm.org/doxygen/classllvm_1_1PassBuilder.html"</a>
+  </p>
+</div>
+
+<!-- *********************************************************************** -->
+
+<div class="www_subsubsection">
+  <a name="llvm_instdump">Instruction properties dumper and checker</a>
+</div>
+<!-- *********************************************************************** -->
+
+<div class="www_text">
+  <p><b>Description of the project:</b>
+    TableGen is flexible and allow the end-user to define and set common properties of
+    records (instructions). Every target has dozens or hundreds of such instruction
+    properties. As target code evolve, the td files become more and more complicated,
+    it become harder to see whether the setting of some properties is necessary, even
+    correct or not. eg: whether hasSideEffects property is correctly set on all
+    instructions?
+
+    One can manually search through the TableGen-generated files; or write some
+    script to run TableGen and matching the output for some specific properties, but a
+    standalone utility that can dump and check instruction properties
+    systematically (eg: also allow target to define some verification rules) might be
+    better from a build-process-management standpoint. This can help to find quite
+    some hidden bugs and hence improve the overall codegen code quality. In
+    addition, the utility can be used to write regression tests for instruction
+    properties, which will increase the quality and precision of LLVM's
+    regression tests.
+  </p>
+  <p><b>Expected results (possibilities):</b>
+    A standalone llvm tool or utility that can dump and check instruction properties systematically
+  </p>
+  <p><b>Confirmed Mentors:</b>
+    Hal Finkel, Jinsong Ji , Qingshan Zhang
+  </p>
+  <p><b>Desirable skills:</b>
+    Intermediate knowledge of C++, self-motivation.
+  </p>
+</div>
+
+<!-- *********************************************************************** -->
+
+<div class="www_subsubsection">
+  <a name="llvm_movecode">Unify ways to move code or check if code is safe to be moved</a>
+</div>
+<!-- *********************************************************************** -->
+
+<div class="www_text">
+  <p><b>Description of the project:</b>
+    Determining whether it is safe to move code around is
+    implemented in several transformations in LLVM (e.g. canSinkOrHoistInst in LICM,
+    or makeLoopInvariant in Loop). Each of these implementations may return different
+    results for a given query, making code motion safety checks inconsistent and
+    duplicated. On the other hand, the mechanism for doing the actual code motion is also
+    different in each transformation. Code duplication causes maintenance problems and
+    increases the time taken to write new transformation. In this project, we want to first
+    identify all the existing ways in loop transformations (could be function or loop pass)
+    to check if code is safe to move, and to move code, and create a standardize way to do
+    so.
+  </p>
+  <p><b>Expected results (possibilities):</b>
+    A standardize/superset of all the existing ways in loop
+    transformations of checking if code is safe to be moved and to move <code class=""></code>
+  </p>
+
+  <p><b>Confirmed Mentors:</b>
+    Whitney Tsang, Ettore Tiotto, Bardia Mahjour
+  </p>
+  <p><b>Desirable skills:</b>
+    Intermediate knowledge of C++, self-motivation.
+  </p>
+  <p><b>Preparation resources:</b>
+    <a href="https://github.com/llvm/llvm-project/blob/master/llvm/include/llvm/Transforms/Utils/CodeMoverUtils.h"></a>
+    <a href="https://llvm.org/doxygen/LICM_8cpp_source.html"></a>
+    <a href="https://llvm.org/doxygen/classllvm_1_1Loop.html"></a>
+  </p>
+</div>
+
+<!-- *********************************************************************** -->
+<div class="www_subsection">
+  <a>MLIR</a>
+</div>
+<!-- *********************************************************************** -->
+
+<div class="www_text">
+<p>All the items in the list of
+<a href="https://mlir.llvm.org/getting_started/openprojects/">open projects</a>
+are opened to GSOC. Feel free to propose your own ideas as well on
+<a href="https://llvm.discourse.group/c/llvm-project/mlir">Discourse</a>.
+</p></div>
+
+
+<!-- *********************************************************************** -->
+<div class="www_subsection">
+  <a>Clang</a>
+</div>
+<!-- *********************************************************************** -->
+
+<!-- *********************************************************************** -->
+<div class="www_subsubsection">
+  <a name="clang-template-instantiation-sugar">Extend clang AST to provide
+    information for the type as written in template instantiations.</a>
+</div>
+<!-- *********************************************************************** -->
+
+<div class="www_text">
+  <p><b>Description of the project: </b>
+    When instantiating a template, the template arguments are canonicalized
+    before being substituted into the template pattern. Clang does not preserve
+    type sugar when subsequently accessing members of the instantiation.
+
+    <pre>
+    std::vector&lt;std::string&gt; vs;
+    int n = vs.front(); // bad diagnostic: [...] aka 'std::basic_string&lt;char&gt;' [...]
+
+    template&lt;typename T&gt; struct Id { typedef T type; };
+    Id&lt;size_t&gt;::type // just 'unsigned long', 'size_t' sugar has been lost
+    </pre>
+
+    Clang should "re-sugar" the type when performing member access on a class
+    template specialization, based on the type sugar of the accessed
+    specialization. The type of vs.front() should be std::string, not
+    std::basic_string&lt;char, [...]&gt;.
+    <br /> <br />
+    Suggested design approach: add a new type node to represent template
+    argument sugar, and implicitly create an instance of this node whenever a
+    member of a class template specialization is accessed. When performing a
+    single-step desugar of this node, lazily create the desugared representation
+    by propagating the sugared template arguments onto inner type nodes (and in
+    particular, replacing Subst*Parm nodes with the corresponding sugar). When
+    printing the type for diagnostic purposes, use the annotated type sugar to
+    print the type as originally written.
+    <br /> <br />
+    For good results, template argument deduction will also need to be able to
+    deduce type sugar (and reconcile cases where the same type is deduced twice
+    with different sugar).
+  </p>
+
+  <p><b>Expected results: </b>
+    Diagnostics preserve type sugar even when accessing members of a template
+    specialization. T&lt;unsigned long&gt; and T&lt;size_t&gt; are still the
+    same type and the same template instantiation, but
+    T&lt;unsigned long&gt;::type single-step desugars to 'unsigned long' and
+    T&lt;size_t&gt;::type single-step desugars to 'size_t'.</p>
+
+  <p><b>Confirmed Mentor:</b> Vassil Vassilev, Richard Smith</p>
+
+  <p><b>Desirable skills:</b>
+    Good knowledge of clang API, clang's AST, intermediate knowledge of C++.
+  </p>
+</div>
+
+
+<!-- *********************************************************************** -->
+<div class="www_subsubsection">
+  <a name="clang-sa-cplusplus-checkers">Find null smart pointer dereferences
+                                        with the Static Analyzer</a>
+</div>
+<!-- *********************************************************************** -->
+
+<div class="www_text">
+  <p><b>Description of the project: </b>
+    The Clang Static Analyzer already knows how to prevent crashes caused by
+    null pointer dereference in arbitrary code, however it often "gives up"
+    when the code is too complicated. In particular, implementation details
+    of C++ standard classes, even simple ones such as smart pointers
+    or optionals, may be too convoluted for the Analyzer to fully understand.
+    Moreover, the exact behavior depends on which implementation of
+    the Standard Library is used (e.g., GNU libstdc++ or LLVM's own libc++).
+  </p>
+  <p>
+    We can enable the Analyzer to find more bugs in modern C++ code
+    by teaching it explicitly about the behavior of C++ standard classes,
+    and therefore skipping the whole process in which the Analyzer
+    tries to understand all the implementation details on its own.
+    For example, we could teach it that a default-constructed smart pointer
+    is null, and any attempt to dereference it would result in a crash.
+    The project would therefore consist in manually providing implementations
+    for various methods of standard classes.
+  </p>
+
+  <p><b>Expected results: </b>
+    We want the Static Analyzer to emit warnings when a null smart pointer
+    dereference would occur in the code. For example:
+    <pre>
+    #include &lt;memory&gt;
+
+    int foo(bool flag) {
+      std::unique_ptr&lt;int&gt; x;  <i>// note: Default constructor produces a null unique pointer;</i>
+
+      if (flag)                <i>// note: Assuming 'flag' is false;</i>
+        return 0;              <i>// note: Taking false branch</i>
+
+      return *x;               <i>// warning: Dereferenced smart pointer 'x' is null.</i>
+    }
+    </pre>
+    We should be able to cover at least one class fully, for example, <tt>std::unique_ptr</tt>,
+    and then see if we can generalize our results to other classes, such as <tt>std::shared_ptr</tt>
+    or the C++17 <tt>std::optional</tt>.
+  </p>
+
+
+  <p><b>Confirmed Mentor:</b> Artem Dergachev, Gábor Horváth</p>
+
+  <p><b>Desirable skills:</b>
+    Intermediate knowledge of C++.
+  </p>
+</div>
+
+
+<!-- *********************************************************************** -->
+<div class="www_subsection">
+  <a>LLDB</a>
+</div>
+<!-- *********************************************************************** -->
+
+<!-- *********************************************************************** -->
+<div class="www_subsubsection">
+  <a name="lldb-autosuggestions">Support autosuggestions in LLDB's command line</a>
+</div>
+<!-- *********************************************************************** -->
+
+<div class="www_text">
+  <p><b>Description of the project: </b> LLDB's command line offers several convenience
+    features that are inspired by features of UNIX shells such as tab completions or a command history.
+    One feature that is not implemented yet are 'autosuggestions'. These are suggestions
+    for possible commands that the user might want to type, but unlike tab completions they
+    are displayed directly behind the cursor while the user is typing a command. A good demonstration
+    how this could look like are the autosuggestions implemented in <a href="https://fishshell.com">fish shell</a>.
+  </p>
+  <p>
+    This project is about implementing autosuggestions in LLDB's editline-based command shell.
+  </p>
+  <p><b>Confirmed Mentor:</b>
+    <a href="mailto:teemperor@gmail.com,jonas@devlieghere.com?subject=[GSoC]%20Autosuggestions">Jonas Devlieghere and Raphael Isemann</a></p>
+  <p><b>Desirable skills:</b>
+    Intermediate knowledge of C++.
+  </p>
+</div>
+
+<!-- *********************************************************************** -->
+<div class="www_subsubsection">
+  <a name="lldb-more-completions">Implement the missing tab completions for LLDB's command line</a>
+</div>
+<!-- *********************************************************************** -->
+
+<div class="www_text">
+  <p><b>Description of the project: </b> LLDB's command line offers several convenience
+    features that are inspired by features of UNIX shells such as tab completions for commands.
+    These tab completions are implemented by a completion engine that is not only used by the
+    command line interface of LLDB, but also by graphical interfaces for LLDB such as IDEs.
+
+    While the tab completions in LLDB are really useful, they are currently not implemented for
+    all commands and their respective arguments. This project is about implementing the remaining
+    completions for the commands in LLDB which will greatly improve the user experience of LLDB.
+    Improving existing completions is also part of the project.
+
+    Note that the completions are not static list of strings but often require inspecting and
+    understanding the internal state of LLDB. As LLDB commands and their tab completions cover
+    all aspects of LLDB, this project offers a great way to get an overview of all the functionality
+    in LLDB.
+  </p>
+  <p><b>Confirmed Mentor:</b><a href="mailto:teemperor@gmail.com?subject=[GSoC]%20Completions">Raphael Isemann</a></p>
+
+  <p><b>Desirable skills:</b>
+    Intermediate knowledge of C++.
+  </p>
+</div>
+
+
+<!-- *********************************************************************** -->
+<div class="www_subsubsection">
+  <a name="lldb-reimplement-lldb-cmdline">Reimplement LLDB's command-line commands
+  using the public SB API.</a>
+</div>
+<!-- *********************************************************************** -->
+
+<div class="www_text">
+  <p><b>Description of the project: </b> Just as LLVM is a library to
+    build compilers, LLDB is a library to build debuggers. LLDB vends
+    a stable, public SB API. Due to historic reasons the LLDB command
+    line interface is currently implemented on top of LLDB's private
+    API and it duplicates a lot of functionality that is already
+    implemented in the public API. Rewriting LLDB's command line
+    interface on top of the public API would simplify the
+    implementation, eliminate duplicate code, and most importantly
+    reduce the testing surface.
+  </p>
+  <p>
+    This work will also provide an opportunity to clean up the SB API
+    of commands that have accrued too many overloads over time and
+    convert them to make use of option classes to both gather up all
+    the variants and also future-proof the APIs.
+  </p>
+  <p><b>Confirmed Mentor:</b>Adrian Prantl and Jim Ingham</p>
+
+  <p><b>Desirable skills:</b>
+    Intermediate knowledge of C++.
+  </p>
+</div>
+
+<!-- *********************************************************************** -->
+<div class="www_subsubsection">
+  <a name="lldb-batch-testing">Add support for batch-testing to the LLDB
+    testsuite.</a>
+</div>
+<!-- *********************************************************************** -->
+
+<div class="www_text">
+  <p><b>Description of the project: </b>One of the tensions in the
+    testsuite is that spinning up a process and getting it to some
+    point is not a cheap operation, so you'd like to do a bunch of
+    tests when you get there.  But the current testsuite bails at the
+    first failure, so you don't want to do many tests since the
+    failure of one fails all the others. On the other hand, there are
+    some individual test assertions where the failure of the assertion
+    <em>should</em> cause the whole test to fail.  For example, if you
+    fail to stop at a breakpoint where you want to check some variable
+    values, then the whole test should fail.  But if your test then
+    wants to check the value of five independent locals, it should be
+    able to do all five, and then report how many of the five variable
+    assertions failed. We could do this by adding <em>Start</em>
+    and <em>End</em> markers for a batch of tests, do all the tests in
+    the batch without failing the whole test, and then report the
+    error and fail the whole test if appropriate. There might also be
+    a nice way to do this in Python using scoped objects for the test
+    sections.
+  </p>
+  <p><b>Confirmed Mentor:</b> Jim Ingham</p>
+
+  <p><b>Desirable skills:</b>
+    Intermediate knowledge of Python.
+  </p>
+</div>
+
+<!-- *********************************************************************** -->
+<div class="www_sectiontitle">
+  <a name="gsoc19">Google Summer of Code 2019</a>
+</div>
+<!-- *********************************************************************** -->
+
+<div class="www_text">
+  <p>Google Summer of Code 2019 contributed a lot to the LLVM project. For the list of
+    accepted and completed projects, please take a look into Google Summer of Code
+    <a href="https://summerofcode.withgoogle.com/archive/2019/organizations/5682474363912192/">website.
+    </a></p>
+</div>
+
+<!-- *********************************************************************** -->
+<div class="www_subsection">
+  <a>LLVM</a>
+</div>
+<!-- *********************************************************************** -->
+
+<!-- *********************************************************************** -->
+<div class="www_subsubsection">
+  <a name="debuginfo_codegen_mismatch">Debug Info should have no
+          effect on codegen</a>
+</div>
+<!-- *********************************************************************** -->
+
+<div class="www_text">
+  <p><b>Description of the project:</b>
+	  Adding Debug Info (compiling with `clang -g`) shouldn't change the
+	  generated code at all. Unfortunately we have bugs. These are usually not
+	  too hard to fix and a good way to discover new part of the codebase!
+	  We suggest building object files both ways and disassembling the
+          text sections, which will give cleaner diffs than comparing .s files.
+  </p>
+
+  <p><b>Expected results:</b> Reduced test cases, bug reports with analysis
+          (e.g., which pass is responsible), possibly patches.</p>
+
+  <p><b>Confirmed Mentor:</b> Paul Robinson</p>
+  <p><b>Desirable skills:</b> Intermediate knowledge of C++, some familiarity
+        with x86 or ARM instruction set.</p>
+</div>
+
+
+<!-- *********************************************************************** -->
+<div class="www_subsection">
+  <a>Clang</a>
+</div>
+<!-- *********************************************************************** -->
+
+<!-- *********************************************************************** -->
+<div class="www_subsubsection">
+  <a name="clang-astimporter-fuzzer">Implement an ASTImporter fuzzer</a>
+</div>
+<!-- *********************************************************************** -->
+
+<div class="www_text">
+  <p><b>Description of the project: </b>
+    Clang contains an ASTImporter which allows moving declarations and
+    statements from one Clang AST to another. This is for example used for
+    static analysis across translation units and in LLDB's expression
+    evaluator.
+  </p>
+  <p>
+    The current ASTImporter works as intended when moving simple C code from
+    one AST to another. However, more complicated declarations such as C++'s
+    OOP features and templates are not fully implemented and can cause crashes
+    or invalid AST nodes. The bug reports related to these crashes are often
+    filed against LLDB's expression evaluator and are rarely submited with a
+    minimal reproducer. This makes improving ASTImporter a time-consuming and
+    tedious task.
+  </p>
+  <p>
+    This project is about writing a fuzzer to proactively discover these
+    ASTImporter bugs and provide minimal reproducers which make understanding
+    and fixing the underlying bug easier.
+  </p>
+  <p>
+    A possible implementation of such a fuzzer and driver could look like this:
+
+  <ul>
+    <li>Generate some source code that can be imported (either fully randomly
+        or based on existing source code from a user-given code corpus).</li>
+    <li>Import randomly a few declarations from this AST. The AST in which
+        they are imported to can already be populated with declarations.</li>
+    <li>Run Clang's code generator over our imported AST.</li>
+    <li>If we hit an assert during the import or CodeGen steps we probably
+        found an ASTImporter bug.</li>
+    <li>The fuzzer driver should now reduce the size of the source code
+        until it is as small as possible and still reproduces the crash (e.g.
+        by running Creduce with an automatically generated test script).</li>
+    <li>The reproducer should now be stored in a format so that it can just be
+        copied into Clang's regression test suite for the ASTImporter (see
+        the <a href="https://github.com/llvm/llvm-project/tree/master/clang/test/Import">clang/test/Import/</a> directory).
+        The reproducer must still reproduce the found bug when run as part
+        of the test suite.
+        </li>
+  </ul>
+  This is just one possible approach and students are welcome to submit their
+  own ideas on how the fuzzer should operate. Approaches that allow to
+  automatically verify more aspects of the imported AST (e.g. the source
+  locations of AST nodes, size of RecordDecls) are encouraged. The fuzzer and
+  driver should be implemented in C++ and/or Python.
+  </p>
+  <p><b>Confirmed Mentor:</b> Raphael Isemann, Shafik Yaghmour</p>
+  <p><b>Desirable skills:</b> Intermediate knowledge of C++.</p>
+</div>
+
+<!-- *********************************************************************** -->
+<div class="www_subsubsection">
+  <a name="improve-autocompletion">Improve shell autocompletion for Clang</a>
+</div>
+<!-- *********************************************************************** -->
+
+<div class="www_text">
+  <p><b>Description of the project: </b> Clang has a newly implemented autocompletion feature which details can be found at <a href="http://blog.llvm.org/2017/09/clang-bash-better-auto-completion-is.html">LLVM blog</a>. We would like to improve this by adding more flags to autocompletion, supporting more shells (currently it supports only bash) and exporting this feature to other projects such as llvm-opt. Accepted student will be working on Clang Driver, LLVM Options and shell scripts.
+  </p>
+
+  <p><b>Expected Results:</b> Autocompletion working on bash and zsh, support llvm-opt options.</p>
+
+  <p><b>Confirmed Mentor:</b> Yuka Takahashi and Vassil Vassilev</p>
+
+  <p><b>Desirable skills:</b>
+  Intermediate knowledge of C++ and shell scripting
+  </p>
+</div>
+
+<!-- *********************************************************************** -->
+<div class="www_subsubsection">
+  <a name="header-clang-diagnostic">Improve Clang Diagnostics</a>
+</div>
+<!-- *********************************************************************** -->
+
+<div class="www_text">
+  <p><b>Decription:</b>
+  Clang diagnostics (warnings and errors) issues to the programmer are a critical
+  feature of the compiler. Great diagnostics can have a signifiant impact on the
+  user experience of the compiler and increase their productivity.
+  </p>
+
+  <p><a href="https://developers.redhat.com/blog/2019/03/08/usability-improvements-in-gcc-9/">
+  Recent improvements in GCC 9.0</a> show that there is significant headroom to
+  improve diagnostics (and user interactions in general). It would be a very
+  impactful project to survey and identify all the possible improvements to clang
+  on this topic, and start resigning the next generation of our diagnostics.
+  </p>
+
+  <p><b>Desirable skills:</b> C++ coding experience</p>
+</div>
+
+<!-- *********************************************************************** -->
+<div class="www_sectiontitle">
+  <a name="gsoc18">Google Summer of Code 2018</a>
+</div>
+<!-- *********************************************************************** -->
+
+<div class="www_text">
+  <p>Google Summer of Code 2018 contributed a lot to the LLVM project. For the list of
+  accepted and completed projects, please take a look into Google Summer of Code
+  <a href="https://summerofcode.withgoogle.com/archive/2018/organizations/5263452624912384/">website.
+  </a></p>
+</div>
+
+<!-- *********************************************************************** -->
+<div class="www_sectiontitle">
+  <a name="gsoc17">Google Summer of Code 2017</a>
+</div>
+<!-- *********************************************************************** -->
+
+<div class="www_text">
+  <p>Google Summer of Code 2017 contributed a lot to the LLVM project. For the list of
+  accepted and completed projects, please take a look into Google Summer of Code
+  <a href="https://summerofcode.withgoogle.com/archive/2017/organizations/6215410651234304/">website.
+  </a></p>
+</div>
+
+<!-- *********************************************************************** -->
+<div class="www_sectiontitle">
+  <a name="what">What is this?</a>
+</div>
+<!-- *********************************************************************** -->
+
+<div class="www_text">
+
+<p>This document is meant to be a sort of "big TODO list" for LLVM.  Each
+project in this document is something that would be useful for LLVM to have, and
+would also be a great way to get familiar with the system.  Some of these
+projects are small and self-contained, which may be implemented in a couple of
+days, others are larger.  Several of these projects may lead to interesting
+research projects in their own right.  In any case, we welcome all
+contributions.</p>
+
+<p>If you are thinking about tackling one of these projects, please send a mail
+to the <a href="http://lists.llvm.org/mailman/listinfo/llvm-dev">LLVM
+Developer's</a> mailing list, so that we know the project is being worked on.
+Additionally this is a good way to get more information about a specific project
+or to suggest other projects to add to this page.
+</p>
+
+<p>The projects in this page are open-ended. More specific projects are
+filed as unassigned enhancements in the <a href="http://bugs.llvm.org/">
+LLVM bug tracker</a>. See the <a href="http://bugs.llvm.org/buglist.cgi?keywords_type=allwords&amp;keywords=&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;bug_severity=enhancement&amp;emailassigned_to1=1&amp;emailtype1=substring&amp;email1=unassigned">list of currently outstanding issues</a> if you wish to help improve LLVM.</p>
+
+</div>
+
+<!-- *********************************************************************** -->
+<div class="www_sectiontitle">
+  <a name="subprojects">LLVM Subprojects: Clang and More</a>
+</div>
+<!-- *********************************************************************** -->
+
+<div class="www_text">
+
+<p>In addition to hacking on the main LLVM project, LLVM has several subprojects,
+   including Clang and others.  If you are interested in working on these, please
+   see their "Open projects" page:</p>
+
+<ul>
+<li>The <a href="http://clang.llvm.org/OpenProjects.html">Clang Open
+    Projects</a> list.</li>
+<li>The <a href="http://polly.llvm.org/projects.html">Polly Open
+    Projects</a> list.</li>
+<li>The <a href="http://sva.cs.illinois.edu/projects.html">SAFECode Open
+    Projects</a> list.</li>
+</ul>
+
+</div>
+
+<!-- *********************************************************************** -->
+<div class="www_sectiontitle">
+  <a name="improving">Improving the current system</a>
+</div>
+<!-- *********************************************************************** -->
+
+<div class="www_text">
+
+<p>Improvements to the current infrastructure are always very welcome and tend
+to be fairly straight-forward to implement.  Here are some of the key areas that
+can use improvement...</p>
+
+</div>
+
+<!-- ======================================================================= -->
+<div class="www_subsubsection">
+  <a name="target-desc">Factor out target descriptions</a>
+</div>
+
+<div class="www_text">
+
+<p>Currently, both Clang and LLVM have a separate target description infrastructure,
+with some features duplicated, others "shared" (in the sense that Clang has to create
+a full LLVM target description to query specific information).</p>
+
+<p>This separation has grown in parallel, since in the beginning they were quite
+different and served disparate purposes. But as the compiler evolved, more and
+more features had to be shared between the two so that the compiler would behave
+properly. An example is when targets have default features on speficic configurations
+that don't have flags for. If the back-end has a different "default" behaviour
+than the front-end and the latter has no way of enforcing behaviour, it
+won't work.</p>
+
+<p>An alternative would be to create flags for all little quirks, but first, Clang
+is not the only front-end or tool that uses LLVM's middle/back ends, and second,
+that's what "default behaviour" is there for, so we'd be missing the point.</p>
+
+<p>Several ideas have been floating around to fix the Clang driver WRT recognizing
+architectures, features and so on (table-gen it, user-specific configuration files,
+etc) but none of them touch the critical issue: sharing that information with the
+back-end.</p>
+
+<p>Recently, the idea to factor out the target description infrastructure from
+both Clang and LLVM into its own library that both use, has been floating around.
+This would make sure that all defaults, flags and behaviour are shared, but would
+also reduce the complexity (and thus the cost of maintenance) a lot. That would
+also allow all tools (lli, llc, lld, lldb, etc) to have the same behaviour
+across the board.</p>
+
+<p>The main challenges are:</p>
+
+<ul>
+  <li>To make sure the transition doesn't destroy the delicate balance on any
+  target, as some defaults are implicit and, some times, unknown.</li>
+  <li>To be able to migrate one target at a time, one tool at a time and still
+  keep the old infrastructure intact.</li>
+  <li>To make it easy for detecting target's features for both front-end and
+  back-end features, and to merge both into a coherent set of properties.</li>
+  <li>To provide a bridge to the new system for tools that haven't migrated,
+  especially the off-the-tree ones, that will need some time (one release,
+  at least) to migrate..</li>
+</ul>
+
+</div>
+
+<!-- ======================================================================= -->
+<div class="www_subsubsection">
+  <a name="code-cleanups">Implementing Code Cleanup bugs</a>
+</div>
+
+<div class="www_text">
+
+<p>
+The <a href="http://bugs.llvm.org/">LLVM bug tracker</a> occasionally
+has <a
+  href="http://bugs.llvm.org/buglist.cgi?short_desc_type=allwordssubstr&amp;short_desc=&amp;long_desc_type=allwordssubstr&amp;long_desc=&amp;bug_file_loc_type=allwordssubstr&amp;bug_file_loc=&amp;status_whiteboard_type=allwordssubstr&amp;status_whiteboard=&amp;keywords_type=allwords&amp;keywords=code-cleanup&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;emailassigned_to1=1&amp;emailtype1=substring&amp;email1=&amp;emailassigned_to2=1&amp;emailreporter2=1&amp;emailcc2=1&amp;emailtype2=substring&amp;email2=&amp;bugidtype=include&amp;bug_id=&amp;votes=&amp;changedin=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;cmdtype=doit&amp;order=Bug+Number&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=">"code-cleanup" bugs</a> filed in it.
+Taking one of these and fixing it is a good way to get your feet wet in the
+LLVM code and discover how some of its components work.  Some of these include
+some major IR redesign work, which is high-impact because it can simplify a lot
+of things in the optimizer.
+</p>
+
+<p>
+Some specific ones that would be great to have:
+
+<ul>
+<li><a href="/PR10367">Fix the design of GlobalAlias to not require dest type to match source type</a></li>
+<li><a href="/PR10368">Redesign ConstantExpr's</a></li>
+<li><a href="/PR11944">Static constructors should be purged from LLVM</a></li>
+</ul>
+</p>
+
+<p>Additionally, there are performance improvements in LLVM that need to get
+fixed. These are marked with the <tt>slow-compile</tt> keyword. Use
+<a href="http://bugs.llvm.org/buglist.cgi?short_desc_type=allwordssubstr&amp;short_desc=&amp;long_desc_type=allwordssubstr&amp;long_desc=&amp;bug_file_loc_type=allwordssubstr&amp;bug_file_loc=&amp;status_whiteboard_type=allwordssubstr&amp;status_whiteboard=&amp;keywords_type=allwords&amp;keywords=slow-compile&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;emailassigned_to1=1&amp;emailtype1=substring&amp;email1=&amp;emailassigned_to2=1&amp;emailreporter2=1&amp;emailcc2=1&amp;emailtype2=substring&amp;email2=&amp;bugidtype=include&amp;bug_id=&amp;votes=&amp;changedin=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;cmdtype=doit&amp;namedcmd=Bugs+I+Fixed&amp;newqueryname=&amp;order=Reuse+same+sort+as+last+time&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=">this Bugzilla query</a>
+to find them.</p>
+
+</div>
+
+<!-- ======================================================================= -->
+<div class="www_subsubsection">
+  <a name="llvmtest">Add programs to the llvm-test testsuite</a>
+</div>
+
+<div class="www_text">
+
+<p>
+The <a href="docs/TestingGuide.html#wholeprograms">llvm-test</a> testsuite is
+a large collection of programs we use for nightly testing of generated code
+performance, compile times, correctness, etc.  Having a large testsuite gives
+us a lot of coverage of programs and enables us to spot and improve any
+problem areas in the compiler.</p>
+
+<p>
+One extremely useful task, which does not require in-depth knowledge of
+compilers, would be to extend our testsuite to include <a href=
+"http://nondot.org/sabre/LLVMNotes/#benchmarks">new programs and benchmarks</a>.
+In particular, we are interested in cpu-intensive programs that have few
+library dependencies, produce some output that can be used for correctness
+testing, and that are redistributable in source form.  Many different programs
+are suitable, for example, see <a
+href="http://nondot.org/sabre/LLVMNotes/#benchmarks">this list</a> for some
+potential candidates.
+</p>
+
+</div>
+
+<!-- ======================================================================= -->
+<div class="www_subsubsection">
+  <a name="programs">Compile programs with the LLVM Compiler</a>
+</div>
+
+<div class="www_text">
+
+<p>We are always looking for new testcases and benchmarks for use with LLVM.  In
+particular, it is useful to try compiling your favorite C source code with LLVM.
+If it doesn't compile, try to figure out why or report it to the <a
+href="http://lists.llvm.org/pipermail/llvm-bugs/">llvm-bugs</a> list.  If you
+get the program to compile, it would be extremely useful to convert the build
+system to be compatible with the LLVM Programs testsuite so that we can check it
+into SVN and the automated tester can use it to track progress of the
+compiler.</p>
+
+<p>When testing a code, try running it with a variety of optimizations, and with
+all the back-ends: CBE, llc, and lli.</p>
+
+</div>
+
+
+<!-- ======================================================================= -->
+<div class="www_subsubsection">
+  <a name="benchmark">Benchmark the LLVM compiler</a>
+</div>
+
+<div class="www_text">
+
+<p>Find benchmarks either using our <a
+href="/nightlytest/">test results</a> or on your own,
+where LLVM code generators do not produce optimal code or where another
+compiler produces better code.  Try to minimize the test case that demonstrates
+the issue.  Then, either <a href="http://bugs.llvm.org/">submit a
+bug</a> with your testcase and the code that LLVM produces vs. the code that it
+<em>should</em> produce, or even better, see if you can improve the code
+generator and submit a patch.  The basic idea is that it's generally quite easy
+for us to fix performance problems if we know about them, but we generally don't
+have the resources to go finding out why performance is bad.</p>
+
+</div>
+
+
+<!-- ======================================================================= -->
+<div class="www_subsubsection">
+  <a name="statistics">Benchmark Statistics and Warning System</a>
+</div>
+
+<div class="www_text">
+
+<p>The <a href='http://llvm.org/perf/db_default/v4/nts/recent_activity'>
+LNT perf database</a> has some nice features like detect moving average,
+standard deviations, variations, etc. But the report page give too much emphasis
+on the individual variation (where noise can be higher than signal), eg.
+<a href='http://llvm.org/perf/db_default/v4/nts/graph?plot.0=10.341.3&highlight_run=8943'>
+this case</a>.</p>
+
+<p>The first part of the project would be to create an analysis tool that would
+track moving averages and report:
+<ul>
+ <li>If the current result is higher/lower than the previous moving average by
+     more than (configurable) S standard deviations</li>
+ <li>If the current moving average is more than S standard deviations of the
+     Base run</li>
+ <li>If the last A moving averages are in constant increase/decrease of more
+     than P percent</li>
+</ul>
+
+<p>The second part would be to create a web page which would show all related
+benchmarks (possibly configurable, like a dashboard) and show the basic statistics
+with red/yellow/green colour codes to show status and links to more detailed
+analysis of each benchmark.</p>
+
+<p>A possible third part would be to be able to automatically cross reference
+different builds, so that if you group them by architecture/compiler/number
+of CPUs, this automated tool would understand that the changes are more common
+to one particular group.</p>
+
+</div>
+
+<!-- ======================================================================= -->
+<div class="www_subsubsection">
+  <a name="coverage">Improving Coverage Reports</a>
+</div>
+
+<div class="www_text">
+
+<p>The <a href='http://llvm.org/reports/coverage/'>
+LLVM Coverage Report</a> has a nice interface to show what source lines are
+covered by the tests, but it doesn't mentions which tests, which revision and
+what architecture is covered.</p>
+
+<p>A project to renovate LCOV would involve:
+<ul>
+ <li>Making it run on a buildbot, so that we know what commits / architectures
+     are covered</li>
+ <li>Update the web page to show that information</li>
+ <li>Develop a system that would report every buildbot build into the web page
+     in a searchable database, like LNT</li>
+</ul>
+
+<p>Another idea is to enable the test suite to run all built backends, not only
+   the host architecture, so that coverage report can be built in a fast machine
+   and have one report per commit without needing to update the buildbots.</p>
+
+</div>
+
+<!-- ======================================================================= -->
+<div class="www_subsubsection">
+  <a name="misc_imp">Miscellaneous Improvements</a>
+</div>
+
+<div class="www_text">
+
+<ol>
+
+<li>Completely rewrite bugpoint.  In addition to being a mess, bugpoint suffers
+from a number of problems where it will "lose" a bug when reducing.  It should
+be rewritten from scratch to solve these and other problems.</li>
+<li><a href="http://bugs.llvm.org/show_bug.cgi?id=2116">Add support for
+transactions to the PassManager</a> for improved bugpoint.</li>
+<li><a href="http://bugs.llvm.org/show_bug.cgi?id=539">Improve bugpoint to
+support running tests in parallel on MP machines</a>.</li>
+<li>Add MC assembler/disassembler and JIT support to the SPARC port.</li>
+<li>Move more optimizations out of the <tt>-instcombine</tt> pass and into
+InstructionSimplify.  The optimizations that should be moved are those that
+do not create new instructions, for example turning <tt>sub i32 %x, 0</tt>
+into <tt>%x</tt>.  Many passes use InstructionSimplify to clean up code as
+they go, so making it smarter can result in improvements all over the place.</li>
+</ol>
+
+</div>
+
+<!-- *********************************************************************** -->
+<div class="www_sectiontitle">
+  <a name="new">Adding new capabilities to LLVM</a>
+</div>
+<!-- *********************************************************************** -->
+
+<div class="www_text">
+
+<p>Sometimes creating new things is more fun than improving existing things.
+These projects tend to be more involved and perhaps require more work, but can
+also be very rewarding.</p>
+
+</div>
+
+<!-- ======================================================================= -->
+<div class="www_subsubsection">
+  <a name="llvm_ir">Extend the LLVM intermediate representation</a>
+</div>
+
+<div class="www_text">
+
+<p>Many proposed <a href="http://nondot.org/sabre/LLVMNotes/">extensions and
+improvements to LLVM core</a> are awaiting design and implementation.</p>
+
+<ol>
+<li><a href="http://nondot.org/sabre/LLVMNotes/DebugInfoImprovements.txt">Improvements
+for Debug Information Generation</a></li>
+<li><a href="/PR1269">EH support for non-call exceptions</a></li>
+<li>Many ideas for feature requests are stored in LLVM bugzilla.  Search<a
+  href="http://bugs.llvm.org/buglist.cgi?short_desc_type=allwordssubstr&amp;short_desc=&amp;long_desc_type=allwordssubstr&amp;long_desc=&amp;bug_file_loc_type=allwordssubstr&amp;bug_file_loc=&amp;status_whiteboard_type=allwordssubstr&amp;status_whiteboard=&amp;keywords_type=allwords&amp;keywords=new-feature&amp;bug_status=UNCONFIRMED&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;emailassigned_to1=1&amp;emailtype1=substring&amp;email1=&amp;emailassigned_to2=1&amp;emailreporter2=1&amp;emailcc2=1&amp;emailtype2=substring&amp;email2=&amp;bugidtype=include&amp;bug_id=&amp;votes=&amp;changedin=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;cmdtype=doit&amp;namedcmd=All+PRs&amp;newqueryname=&amp;order=Bug+Number&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=">for bugs with a "new-feature" keyword</a>.</li>
+</ol>
+
+</div>
+
+<!-- ======================================================================= -->
+<div class="www_subsubsection">
+  <a name="pointeranalysis">Pointer and Alias Analysis</a>
+</div>
+
+<div class="www_text">
+
+<p>We have a <a href="docs/AliasAnalysis.html">strong base for development</a> of
+both pointer analysis based optimizations as well as pointer analyses
+themselves.  We want to take advantage of this:</p>
+
+<ol>
+<li>The globals mod/ref pass does an inexpensive bottom-up context sensitive
+  alias analysis.  There are some inexpensive things that we could do to better
+  capture the effects of functions that access pointer arguments.  This can be
+  really important for C++ methods, which spend lots of time accessing pointers
+  off 'this'.</li>
+
+<li>The alias analysis API supports the getModRefBehavior method, which allows
+  the implementation to give details analysis of the functions. For example, we
+  could implement <a href="/PR1604">full knowledge of
+    printf/scanf</a> side effects, which would be useful.  This feature is in
+  place but not being used for anything right now.</li>
+
+<li>We need some way to reason about errno.  Consider a loop like this:
+
+<pre>
+    for ()
+      x += sqrt(loopinvariant);
+</pre>
+
+<p>We'd like to transform this into:</p>
+
+<pre>
+    t = sqrt(loopinvariant);
+    for ()
+      x += t;
+</pre>
+
+<p>This transformation is safe, because the value of errno isn't
+otherwise changed in the loop and the exit value of errno from the
+loop is the same.  We currently can't do this, because sqrt clobbers
+errno, so it isn't "readonly" or "readnone" and we don't have a good
+way to model this.</p>
+
+<p>The important part of this project is figuring out how to describe
+errno in the optimizer: each libc #defines errno to something different
+it seems.  Maybe the solution is to have a __builtin_errno_addr() or
+something and change sys headers to use it.</p>
+
+<li>There are lots of ways to optimize out and <a
+href="/PR452">improve handling of
+memcpy/memset</a>.</li>
+
+</ol>
+
+</div>
+
+<!-- ======================================================================= -->
+<div class="www_subsubsection">
+  <a name="profileguided">Profile-Guided Optimization</a>
+</div>
+
+<div class="www_text">
+
+<p>We now have a unified infrastructure for writing profile-guided
+transformations, which will work either at offline-compile-time or in the JIT,
+but we don't have many transformations.  We would welcome new profile-guided
+transformations as well as improvements to the current profiling system.
+</p>
+
+<p>Ideas for profile-guided transformations:</p>
+
+<ol>
+<li>Superblock formation (with many optimizations)</li>
+<li>Loop unrolling/peeling</li>
+<li>Profile directed inlining</li>
+<li>Code layout</li>
+<li>...</li>
+</ol>
+
+<p>Improvements to the existing support:</p>
+
+<ol>
+<li>The current block and edge profiling code that gets inserted is very simple
+and inefficient.  Through the use of control-dependence information, many fewer
+counters could be inserted into the code.  Also, if the execution count of a
+loop is known to be a compile-time or runtime constant, all of the counters in
+the loop could be avoided.</li>
+
+<li>You could implement one of the "static profiling" algorithms which analyze a
+piece of code an make educated guesses about the relative execution frequencies
+of various parts of the code.</li>
+
+<li>You could add path profiling support, or adapt the existing LLVM path
+profiling code to work with the generic profiling interfaces.</li>
+</ol>
+
+</div>
+
+<!-- ======================================================================= -->
+<div class="www_subsubsection">
+  <a name="compaction">Code Compaction</a>
+</div>
+
+<div class="www_text">
+<p>LLVM aggressively optimizes for performance, but does not yet optimize for code size.
+With a new ARM backend, there is increasing interest in using LLVM for embedded systems
+where code size is more of an issue.
+</p>
+
+<p>Someone interested in working on implementing code compaction in LLVM might want to read
+<a href="http://citeseer.ist.psu.edu/425696.html">this</a> article, describing using
+link-time optimizations for code size optimization.
+</p>
+
+</div>
+
+<!-- ======================================================================= -->
+<div class="www_subsubsection">
+  <a name="xforms">New Transformations and Analyses</a>
+</div>
+
+<div class="www_text">
+
+<ol>
+  <li>Implement a Loop Dependence Analysis Infrastructure<br>
+    - Design some way to represent and query dep analysis</li>
+  <li>Value range propagation pass</li>
+  <li>More fun with loops:
+    <a href="http://www.cs.ualberta.ca/~amaral/cascon/CDP04/tal.html">
+      Predictive Commoning
+    </a>
+  </li>
+  <li>Type inference (aka. devirtualization)</li>
+  <li><a href="http://nondot.org/sabre/LLVMNotes/BuiltinUnreachable.txt">Value
+      assertions</a> (also <a href="/PR810">PR810</a>).</li>
+</ol>
+
+</div>
+
+<!-- ======================================================================= -->
+<div class="www_subsubsection">
+  <a name="codegen">Code Generator Improvements</a>
+</div>
+
+<div class="www_text">
+
+<ol>
+<li>Generalize target-specific backend passes that could be target-independent,
+    by adding necessary target hooks and making sure all IR/MI features (such as
+    register masks and predicated instructions) are properly handled. Enable these
+    for other targets where doing so is demonstrably beneficial.
+    For example:
+      <ol><li>lib/Target/Hexagon/RDF*</li>
+          <li>lib/Target/AArch64/AArch64AddressTypePromotion.cpp</li>
+     </ol>
+    </li>
+<li>Merge the delay slot filling logic that is duplicated into (at least)
+    the Sparc and Mips backends into a single target independent pass.
+     Likewise, the branch shortening logic in several targets should be merged
+     together into one pass.</li>
+<li>Implement 'stack slot coloring' to allocate two frame indexes to the same
+    stack offset if their live ranges don't overlap.  This can reuse a bunch of
+    analysis machinery from LiveIntervals.  Making the stack smaller is good
+    for cache use and very important on targets where loads have limited
+    displacement like ppc, thumb, mips, sparc, etc.  This should be done as
+    a pass before prolog epilog insertion.  This is now done for register
+    allocator temporaries, but not for allocas.</li>
+<li>Implement 'shrink wrapping', which is the intelligent placement of callee
+    saved register save/restores.  Right now PrologEpilogInsertion always saves
+    every (modified) callee save reg in the prolog and restores it in the
+    epilog, however, some paths through a function (e.g. an early exit) may
+    not use all regs.  Sinking the save down the CFG avoids useless work on
+    these paths. Work has started on this, please inquire on llvm-dev.</li>
+<li>Implement interprocedural register allocation. The CallGraphSCCPass can be
+    used to implement a bottom-up analysis that will determine the *actual*
+    registers clobbered by a function. Use the pass to fine tune register usage
+    in callers based on *actual* registers used by the callee.</li>
+<li>Add support for 16-bit x86 assembly and real mode to the assembler and
+    disassembler, for use by BIOS code. This includes both 16-bit instruction
+    encodings as well as privileged instructions (lgdt, lldt, ltr, lmsw, clts,
+    invd, invlpg, wbinvd, hlt, rdmsr, wrmsr, rdpmc, rdtsc) and the control and
+    debug registers.
+</ol>
+
+</div>
+
+<!-- ======================================================================= -->
+<div class="www_subsubsection">
+  <a name="misc_new">Miscellaneous Additions</a>
+</div>
+
+<div class="www_text">
+
+<ol>
+<li>Port the <a href="http://www-sop.inria.fr/mimosa/fp/Bigloo/">Bigloo</A>
+Scheme compiler, from Manuel Serrano at INRIA Sophia-Antipolis, to
+output LLVM bytecode. It seems that it can already output .NET
+bytecode, JVM bytecode, and C, so LLVM would ostensibly be another good
+candidate.</li>
+<li>Write a new frontend for some other language (Java? OCaml? Forth?)</li>
+<li>Random test vector generator: Use a C grammar to generate random C code,
+e.g., <a href="http://code.google.com/p/quest-tester/">quest</a>;
+run it through llvm-gcc, then run a random set of passes on it using opt.
+Try to crash <tt><a href="/docs/CommandGuide/html/opt.html">opt</a></tt>. When
+<tt>opt</tt> crashes, use <tt><a
+href="/docs/CommandGuide/html/bugpoint.html">bugpoint</a></tt> to reduce the
+test case and post it to a website or mailing list.  Repeat ad infinitum.</li>
+<li>Add sandbox features to the Interpreter: catch invalid memory accesses,
+  potentially unsafe operations (access via arbitrary memory pointer) etc.
+</li>
+<li>Port <a href="http://valgrind.org">Valgrind</a> to use LLVM code generation
+  and optimization passes instead of its own.</li>
+<li>Write LLVM IR level debugger (extend Interpreter?)</li>
+<li>Write an LLVM Superoptimizer.  It would be interesting to take ideas from
+    this superoptimizer for x86:
+<a href="http://theory.stanford.edu/~aiken/publications/papers/asplos06.pdf">paper #1</a> and <a href="http://theory.stanford.edu/~sbansal/superoptimizer.html">paper #2</a> and adapt them to run on LLVM code.<p>
+
+It would seem that operating on LLVM code would save a lot of time
+because its semantics are much simpler than x86.  The cost of operating
+on LLVM is that target-specific tricks would be missed.<p>
+
+The outcome would be a new LLVM pass that subsumes at least the
+instruction combiner, and probably a few other passes as well.  Benefits
+would include not missing cases missed by the current combiner and also
+more easily adapting to changes in the LLVM IR.<p>
+
+All previous superoptimizers have worked on linear sequences of code.
+It would seem much better to operate on small subgraphs of the program
+dependency graph.</li>
+</ol>
+
+</div>
+
+<!-- *********************************************************************** -->
+<div class="www_sectiontitle">
+  <a name="using">Projects using LLVM</a>
+</div>
+<!-- *********************************************************************** -->
+
+<div class="www_text">
+
+  <p>
+  In addition to projects that enhance the existing LLVM infrastructure, there
+  are projects that improve software that uses, but is not included with, the
+  LLVM compiler infrastructure.  These projects include open-source software
+  projects and research projects that use LLVM.  Like projects that enhance the
+  core LLVM infrastructure, these projects are often challenging and rewarding.
+  </p>
+
+</div>
+
+<!-- ======================================================================= -->
+<div class="www_subsubsection">
+  <a name="encodeanalysis">Encode Analysis Results in MachineInstr IR</a>
+</div>
+
+<div class="www_text">
+  <p>
+  At least one project (and probably more) needs to use analysis information
+  (such as call graph analysis) from within a MachineFunctionPass, however,
+  most analysis passes operate at the LLVM IR level.  In some cases, a value
+  (e.g., a function pointer) cannot be mapped from the MachineInstr level back
+  to the LLVM IR level reliably, making the use of existing LLVM analysis
+  passes from within a MachineFunctionPass impossible (or at least brittle).
+  </p>
+
+  <p>
+  This project is to encode analysis information from the LLVM IR level into
+  the MachineInstr IR when it is generated so that it is available to a
+  MachineFunctionPass.  The exemplar is call graph analysis (useful for
+  control-flow integrity instrumentation, analysis of code reuse defenses, and
+  gadget compilers); however, other LLVM analyses may be useful.
+  </p>
+</div>
+
+<!-- ======================================================================= -->
+<div class="www_subsubsection">
+  <a name="codelayoutjit">Code Layout in the LLVM JIT</a>
+</div>
+
+<div class="www_text">
+  <p>
+  Implement an on-demand function relocator in the LLVM JIT. This can help
+  improve code locality using runtime profiling information. The idea is to use
+  a relocation table for every function.  The relocation entries need to be
+  updated upon every function relocation (take a look at
+  <a href="https://people.cs.umass.edu/~emery/pubs/stabilizer-asplos13.pdf">
+  this article</a>).
+  A (per-function) basic block reordering would be a useful extension.
+  </p>
+</div>
+
+<!-- ======================================================================= -->
+<div class="www_subsubsection">
+  <a name="fieldlayout">Improved Structure Splitting and Field Reordering</a>
+</div>
+
+<div class="www_text">
+  <p>
+  The goal of this project is to implement better data layout optimizations
+  using the model of reference affinity.  This
+  <a href="http://www.cs.rochester.edu/~cding/Documents/Publications/pldi04.pdf">
+  paper</a>
+  provides some background information.
+  </p>
+</div>
+
+<!-- ======================================================================= -->
+<div class="www_subsubsection">
+  <a name="slimmer">Finish the Slimmer Project</a>
+</div>
+
+<div class="www_text">
+  <p>
+  Slimmer is a prototype tool, built using LLVM, that uses dynamic analysis to
+  find potential performance bugs in programs.  Development on Slimmer started
+  during Google Summer of Code in 2015 and resulted in an initial prototype,
+  but evaluation of the prototype and improvements to make it portable and
+  robust are still needed.  This project would have a student pick up and
+  finish the Slimmer work.  The source code of Slimmer and
+  its current documentation can be found at its
+  <a href="https://github.com/james0zan/Slimmer">Github</a> web page.
+  </p>
+</div>
+
+<!-- *********************************************************************** -->
+
+<hr>
+
+<!--#include virtual="footer.incl" -->

@@ -1,0 +1,431 @@
+{% import "utils.html" as utils %}
+{% import "local.html" as local %}
+
+{% set hash_field = ts.Sample.get_hash_of_binary_field() %}
+{% set machine = run.machine %}
+{% set neighboring_runs = request_info.neighboring_runs %}
+{% set comparison_neighboring_runs = request_info.comparison_neighboring_runs %}
+
+{% extends "layout.html" %}
+{% set components = [(ts.name, v4_url_for(".v4_recent_activity")),
+                     ('%s:%s' % (machine.name, machine.id),
+                     v4_url_for(".v4_machine", id=machine.id))] %}
+
+{% block head %}
+  <script>
+    g_urls = {{urls|tojson|safe}};
+    g_machine = {{run.machine.id}};
+  </script>
+
+  <script src="{{ url_for('.static', filename='popup.js') }}"></script>
+  <script src="{{ url_for('.static', filename='sorttable.js') }}"></script>
+  <script src="{{ url_for('.static', filename='lnt_run.js') }}"></script>
+  <link href="{{ url_for('.static', filename='lnt_run.css') }}" rel="stylesheet" media="screen"/>
+
+  <script type="text/javascript">
+  function selectAll(source) {
+    $(source).closest("table").find("input:checkbox").prop("checked", source.checked);
+  }
+  </script>
+{% endblock %}
+
+{% block onload %}
+$('.profile-but-no-prev').tooltip();
+$('.profile-prev-only').tooltip();
+{% endblock %}
+  
+{% block title %}Run Results{% endblock %}
+
+{% macro get_cell_value(cr, field) %}
+  {% set test_status = cr.get_test_status() %}
+  {% set value_status = cr.get_value_status(ignore_small=not options.show_small_diff) %}
+  {% set run_cell_value = cr.current|print_value(field.unit, field.unit_abbrev) %}
+  {% set run_cell_value = "-" if test_status in [analysis.REGRESSED, analysis.UNCHANGED_FAIL] else run_cell_value %}
+
+  {% if options.show_previous %}
+    {% set prev_cell_value = "-" if cr.previous is none else "%.4f" % cr.previous %}
+    {% set prev_cell_value = "-" if test_status in [analysis.IMPROVED, analysis.UNCHANGED_FAIL] else prev_cell_value %}
+    <td>{{prev_cell_value}}</td>
+  {% endif %}
+
+  {% set cell_color = none %}
+  {% if test_status == analysis.REGRESSED %}
+    {% set cell_color = (233,128,128) %}
+  {% elif test_status == analysis.IMPROVED %}
+    {% set cell_color = (143,223,95) %}
+  {% elif test_status == analysis.UNCHANGED_FAIL %}
+    {% set cell_color = (255,195,67) %}
+  {% endif %}
+
+  {% if cell_color %}
+    <td class="right" style="background-color:{{ '#%02x%02x%02x' % cell_color }}">{{ run_cell_value }}</td>
+  {% else %}
+    <td class="right">{{run_cell_value}}</td>
+  {% endif %}
+
+  {% if test_status == analysis.UNCHANGED_PASS and
+        (options.show_all or
+         value_status == analysis.REGRESSED or
+         value_status == analysis.IMPROVED) %}
+    {{ cr.pct_delta|aspctcell(reverse=cr.bigger_is_better)|safe }}
+  {% else %}
+    <td>-</td>
+  {% endif %}
+
+  {% if options.show_delta %}
+    <td>{{ "-" if cr.delta is none or test_status != analysis.UNCHANGED_PASS else "%.4f" % cr.delta }}</td>
+  {% endif %}
+  {% if options.show_stddev %}
+    <td>{{ "-" if cr.stddev is none or test_status != analysis.UNCHANGED_PASS  else "%.4f" % cr.stddev }}</td>
+  {% endif %}
+  {% if options.show_mad %}
+    <td>{{ "-" if cr.MAD is none or test_status != analysis.UNCHANGED_PASS  else "%.4f" % cr.MAD }}</td>
+  {% endif %}
+  {% if options.show_all_samples %}
+    <td>
+      [
+      {%- for v in cr.samples -%}
+        {{ ", " if not loop.first else "" }}
+        {{ "%.4f" % v }}
+      {%- endfor -%}
+      ]
+    </td>
+  {% endif %}
+
+  {% if options.show_sample_counts %}
+    <td>{{cr.samples|length}}</td>
+  {% endif %}
+
+{% endmacro %}
+
+{% block sidebar %}
+  <ul class="nav nav-list bs-docs-sidenav">
+    <li><a href="#machine_info"><i class="icon-chevron-right"></i>Machine Info</a></li>
+    <li><a href="#run_info"><i class="icon-chevron-right"></i>Run Info</a></li>
+    <li><a href="#view_options"><i class="icon-chevron-right"></i>View Options</a></li>
+    <li><a href="#report"><i class="icon-chevron-right"></i>Report</a></li>
+    {% for field in metric_fields %}
+      <li id="link_{{ field.name }}"><a href="#{{ field.name }}"><i class="icon-chevron-right"></i>{{ field.display_name }}</a></li>
+    {% endfor %}
+  </ul>
+
+  <h4>Runs:</h4>
+  <ul>
+  {# Show a small number of neighboring runs. #}
+  {% for r in neighboring_runs %}
+    <li>
+      {{ "<b>"|safe if r.id == run.id else "" }}
+      {{ local.render_compare_to_run(r, v4_url_for('.v4_run', id=r.id)) }}
+      {{ "</b>"|safe if r.id == run.id else "" }}
+    </li>
+  {% endfor %}
+  </ul>
+  {# Show a small number of runs in the neighborhood of the comparison run. #}
+  {% if comparison_neighboring_runs %}
+    <h4>Compare To:</h4>
+    <ul>
+    {% for r in comparison_neighboring_runs %}
+      <li>
+        {{ "<b>"|safe if compare_to and r.id == compare_to.id else "" }}
+        {{ local.render_compare_to_run(r, v4_url_for('.v4_run', id=run.id, compare_to=r.id)) }}
+        {{ "</b>"|safe if compare_to and r.id == compare_to.id else "" }}
+      </li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endblock %}
+
+{% block body %}
+
+  <section id="machine_info">
+  {{ utils.render_popup_begin('machine_info', 'Machine Info', true) }}
+  <h4>Fields</h4>
+  <table class="table table-striped table-condensed table-hover">
+  {% for item in machine.fields %}
+    <tr>
+      <td> <b>{{item.name}}</b> </td>
+      <td>{{ utils.newline_to_br(machine.get_field(item)) }}</td>
+    </tr>
+  {% endfor %}
+  </table>
+
+  <h4>Parameters</h4>
+  <table class="table table-striped table-condensed table-hover">
+  {% for key,value in machine.parameters|dictsort %}
+    <tr>
+      <td> <b>{{key}}</b> </td>
+      <td>{{ utils.newline_to_br(value) }}</td>
+    </tr>
+  {% endfor %}
+  </table>
+  {{ utils.render_popup_end() }}
+  </section>
+
+  <section id="run_info">
+  {{ utils.render_popup_begin('run_info', 'Run Info', true) }}
+  <h4>Fields</h4>
+  <table class="table table-striped table-condensed table-hover">
+    <thead>
+      <tr><th>Name</th><th>Value</th></tr>
+    </thead>
+    {% for item in run.fields %}
+      <tr>
+        <td> <b>{{item.name}}</b> </td>
+        <td>{{ utils.newline_to_br(run.get_field(item)) }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+
+  <h4>Parameters</h4>
+  <table class="table table-striped table-condensed table-hover">
+    <thead>
+      <tr><th>Name</th><th>Value</th></tr>
+    </thead>
+    {% for key, value in run.parameters|dictsort(case_sensitive=True) %}
+      <tr>
+        <td> <b>{{key}}</b> </td>
+        <td>{{ utils.newline_to_br(value) }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+  {{ utils.render_popup_end() }}
+  </section>
+
+  <section id="view_options">
+  {{ utils.render_popup_begin('view_options', 'View Options', true) }}
+  <form method="GET">
+    <table class="table table-striped table-condensed table-hover">
+    <tr>
+      <td><label for="show_delta">Show Delta</label></td>
+      <td><input id="show_delta" type="checkbox" name="show_delta" value="yes" {{ "checked" if options.show_delta else "" }}/></td>
+    </tr>
+    <tr>
+        <td><label for="show_previous">Show Previous Value</label></td>
+      <td><input id="show_previous" type="checkbox" name="show_previous" value="yes" {{ "checked" if options.show_previous else "" }}/></td>
+    </tr>
+    <tr>
+      <td><label for="show_stddev">Show Standard Deviation</label></td>
+      <td><input id="show_stddev" type="checkbox" name="show_stddev" value="yes" {{ "checked" if options.show_stddev else "" }}/></td>
+    </tr>
+    <tr>
+      <td><label for="show_mad">Show Median Absolute Deviation</label></td>
+      <td><input id="show_mad" type="checkbox" name="show_mad" value="yes" {{ "checked" if options.show_mad else "" }}/></td>
+    </tr>
+    <tr>
+      <td><label for="show_all">Show All Values</label></td>
+      <td><input id="show_all" type="checkbox" name="show_all" value="yes" {{ "checked" if options.show_all else "" }}/></td>
+    </tr>
+    <tr>
+      <td><label for="show_all_samples">Show All Samples</label></td>
+      <td><input id="show_all_samples" type="checkbox" name="show_all_samples" value="yes" {{ "checked" if options.show_all_samples else "" }}/></td>
+    </tr>
+    <tr>
+      <td><label for="show_sample_counts">Show Sample Counts</label></td>
+      <td><input id="show_sample_counts" type="checkbox" name="show_sample_counts" value="yes" {{ "checked" if options.show_sample_counts else "" }}/></td>
+    </tr>
+    <tr>
+      <td><label for="show_small_diff">Show Small Differences</label></td>
+      <td><input id="show_small_diff" type="checkbox" name="show_small_diff" value="yes" {{ "checked" if options.show_small_diff else "" }}/></td>
+    </tr>
+    <tr>
+      <td><label for="num_comparison_runs">Number of Comparison Runs</label></td>
+      <td><input id="num_comparison_runs" type="text" name="num_comparison_runs" value="{{ options.num_comparison_runs }}"/></td>
+    </tr>
+    <tr>
+      <td><label for="show_graphs">Show Report Graphs</label></td>
+      <td><input id="show_graphs" type="checkbox" name="show_graphs" value="yes" {{ "checked" if options.show_graphs else "" }}/></td>
+    </tr>
+    <tr>
+      <td><label for="show_data_table">Show Data Table</label></td>
+      <td><input id="show_data_table" type="checkbox" name="show_data_table" value="yes" {{ "checked" if options.show_data_table else ""}}/></td>
+    </tr>
+    <tr>
+      <td><label for="hide_report_by_default">Hide Report By Default</label></td>
+      <td><input id="hide_report_by_default" type="checkbox" name="hide_report_by_default" value="yes" {{ "checked" if options.hide_report_by_default else ""}}/></td>
+    </tr>
+    <tr>
+      <td><label for="test_filter">Test Filter (regexp)</label></td>
+      <td><input id="test_filter" type="text" name="test_filter" value="{{ options.test_filter }}"/></td>
+    </tr>
+    <tr>
+      <td><label for="test_min_value_filter">Test Min. Value Filter</label></td>
+      <td><input id="test_min_value_filter" type="text" name="test_min_value_filter" value="{{ options.test_min_value_filter }}"/></td>
+    </tr>
+    <tr>
+      <td><label for="agg_func">Aggregation Function</label></td>
+      <td>
+        <select id="agg_func" name="aggregation_fn">
+        <option value="min" {{ ('selected="selected"' if "min" == options.aggregation_fn else '')|safe}}>
+          Minimum</option>
+        <option value="median" {{ ('selected="selected"' if "median" == options.aggregation_fn else '')|safe}}>
+          Median</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td><label for="mannwhit">Mann-Whitney test confidence level</label></td>
+      <td>
+        <select id="mannwhit" name="MW_confidence_lv">
+          <option value="0.10" {{ ('selected="selected"' if options.MW_confidence_lv == 0.10 else '')|safe}}>
+            10%</option>
+          <option value="0.05" {{ ('selected="selected"' if options.MW_confidence_lv == 0.05 else '')|safe}}>
+            5%</option>
+          <option value="0.01" {{ ('selected="selected"' if options.MW_confidence_lv == 0.01 else '')|safe}}>
+            1%</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        {% if compare_to %}
+          <input type="hidden" name="compare_to" value="{{compare_to.id}}"/>
+        {% endif %}
+        {% if baseline %}
+          <input type="hidden" name="baseline" value="{{baseline.id}}"/>
+        {% endif %}
+
+        <input type="submit" name="submit" value="Update"/>
+      </td>
+    </tr>
+    </table>
+  </form>
+  {{ utils.render_popup_end() }}
+  </section>
+
+  <section id="report">
+  {{ utils.render_popup_begin('html_report', 'Report',
+                              options.hide_report_by_default) }}
+
+  {{ utils.regex_filter_box(input_id='filter',
+                            selector='.searchable tr',
+                            placeholder="Benchmark name regex...",
+                            selector_part_to_search=".benchmark-name") }}
+
+  {% include "reporting/runs.html" %}
+
+  {{ utils.render_popup_end() }}
+
+  {% set graph_base=v4_url_for('.v4_graph', highlight_run=run.id) %}
+  <form id="graph_selection_form" method="GET" action="{{ graph_base }}">
+
+    {# Report one table for each primary field. #}
+    {% for field in metric_fields %}
+      {% set field_index = ts.get_field_index(field) %}
+      <section id="{{ field.name }}">
+          {% set tests = [] %}
+          {% set (runs, compare_runs) = request_info.sri.get_sliding_runs(request_info.session, run, compare_to, request_info.num_comparison_runs) %}
+          {% for test_name,test_id in test_info %}
+            {% set cr = request_info.sri.get_comparison_result(
+                runs, compare_runs, test_id, field, hash_field) %}
+            {% if cr.previous is not none or cr.current is not none %}
+              {% if cr.current is none or cr.current >= test_min_value_filter %}
+                {% if tests.append((test_name, test_id, cr)) %}{% endif %}
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        {%  if tests %}
+      {% set unit_suffix = ' (%s)' % field.unit if field.unit else '' %}
+      {% set title = field.display_name + unit_suffix %}
+      {{ utils.render_popup_begin('test_data-' + field.name, title, false) }}
+      <table class="table table-striped table-hover table-condensed floating_header datatable">
+        <thead>
+          <tr>
+            <th rowspan="1" class="sorttable_nosort"><input type="checkbox" id="select-all-{{ field.name }}" onClick="selectAll(this)"/></th>
+            <th rowspan="1">Name</th>
+            {% if options.show_previous %}<th>Prev</th>{% endif %}
+            <th>Current</th>
+            <th>%</th>
+            {% if options.show_delta %}<th>Δ</th>{% endif %}
+            {% if options.show_stddev %}<th>σ</th>{% endif %}
+            {% if options.show_mad %}<th>MAD</th>{% endif %}
+            {% if options.show_all_samples %}<th>Samples</th>{% endif %}
+            {% if options.show_sample_counts %}<th>N</th>{% endif %}
+          </tr>
+        </thead>
+        <tbody class="searchable">
+          {% for test_name,test_id,cr in tests %}
+            <tr>
+              <td><input type="checkbox" name="plot.{{test_id}}" value="{{machine.id}}.{{test_id}}.{{field_index}}"/></td>
+              <td class="benchmark-name">
+                <a href="{{graph_base}}&amp;plot.{{test_id}}={{ machine.id}}.{{test_id}}.{{field_index}}">
+                  {{ test_name }}
+                </a>
+                {{ utils.render_profile_link(cr.cur_profile, cr.prev_profile, run.id, compare_to.id, test_id) }}
+              </td>
+              {{ get_cell_value(cr, field) }}
+            </tr>
+          {% endfor %}
+        </tbody>
+        <tfoot>
+          <tr>
+            {% set cr = request_info.sri.get_geomean_comparison_result(
+                        run, compare_to, field, tests) %}
+            <td><input type="checkbox" name="mean" value="{{machine.id}}.{{field_index}}"/></td>
+            <td><a href="{{graph_base}}&amp;mean={{machine.id}}.{{field_index}}">Geometric Mean</a></td>
+            {{ get_cell_value(cr, field) }}
+          </tr>
+        </tfoot>
+      </table>
+      {{ utils.render_popup_end() }}
+        {% else %}
+            <script>$('#link_{{ field.name }}').hide();</script>
+        {% endif %}
+      </section>
+    {% endfor %}
+    <p>
+      <input id="graph_button" type="submit" value="Graph"/>
+      <input id="matrix_button" type="submit" value="Matrix"/>
+    </p>
+  </form>
+  </section>
+
+  {% if options.show_data_table %}
+    <h3>Test Data</h3>
+    <table class="table table-striped table-condensed table-hover">
+      <thead>
+        <th>Name</th>
+        {% for field in metric_fields %}
+          <th colspan="3">{{field.name}}</th>
+        {% endfor %}
+      </thead>
+      <thead>
+       <th>-</th>
+        {% for field in metric_fields %}
+          <th>Prev</th>
+          <th>Value</th>
+          <th>%</th>
+        {% endfor %}
+      </thead>
+      <tbody class="searchable">
+      {% for test_name,test_id in test_info %}
+        <tr>
+          <td class="benchmark-name">{{ test_name }}</td>
+          {% for field in metric_fields %}
+              {% set cr = request_info.sri.get_run_comparison_result(
+                     run, compare_to, test_id, field, hash_field) %}
+            <td>{{cr.previous}}</td>
+            <td>{{cr.current}}</td>
+            <td>{{cr.pct_delta}}</td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+<script type="text/javascript" language="Javascript">
+
+$("#matrix_button").on("click", function(e){
+    e.preventDefault();
+    {% set matrix_base=v4_url_for('.v4_matrix') %}
+    $('#graph_selection_form').attr('action', "{{ matrix_base }}").submit();
+});
+
+$("#graph_button").on("click", function(e){
+    e.preventDefault();
+    {% set graph_base=v4_url_for('.v4_graph') %}
+    $('#graph_selection_form').attr('action', "{{ graph_base }}").submit();
+});
+
+
+</script>
+{% endblock %}

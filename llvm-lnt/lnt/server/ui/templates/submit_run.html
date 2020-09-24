@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% set components = [] %}
+{% block title %}Submit Run{% endblock %}
+{% block body %}
+
+{% if error is defined %}
+  <p><font color="#FF0000">{{ error }}</font></p>
+{% endif %}
+
+<form method="post" enctype="multipart/form-data" action="">
+<b>Input File (plist):</b><br/>
+<input type="file" name="file"><br/>
+
+<p><b>Input Data (plist):</b><br/>
+<textarea name="input_data"></textarea>
+
+<p><b>Machine Selection / Creation:</b><br/>
+<select name="select_machine">
+<option selected="selected" value="match">match: Abort if machine information doesn't match</option>
+<option value="update">update: Update matchine if information doesn't match</option>
+<option value="split">split: Create additional machine with same name if information doesn't match</option>
+</select><br/>
+
+<p><b>Merge with existing runs:</b><br/>
+<select name="merge">
+<option selected="selected" value="replace">replace: Replace existing run with same order</option>
+<option value="reject">reject: Abort if run with same order exists</option>
+<option value="append">append: Append and possibly keep multiple runs for same order</option>
+</select><br/>
+
+<p><input type="submit" name="submit" value="Submit">
+</form>
+
+{% endblock %}

@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+                      "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>The LLVM Compiler Infrastructure Project</title>
+  <link rel="stylesheet" href="/llvm.css" type="text/css">
+</head>
+
+<body style="margin-left:0;">
+
+<div class="www_title">
+  The <strong>LLVM</strong> Compiler Infrastructure
+</div>
+
+<table width="100%" border=0 cellpadding=10>
+<tr>
+<td valign=top align=center>
+
+<!-- <img src="img/DragonSmall.png" width="136" height="136"> -->
+
+<b>Site Map:</b>
+<div class="www_sidebar">
+<a href="/">Overview</a><br>
+<a href="/Features.html">Features</a><br>
+<a href="/docs/">Documentation</a><br>
+<a href="/docs/CommandGuide/">Command Guide</a><br>
+<a href="/docs/FAQ.html">FAQ</a><br>
+<a href="/pubs/">Publications</a><br>
+<a href="/ProjectsWithLLVM/">LLVM&nbsp;Projects</a><br>
+<a href="/OpenProjects.html">Open&nbsp;Projects</a><br>
+<a href="/Users.html">LLVM&nbsp;Users</a><br>
+<a href="http://bugs.llvm.org/">Bug&nbsp;Database</a><br>
+<a href="/Logo.html">LLVM Logo</a><br>
+<a href="http://blog.llvm.org/">Blog</a><br>
+<a href="/devmtg/">Meetings</a><br>
+<a href="//foundation.llvm.org">LLVM&nbsp;Foundation</a><br>
+</div>
+
+<br>
+
+<b>Download!</b>
+<div class="www_sidebar">
+<span style="font-size:smaller">Download now:</span>
+<a href="https://releases.llvm.org/download.html#10.0.1"><b>LLVM&nbsp;10.0.1</b></a><br>
+<a href="/releases/">All Releases</a><br>
+<a href="https://apt.llvm.org/">APT Packages</a><br>
+<a href="/builds/">Win Installer</a><br>
+<a href="https://prereleases.llvm.org/">Pre-releases</a><br>
+<br>
+
+<span style="font-size:smaller">View the open-source</span><br>
+<a href="/releases/10.0.0/LICENSE.TXT"><b>license</b></a>
+</div>
+
+<br>
+
+<b>Search&nbsp;this&nbsp;Site</b>
+
+<div class="www_sidebar">
+  <form action="https://www.google.com/search" method="get">
+    <div>
+      <input type="hidden" name="sitesearch" value="llvm.org">
+      <input type=text name=q size=11><br>
+      <input type=submit value="Search!" name="submit">
+    </div>
+  </form>
+</div>
+
+<br>
+
+<b>Useful&nbsp;Links</b>
+<div class="www_sidebar">
+  <span style="font-size:smaller">Mailing Lists:</span><br>
+  <a href="https://lists.llvm.org/mailman/listinfo/llvm-announce">LLVM-announce</a><br>
+  <a href="https://lists.llvm.org/mailman/listinfo/llvm-dev">LLVM-dev</a><br>
+  <a href="https://lists.llvm.org/cgi-bin/mailman/listinfo">(more)</a>
+  <br><br>
+
+  <span style="font-size:smaller">Long-form Discussion Proposal:</span><br>
+  <a href="https://llvm.discourse.group/">LLVM Discourse</a>
+
+  <br><br>
+
+  <span style="font-size:smaller">IRC Channel:</span><br>
+  <a href="/docs/#irc">irc.oftc.net #llvm</a>
+
+  <br><br>
+
+  <span style="font-size:smaller">Real-time Chat Proposal:</span><br>
+  <a href="https://discord.gg/xS7Z362">Discord</a>
+
+  <br><br>
+
+  <span style="font-size:smaller">Dev. Resources:</span><br>
+  <a href="/doxygen/">doxygen</a><br>
+  <a href="https://github.com/llvm/llvm-project/">Sources (GitHub)</a><br>
+  <a href="https://reviews.llvm.org">Code Review</a><br>
+  <a href="http://blog.llvm.org/">Blog</a><br>
+  <a href="http://bugs.llvm.org/">Bugzilla</a><br>
+  <a href="http://lab.llvm.org:8011/">Buildbot</a><br>
+  <a href="http://green.lab.llvm.org/green/">Green Dragon</a><br>
+  <a href="http://lnt.llvm.org/">LNT</a><br>
+  <a href="/reports/scan-build/">Scan-build</a><br>
+  <a href="http://lab.llvm.org:8080/coverage/coverage-reports/index.html">llvm-cov</a><br>
+</div>
+
+<br>
+
+<b>Release&nbsp;Emails</b>
+<div class="www_sidebar">
+  <span style="font-size:smaller">
+  10.0.1: <a href="https://lists.llvm.org/pipermail/llvm-announce/2020-August/000088.html">Aug 2020</a><br>
+  10.0.0: <a href="https://lists.llvm.org/pipermail/llvm-announce/2020-March/000087.html">Mar 2020</a><br>
+  9.0.1:  <a href="https://lists.llvm.org/pipermail/llvm-announce/2019-December/000086.html">Dec 2019</a><br>
+  9.0.0:  <a href="https://lists.llvm.org/pipermail/llvm-announce/2019-September/000085.html">Sep 2019</a><br>
+  8.0.1:  <a href="https://lists.llvm.org/pipermail/llvm-announce/2019-August/000084.html">Aug 2019</a><br>
+  8.0.0:  <a href="https://lists.llvm.org/pipermail/llvm-announce/2019-March/000082.html">Mar 2019</a><br>
+  7.0.1:  <a href="https://lists.llvm.org/pipermail/llvm-announce/2018-December/000081.html">Dec 2018</a><br>
+  7.0.0:  <a href="https://lists.llvm.org/pipermail/llvm-announce/2018-September/000080.html">Sep 2018</a><br>
+  <a href="/OldNews.html">Older News</a><br>
+  </span>
+</div>
+
+<br>
+
+<span style="font-size:smaller">Maintained by the <br>
+  <a href="mailto:llvm-admin@lists.llvm.org">llvm-admin team</a>
+</span>
+
+</td>
+<td valign=top>

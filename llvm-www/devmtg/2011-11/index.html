@@ -1,0 +1,331 @@
+<!--#include virtual="../../header.incl" -->
+
+<div class="www_sectiontitle">2011 LLVM Developers' Meeting</div>
+<table>
+	<tr><td valign="top">
+<ol>
+	<li><a href="#agenda">Talk Slides and Videos</a></li>
+        <li><a href="#abstracts">Talk Abstracts</a></li>
+        <li><a href="#poster">Poster Abstracts</a></li>
+</ol>
+</td><td>
+<ul>
+  <li><b>What</b>: The fifth general meeting of LLVM Developers and Users.
+  </li>
+  <li><b>Why</b>: To get acquainted, learn how LLVM is used, and exchange 
+  ideas.</li>
+  <li><b>When</b>: November 18, 2011</li>
+  <li><b>Where</b>: San Jose Marriott, 301 South Market Street, San Jose, CA</li>
+</ul>
+</td></tr></table>
+
+<p align="center"><h2><b>SPONSORED BY: <a href="http://www.qualcomm.com/quicinc/">QuIC</a>, <a href="http://apple.com">Apple</a>, <a href="http://www.google.com">Google</a></b></h2></p>
+
+<p>We are eager to find companies to help cover travel expenses for speakers needing assistance. If your company is interested, please contact dkipping@qualcomm.com.</p>
+
+<p>The meeting serves as a forum for <a href="http://llvm.org">LLVM</a>,
+<a href="http://clang.llvm.org">Clang</a>, <a href="http://lldb.llvm.org">LLDB</a> and 
+other LLVM project developers and users to get acquainted, learn how LLVM is used, and 
+exchange ideas about LLVM and its (potential) applications. More broadly, we
+believe the event will be of particular interest to the following people:</p>
+
+<ul>
+<li>Active developers of projects in the LLVM Umbrella
+(LLVM core, Clang, LLDB, libc++, compiler_rt, klee, dragonegg, etc).</li>
+<li>Anyone interested in using these as part of another project.</li>
+<li>Compiler, programming language, and runtime enthusiasts.</li>
+<li>Those interested in using compiler and toolchain technology in novel 
+and interesting ways.</li>
+</ul>
+<p>
+We also invite you to sign up for the <a href="http://lists.llvm.org/mailman/listinfo/llvm-devmeeting">official Developer Meeting mailing list</a> to be kept informed of updates concerning the meeting.
+</p>
+</p> 
+
+<div class="www_sectiontitle" id="agenda">Talk Slides and Videos</div>
+<table id="devmtg">
+
+<tr><th>Media</th><th>Talk</th></tr>
+
+<tr>
+<td align="center">
+[<a href="Lattner_Kickoff.pdf">Slides</a>]
+</td>
+<td><b>Developer Meeting Kickoff</b><br>Chris Lattner</td>
+
+
+<tr>
+<td align="center">
+[<a href="Gregor_ExtendingClang.pdf">Slides</a>]
+<p>[<a href="http://devimages.apple.com/llvm/videos/ExtendingClang.m4v">Video</a>] </p>
+</td>
+<td><b><a href="#talk4">Extending Clang</a></b><br>Doug Gregor, <i>Apple</i></td>
+</tr>
+
+<tr>
+<td align="center">
+[<a href="Rotem_IntelOpenCLSDKVectorizer.pdf">Slides</a>]
+<p>[<a href="https://youtu.be/1KeTFJLMIYw">Video</a>] </p>
+</td>
+<td><b><a href="#talk13">Intel OpenCL SDK Vectorizer</a></b><br>Nadav Rotem, <i>Intel</i></td>
+</tr>
+
+<tr><td align="center">
+[<a href="https://youtu.be/HK0fZWQRDV0">Video</a>]</p>
+</td>
+<td><b><a href="#talk2">Clang MapReduce -- Automatic C++ Refactoring at Google Scale</a></b><br>Chandler Carruth, <i>Google</i></td>
+</tr>
+
+<tr><td align="center">[<a href="Holewinski_PTXBackend.pdf">Slides</a>]
+<p>[<a href="https://youtu.be/7AUdgoSsY1s">Video</a>] </p>
+</td>
+<td><b><a href="#talk11">PTX Back-End: GPU Programming With LLVM</a></b><br>Just
+in Holewinski, <i>Ohio State</i></td>
+</tr>
+
+<tr><td align="center">[<a href="Davis_LLVMinFreeBSD.pdf">Slides</a>]
+<p>[<a href="https://youtu.be/it0Jh8609vE">Video</a>] </p>
+</td>
+<td><b><a href="#talk1">Integrating LLVM into FreeBSD</a></b><br>Brooks Davis, <i>The FreeBSD Project</i></td>
+</tr>
+
+<tr><td align="center">[<a href="Simpson_PortingLLVMToADSP.pdf">Slides</a>]
+<p>[<a href="https://youtu.be/MefebRh34cI">Video</a>]
+</p>
+</td>
+<td><b><a href="#talk16">Porting LLVM to a Next Generation DSP</a></b><br>Taylor Simpson, <i>QuIC</i></td>
+</tr>
+
+<tr><td align="center">[<a href="Cranmer_DXRSemanticCodeBrowsingwithClang.pdf">Slides</a>]
+<p>[<a href="https://youtu.be/lV8Djpmx4VA">Video</a>]</p>
+</td>
+<td><b><a href="#talk10">DXR: Semantic Code Browsing with Clang</a></b><br>Joshua Cranmer, <i>Mozilla</i></td>
+</tr>
+
+<tr><td align="center">[<a href="Grosbach_Anderson_LLVMMC.pdf">Slides</a>]
+<p>[<a href="http://devimages.apple.com/llvm/videos/LLVMMCinPractice.m4v">Video</a>] </p>
+</td>
+<td><b><a href="#talk8">LLVM MC In Practice</a></b><br>Jim Grosbach, Owen Anderson <i>Apple</i></td>
+</tr>
+
+<tr><td align="center">[<a href="Weber_Wennborg_UsingClangInChromium.pdf">Slides</a>]
+<p>[<a href="https://youtu.be/FGd8DX-qA7M">Video</a>]
+</td>
+<td><b><a href="#talk14">Using clang in the Chromium project</
+a></b><br>Nico Weber, Hans Wennborg, <i>Google</i></td>
+</tr>
+
+<tr><td align="center">[<a href="Grosser_PollyOptimizations.pdf">Slides</a>]
+<p>[<a href="https://youtu.be/2NGYOTteN3A">Video</a>] </p>
+</td>
+<td><b><a href="#talk17">Polly - First successful optimizations - How to proceed?</a></b><br>Tobias Grosser, <i>ENS/INRIA</i></td>
+</tr>
+
+<tr><td align="center">[<a href="Hines_AndroidRenderscript.pdf">Slides</a>]
+<p>[<a href="https://youtu.be/dJwKXOLjEPA">Video</a>] </p>
+</td>
+<td><b><a href="#talk15">Android Renderscript</a></b><br>Stephen Hines, <i>Google</i></td>
+</tr>
+
+<tr><td align="center">[<a href="Fifield_SKIR.pdf">Slides</a>]
+<p>[<a href="https://youtu.be/HWZMd2XsQ_4">Video</a>] </p>
+</td>
+<td><b><a href="#talk7">SKIR: Just-in-Time Compilation for Parallelism with LLVM
+</a></b><br>Jeff Fifield, <i>University of Colorado</i></td>
+</tr>
+
+<tr><td align="center">[<a href="Olesen_RegisterAllocation.pdf">Slides</a>]
+<p>[<a href="http://devimages.apple.com/llvm/videos/RegisterAllocationinLLVM30.m4v">Video</a>]</p>
+</td>
+<td><b><a href="#talk6">Register Allocation in LLVM 3.0</a></b><br>Jakob Olesen, <i>Apple</i></td>
+</tr>
+
+<tr><td align="center">[<a href="Wilhelmy_Exporting3DScenes.pdf">Slides</a>] (PDF)
+<br>[<a href="http://www.inka3d.com/llvm2011/#landing-slide">Slides</a>] (HTML)
+<p>[<a href="https://youtu.be/ZIWTTstRvEY">Video</a>]
+</td>
+<td><b><a href="#talk9">Exporting 3D scenes from Maya to WebGL using clang and LLVM</a></b><br>Jochen Wilhelmy, <i>consultant</i></td>
+</tr>
+
+<tr><td align="center">[<a href="Sands_Super-optimizingLLVMIR.pdf">Slides</a>]
+<p>[<a href="https://youtu.be/8TLbP_XTJWQ">Video</a>] </p>
+</td>
+<td><b><a href="#talk5">Super-optimizing LLVM IR</a></b><br>Duncan Sands, <i>DeepBlueCapital</i></td>
+</tr>
+
+<tr><td align="center">[<a href="Serebryany_FindingRacesMemoryErrors.pdf">Slides</a>]
+<p>[<a href="https://youtu.be/sJqQTUtV6GY">Video</a>]</p>
+</td>
+<td><b><a href="#talk12">Finding races and memory errors with LLVM instrumentation</a></b><br>Konstantin Serebryany, <i>Google</i></td>
+</tr>
+
+<tr><td align="center">[<a href="Hutchins_ThreadSafety.pdf">Slides</a>] (PDF)
+<br>[<a href="http://goo.gl/bCqK3">Slides</a>] (HTML)
+<p>[<a href="https://youtu.be/1em66mRozm0">Video</a>] </p>
+</td>
+<td><b><a href="#talk3">Thread Safety Annotations in Clang</a></b><br>DeLesley Hutchins, <i>Google</i></td>
+</tr>
+
+</table>
+</p>
+
+<div class="www_sectiontitle" id="abstracts">Talk Abstracts</div>
+<p>
+<b><a id="talk1">Integrating LLVM into FreeBSD</a></b><br>
+<i>Brooks Davis -  The FreeBSD Project</i><br>
+The FreeBSD Project has been actively working to incorporate tools from the LLVM project into our base system including clang, libc++, and possibly lldb.  This talk will cover our efforts so far including our plans to ship FreeBSD 9.0 with clang in the base system.  I will cover both our current work to replace GPL licensed components with BSD(ish) licensed components and future or experimental work to incorporate new technologies made possible by LLVM.
+</p>
+
+<p>
+<b><a id="talk2">Clang MapReduce -- Automatic C++ Refactoring at Google Scale</a></b><br>
+<i>Chandler Carruth -  Google</i><br>
+Google has over 100 million lines of code, and our biggest programming language is C++. We have a single, shared codebase developed primarily on mainline. We build every binary and all of its libraries from scratch every time, allowing us to incrementally evolve APIs and libraries over time. The entire development process is extremely incremental in nature, and even API-breaking changes are a regular occurrence. However, for core libraries used throughout the codebase, this development model is a huge challenge: how do we incrementally evolve an API in use by tens of thousands of other libraries? The answer is to use Clang to automatically refactor APIs and their users across the codebase. How do we scale Clang up to possibly the single largest unified codebase in the world? The same way Google scales anything else: MapReduce. By coupling Clang’s library design and architecture to existing Google infrastructure we can automatically compile, analyze, and refactor the entire Google codebase in minutes. In this talk, I will dive into the challenges of refactoring C++ code, how we’re using Clang and making it even better at solving them, and how we scale these solutions to the size of our codebase.
+</p>
+
+<p>
+<b><a id="talk3">Thread Safety Annotations in Clang</a></b><br>
+<i>DeLesley Hutchins -  Google</i><br>
+This talk introduces the new thread safety annotations for Clang and describes the static analysis used to check them. These annotations can be used to specify properties such as whether a variable is guarded by a particular mutex, or a desired lock acquisition order.  These annotations were originally introduced in gcc, and have recently been reimplemented in Clang.
+</p>
+
+<p> 
+<b><a id="talk4">Extending Clang</a></b><br>
+<i>Doug Gregor -  Apple</i><br>
+You have an idea for the next great C(++) language feature, but how do you realize that idea? This talk will describe how to extend Clang to add new language features, from parsing and AST-construction basics to properly handling C++ templates and ensuring smooth integration into IDEs. Particular attention will be given to capturing source information in ASTs, developing bulletproof semantic analysis, and write proper regression tests to exercise the various aspects of a language feature.
+</p>
+
+<p>
+<b><a id="talk5">Super-optimizing LLVM IR</a></b><br>
+<i>Duncan Sands -  DeepBlueCapital / CNRS</i><br>
+I will describe a tool to harvest expression sequences from LLVM IR and automatically discover equivalent simplified expressions. The original version of this tool only looked for sub-expressions that were equivalent to the whole, but nonetheless discovered many simplifications missed by the LLVM optimizers (most of these have now been implemented in LLVM). The tool has since been extended to a general super optimizer by Rafael Auler.
+</p>
+
+<p>
+<b><a id="talk6">Register Allocation in LLVM 3.0</a></b><br>
+<i>Jakob Olesen -  Apple</i><br>
+An overview of the features in LLVM's new register allocator
+</p>
+
+<p>
+<b><a id="talk7">SKIR: Just-in-Time Compilation for Parallelism with LLVM</a></b><br>
+<i>Jeff Fifield -  University of Colorado</i><br>
+The Stream and Kernel Intermediate Representation (SKIR) is a small set of LLVM intrinsics for expressing parallel computation as a graph of sequential processes (kernels) communicating over abstract data channels (streams). At runtime, programs use the SKIR intrinsics to identify functions to use as kernels, to connect kernels together using streams, and to execute resulting program graphs. Formally, the stream parallelism expressed by SKIR programs can be viewed as a generalization of Kahn process networks. More practically, we can use SKIR as a compilation target for high level languages and frameworks containing this style of program decomposition and communication. We have used SKIR to implement a compiler for the StreamIt language, to create a C++ user library for stream/data/pipeline parallel programming, and to enable parallel programming for JavaScript applications. SKIR is implemented on top of the LLVM JIT compiler and a work stealing task scheduler. We use runtime compilation because of the runtime construction of program graphs, so that we can support dynamic optimization, and so that we can perform dynamic recompilation for heterogeneous targets. In this talk I will describe the SKIR intrinsics and programming model, and briefly describe high level language support that has been implemented for SKIR. I will present the compilation and optimization techniques used to transform the sequential LLVM+SKIR input code into concurrent code which can be executed in parallel using dynamic scheduling techniques. I will also describe how we can use LLVM JIT compilation to dynamically increase or decrease the amount of parallelism in a SKIR program depending on runtime hardware and application characteristics. Finally, I will describe how we can further accelerate SKIR program kernels using JIT compilation, our OpenCL backend, and GPUs.
+</p>
+
+<p> 
+<b><a id="talk8">LLVM MC In Practice</a></b><br>
+<i>Jim Grosbach, Owen Anderson -  Apple</i><br>
+Overview of projects and new developments in the LLVM MC layer, with emphasis on the MCJIT, binary analysis, ARM integrated assembler and ARM disassembler.
+</p>
+ 
+<p>
+<b><a id="talk9">Exporting 3D scenes from Maya to WebGL using clang and LLVM</a></b><br>
+<i>Jochen Wilhelmy -  Engineering consultant Wilhelmy</i><br>
+Modern content creation tools such as Autodesk Maya can be seen as graphical programming language. Features like animation of attributes, embedded scripts, shading networks and vertex deformations can be translated to c++, then compiled to LLVM IR and distributed to CPU and GPU. An award winning WebGL demo is shown which was produced using this approach.
+</p> 
+
+<p>
+<b><a id="talk10">DXR: Semantic Code Browsing with Clang</a></b><br>
+<i>Joshua  Cranmer  - Mozilla</i><br>
+DXR is a source code browser which uses a clang plugin to determine information about all types, variables, and functions in a program to make reading, searching, and understanding source code easier.
+</p>
+
+<p> 
+<b><a id="talk11">PTX Back-End: GPU Programming With LLVM</a></b><br>
+<i>Justin Holewinski -  Ohio State University</i><br>
+In this talk, the PTX back-end for LLVM will be discussed, including its' past, present, and future. The current status of the back-end will be explored, with an emphasis on the portions of the LLVM IR instruction set and PTX intrinsics that are currently supported during code generation. This talk will also highlight the difficulties and issues that have been discovered while writing an LLVM back-end for a virtual ISA such as PTX, such as infinite register files. Through-out the talk, examples will be provided to highlight key features of the back-end and show preliminary performance data.
+<br>
+In addition to back-end details, this talk will also highlight the use of Clang as a front-end for generating PTX code for NVIDIA GPUs. Through the use of Clang  and the CUDA Driver API, GPGPU programs can be developed that harness the optimization power of the LLVM compiler infrastructure. Finally, the talk will conclude with an exploration of the open issues that remain in the backend, and a discussion on how the back-end can be used within larger GPGPU compiler projects.
+</p>
+
+<p>
+<b><a id="talk12">Finding races and memory errors with LLVM instrumentation</a></b><br>
+<i>Konstantin Serebryany -  Google</i><br>
+We will present two dynamic testing tools based on compile-time instrumentation, both tools use the LLVM compiler.
+<ul><li>AddressSanitizer (ASan) finds memory bugs, such as use-after-free and out-of-bound accesses to heap and stack. This tool could be seen as a partial replacement for Valgrind and similar tools. The major advantages over Valgrind are the speed (less than 2x slowdown on average) and the ability to handle bugs related to stack and globals.
+</li>
+<li>ThreadSanitizer (TSan) finds data races. It uses the same race detection algorithm as the Valgrind-based TSan, but compile-time instrumentation allows it to be much faster (2x-4x slowdown).
+</li></ul>
+We will also share our experience in deploying theses testing tools in large software projects.
+</p>
+
+<p>
+<b><a id="talk13">Intel OpenCL SDK Vectorizer</a></b><br>
+<i>Nadav Rotem -  Intel</i><br>
+In this talk, we will present our OpenCL SDK and its core technology – the vectorizer compiler. We plan to present an overview of our vectorizer and discuss our experience with the LLVM compiler toolkit over the last few years. We will discuss some of our design decisions and our and plans for future features (future instruction sets, vector select, predicated instructions, etc).
+</p>
+
+<p>
+<b><a id="talk14">Using clang in the Chromium project</a></b><br>
+<i>Nico Weber, Hans Wennborg -  Google</i><br>
+The Chromium project is the open-source foundation on which the Google Chrome web browser is built. It is a multi-million line codebase that uses open source libraries such as WebKit, libpng, skia, ffmpeg, and leveldb. We have been able to build Chromium using clang since October 2010, and since then we've continuously expanded what we use clang for: as continuous build compiler to catch bugs with clang's superior diagnostics, with project-specific clang plugins that enforce coding-style guidelines or find domain-specific bugs in V8, and starting with Chrome 15 as production compiler on Mac OS X. We will share our experiences using clang in a mature open-source project and cover, e.g., how clang's fabled compilation speed fares in a distributed build system with 100 parallel jobs, which parts of a browser blow up when the default compiler is changed, and which of clang's warnings catch the most bugs in practice.
+</p>
+
+<p>
+<b><a id="talk15">Android Renderscript</a></b><br>
+<i>Stephen Hines -  Google</i><br>
+Renderscript is Android's advanced 3D graphics rendering and compute API. It provides a portable C99-based language with extensions to facilitate common use cases for enhancing graphics and thread level parallelism. The Renderscript compiler frontend is based on Clang/LLVM. It emits a portable bitcode format for the actual compiled script code, as well as reflects a Java interface for developers to control the execution of the compiled bitcode. Executable machine code is then generated from this bitcode by an LLVM backend on the device. Renderscript is thus able to provide a mechanism by which Android developers can improve performance of their applications while retaining portability.
+<br>
+This talk focuses on the design and implementation of Renderscript using Clang/LLVM. Renderscript leverages Clang's AST to provide a Java reflection of globally visible symbols in the compilation unit. This includes both global variables as well as invocable parameterized functions. We also transform the Clang-based AST before emitting bitcode to provide support for reference-counted types that span the Renderscript/Java memory domains. Renderscript uses bitcode as a portable code format so that we can leverage other hardware architectures in addition to the CPU in the future (GPU, DSP).
+<br>
+Interesting facts:
+<ul>
+<li>Difference in Clang source: 6 lines (all upstreamable with a bit of configuration logic)</li>
+<li>Difference in LLVM source: ~300 lines (possibly worth upstreaming, but some fixes for legacy JIT mode are no longer relevant to TOT)</li>
+<li>The frontend compiler is layered completely on top of Clang, so everything we use is sub-classed and/or recombined for our purposes in the llvm-rs-cc compiler driver.</li>
+<li>The backend compiler is stripped down to fit on a tablet/smartphone stack.</li>
+</ul></p>
+
+<p>
+<b><a id="talk16">Porting LLVM to a Next Generation DSP</a></b><br>
+<i>Taylor Simpson -  Qualcomm Innovation Center</i><br>
+This talk will describe our experiences in porting LLVM to Qualcomm's latest generation DSP, Hexagon.  The overall experience of porting to a new architecture will be discussed. The challenges of achieving high quality code generation for a VLIW with LLVM with also be outlined.
+</p>
+
+<p>
+<b><a id="talk17">Polly - First successful optimizations - How to proceed?</a></b><br>
+<i>Tobias Grosser -  ENS/INRIA</i><br>
+Polly, the LLVM Polyhedral Optimizer, was presented one year ago. At that point, only the basic infrastructure was in place and many important parts not even started. Even though Polly is still more research than production quality, we made big improvements during the last 12 months. Polly itself moved to the LLVM infrastructure with Bugtracker, Buildbot and VCS. It can now conveniently be loaded into clang as part of clang -O3. We also implemented automatic SIMD and OpenMP code generation and we created a bridge to the external PoCC optimizer. With PoCC and Polly, we were able to compile and _optimize_ the first benchmarks fully automatically and have shown significant improvements over clang -O3. In this talk we give a detailed update about the current status and want to present ideas on how to move further. These will include both research relevant ideas like automatic OpenCL code generation as well as concepts on how to develop robust loop transformations and vectorization for mainstream use.  http://polly.grosser.es
+</p>
+
+<div class="www_sectiontitle" id="poster">Poster Abstracts</div>
+<p>
+<b><a id="poster1">Parfait - A Scalable Static Bug-Checking Tool Built on LLVM</a></b><br>       
+<i>Cristina Cifuentes, Nathan Keynes, Andrew Craik, Lian Li, Nathan Hawes, Andrew Browne, and Manuel Valdiviezo   - Oracle Labs</i><br>
+Parfait is a static bug-checking tool for C/C++ applications built on the LLVM framework. Parfait achieves precision and scalability at the same time by employing a layered program analysis framework. In Parfait, different analyses varying in precision and runtime expense are invoked on demand to detect defects of a specific type, effectively achieving higher precision with smaller runtime overheads.
+<br>
+Parfait has been deployed into several development organizations within Oracle. It is being run over millions of lines of C and C++ code on a daily basis. Parfait is currently processing code written for a variety of different platforms including:
+<ul>
+     <li> Oracle Solaris Studio on Solaris</li>
+     <li>Microsoft Visual C/C++ on Windows (excluding MFC headers)</li>
+     <li>GCC on Linux</li>
+     <li>Intel C/C++ Compiler on Linux</li>
+</ul>
+
+Despite the size and complexity of the code bases being analyzed, the Parfait false-positive rate has remained below 10%.
+<br>
+This poster will present the design of the Parfait tool, summarize our experience with the LLVM infrastructure, and present more comprehensive results than the preliminary results we first presented to the LLVM community at the LLVM Developers Conference in 2009.
+</p>
+
+<p>
+<b><a id="poster2">Code verification based on attributes annotation - Implementing custom attributes check using Clang</a></b><br>
+<i>Michael Han  - Autodesk   </i><br>
+Introduce a tool named "Hippocrates" we developed at Autodesk based on Clang's attribute system to help engineers verify functions being behaved as designed. The talk will focus on the motivation and goal of the tool, how we hacked Clang (would be a very high level 1000 feet overview due to time limits), and some results of using the tool on our large code base like Autodesk Maya with millions of lines C++ code.
+</p>
+
+<p>
+<b><a id="poster3">LunarGLASS: A LLVM-based shader compiler stack</b><br>
+<i>Michael Ilseman   - LunarG  </i><br>
+LunarGLASS is an LLVM-based shader compiler stack. It brings a new approach to shader compilation by splitting the common shared intermediate representation (IR) into two levels; the top level is completely platform independent while the bottom level is dynamically tailorable to different families of architecture.  http://www.lunarglass.org/documentation
+</p>
+
+<p>
+<b><a id="poster4">Symbolic Testing of OpenCL Code</b><br>
+<i>Peter Collingbourne  - Imperial College London  </i><br>
+The poster will describe our research on the subject of verification of OpenCL kernels using symbolic execution. We present an effective technique for crosschecking a C program against an accelerated OpenCL version, as well as a technique for detecting data races in OpenCL programs. Our techniques are implemented in KLEE-CL, a symbolic execution engine based on KLEE and KLEE-FP that supports symbolic reasoning on the equivalence between symbolic values. Our approach is to symbolically model the OpenCL environment using an OpenCL runtime library targeted to symbolic execution. Using this model we are able to run OpenCL programs symbolically, keeping track of memory accesses for the purpose of race detection. We then compare the symbolic result against the plain C program in order to detect mismatches between the two versions. We applied KLEE-CL to the Parboil benchmark suite, the Bullet physics library and the OP2 library, in which we were able to find a total of seven errors: three mismatches between the OpenCL and C implementations, two memory errors, one OpenCL compiler bug and one race condition.
+</p>
+
+<!-- *********************************************************************** -->
+<hr>
+
+<!--#include virtual="../../footer.incl" -->

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<head>
+  <title>Report</title>
+  <style>
+    body {
+      font-family: "Helvetica Neue", sans-serif;
+    }
+    th {
+      text-align: left;
+    }
+    .FAILURE {
+      color: red;
+    }
+    .SUCCESS {
+      color: green;
+    }
+                        
+  </style>
+</head>
+<body>
+<h1>[<font class="${currentBuild.currentResult}">${currentBuild.currentResult}</font>] ${env.JOB_NAME} [${env.BUILD_DISPLAY_NAME}]</h1>
+
+<table>
+  <tr><th>Build URL:</th><td><a href="${env.BUILD_URL}">${env.BUILD_URL}</a></td></tr>
+  <tr><th>Project:</th><td>${env.JOB_NAME}</td></tr>
+  <tr><th>Build duration:</th><td>${hudson.Util.getTimeSpanString(System.currentTimeMillis() - currentBuild.startTimeInMillis)}</td></tr>
+</table>
+
+<h2>Issues</h2>
+<% if (log_summary == "") { %>
+    <p>No known issues detected</p>
+<% } else { %>
+${log_summary}
+<% } %>
+<p><a href="${env.BUILD_URL}consoleFull">Build Log</a></p>
+
+<h2>Changes</h2>
+<ul>
+<% def changeSets = currentBuild.getChangeSets()
+def hadChanges = false
+changeSets.each { changeSet ->
+%>
+<% changeSet.each { cs ->
+  hadChanges = true
+  aUser = cs.author %>
+    <li>Commit <b>${cs.revision}</b> by <b><%= aUser != null ? aUser.displayName : it.author.displayName %>:</b> <p class="commit-message" style="white-space: pre-wrap;">${cs.msg}</p>
+      <ul>
+<%      cs.affectedFiles.each { %>
+        <li class="change-${it.editType.name}"><b>${it.editType.name}</b>: ${it.path}</li>
+<%      } %>
+      </ul>
+    </li>
+   <br>
+<%  }
+}
+
+if (!hadChanges) { %>
+      <li>No Changes</li>
+<% } %>
+</ul>
+
+</body>

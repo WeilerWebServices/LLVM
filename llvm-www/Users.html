@@ -1,0 +1,715 @@
+<!--#include virtual="header.incl" -->
+
+<div class="www_sectiontitle">LLVM Users</div>
+
+
+<p>
+This page lists the people and organizations that have used or are currently
+using LLVM in research, education, industry, or open source development.  It
+only includes users who have publicly discussed their use of LLVM in one form
+or another (mentioned it on llvm-dev, published work on it, etc.).
+We believe there are many other users not listed here and would welcome a brief
+note telling us about your use so that we can add you to the list.
+</p><p>
+This page has only brief entries.  Some of these projects are
+described in more detail on the
+<a href="/ProjectsWithLLVM/"> "Projects Using LLVM"</a> page.
+</p>
+
+<div class="www_subsection">LLVM Distributions</div>
+<div class="www_text">
+<ul>
+  <li><a href="http://packages.debian.org/unstable/devel/llvm">Debian Package Info</a></li>
+  <li><a href="http://packages.ubuntu.com/dapper/devel/llvm">Ubuntu Package Info</a></li>
+  <li><a href="http://www.freshports.org/devel/llvm">FRESHports LLVM page</a></li>
+  <li><A href="http://developer.apple.com/">Apple Xcode</a></li>
+</ul>
+</div>
+
+<div class="www_subsection">Industry Users</div>
+<div class="www_text">
+
+<br>
+<table border="1" cellspacing="0" cellpadding="2">
+  <tr>
+    <th>Company</th>
+    <th>Description</th>
+  </tr>
+  <!-- From Chuck Rose -->
+  <tr>
+    <td>Adobe Systems Incorporated</td>
+    <td>Optimizer and JIT codegen for the <a
+     href="/ProjectsWithLLVM/#adobe-hydra">Hydra Language</a>.</td>
+  </tr>
+
+  <!-- From Adobe web site -->
+  <tr>
+    <td>Adobe Systems Incorporated</td>
+    <td><a href="http://labs.adobe.com/wiki/index.php/Alchemy">Alchemy C/C++ Compiler for the ActionScript
+    Virtual Machine (AVM2)</a>.  See the <A href="http://labs.adobe.com/wiki/index.php/Alchemy:FAQ">FAQ</a>
+    and <a href="/devmtg/2008-08/">Scott Petersen's DevMtg talk</a> for more details.</td>
+  </tr>
+
+  <!-- CS Department Web Page and Adobe web site -->
+  <tr>
+    <td>Adobe Systems Incorporated</td>
+    <td>
+    ActionScript 3 Ahead-of-Time (AOT) Compiler for iPhone software
+    development.  See Aditya Bansod's
+    <a href="http://www.adobe.com/devnet/logged_in/abansod_iphone.html">blog entry</a>
+    and
+    <a href="http://labs.adobe.com/technologies/flashcs5/appsfor_iphone/#divider">
+    this video</a> for more details.
+    </td>
+  </tr>
+
+
+  <!-- Secured from company -->
+  <tr>
+    <td>Ageia Technologies</td>
+    <td>Optimizer and back end for custom processor</td>
+  </tr>
+
+  <!-- http://lists.llvm.org/pipermail/llvm-dev/2008-March/012978.html -->
+  <tr>
+    <td><a name="Apple">Apple Inc.</a></td>
+    <td><p>
+    All of Apple’s operating systems, iOS, macOS, tvOS and watchOS, are built with LLVM technologies.  And Xcode, Apple’s integrated development environment, supports development in Swift, C, C++, and Objective-C, all of which use and are built with LLVM technologies.  Apple’s implementations of OpenCL and OpenGL, the Metal Shading Language, Core Image, and macOS graphics drivers also use LLVM technologies.</p>
+    </td>
+  </tr>
+
+  <!-- www.arxan.com -->
+  <tr>
+    <td><a href="http://www.arxan.com">Arxan Technologies, Inc.</a></td>
+    <td><a href="http://www.arxan.com/software-protection-products/EnsureIT/index.php">
+        EnsureIT</a> - Comprehensive software/code protection for Android, Apple iOS, and 
+        Linux.  Covers against both static and dynamic analysis threats.
+    </td>
+  </tr>
+
+  <!-- http://lists.llvm.org/pipermail/llvm-commits/Week-of-Mon-20060227/032334.html -->
+  <tr>
+    <td>Ascenium</td>
+    <td>Compiler for reconfigurable processor</td>
+  </tr>
+
+  <tr>
+    <td>AutoESL Design Technologies, Inc.</td>
+    <td>Electronic System Level (ESL) to Silicon</td>
+  </tr>
+
+  <tr>
+    <td><a href="https://www.azul.com/">Azul Systems, Inc.</a></td>
+    <td>Azul Systems' <a href="https://www.azul.com/products/zing/">Zing Java Virtual Machine</a> ships with <a href="https://www.azul.com/press_release/falcon-jit-compiler/">Falcon</a>, an LLVM based optimizing high-tier JIT compiler.</td>
+  </tr>
+
+  <!-- From Nadav Rotem via email -->
+  <tr>
+    <td><a href="http://www.c-to-verilog.com/">C-to-Verilog</a></td>
+    <td> Compiler from C into the Verilog hardware description language.
+         Automates circuit design. </td>
+  </tr>
+
+  <tr>
+    <td><a href="https://www.codeplay.com/">Codeplay Software </a></td>
+    <td>C/C++/OpenCL compilers and debuggers for CPUs, GPUs, DSPs and custom processors.</td>
+  </tr>
+
+
+  <!-- Announcement at 2008 dev. meeting -->
+  <tr>
+    <td>MTC Group Ltd.</td>
+    <td><a href="http://morpher.com">Morpher</a> - compiler-driven obfuscation
+    solution for C/C++/ObjC/ObjC++. Protection against reverse engineering,
+    cracking and tampering.</td>
+  </tr>
+
+  <!-- Ok'd by Luiz DeRose and David Greene -->
+  <tr>
+    <td>Cray Inc.</td>
+    <td>Backend for the Cray x86 compiler, available on the Cray XT5 and
+        later machines.</td>
+  </tr>
+
+  <!-- From Max Burke via email -->
+  <tr>
+    <td>Electronic Arts</td>
+    <td>Experimental backend for custom language implementation</td>
+  </tr>
+
+  <!-- http://lists.llvm.org/pipermail/llvm-dev/2018-June/124279.html -->
+  <tr>
+    <td>Ericsson</td>
+    <td>Compiler for a custom telecom DSP VLIW architecture, featuring
+    16-bit bytes and fixed-point arithmetic.</td>
+  </tr>
+
+  <!-- Requested on llvm-dev from Matt Pharr -->
+  <tr>
+    <td>Intel</td>
+    <td>
+    <a href="/devmtg/2011-11/Rotem_IntelOpenCLSDKVectorizer.pdf">
+    OpenCL</a></td>
+  </tr>
+
+  <!-- http://lists.llvm.org/pipermail/llvm-dev/2004-October/002329.html -->
+  <tr>
+    <td>Hue AS</td>
+    <td>JIT compilation of shader programs</td>
+  </tr>
+
+  <!-- From info@vuo.org -->
+  <tr>
+    <td><a href="http://vuo.org/about">Kosada, Inc.</a></td>
+    <td>The compiler for <a href="http://vuo.org">Vuo</a>, a modern visual programming language for multimedia artists.</td>
+  </tr>
+
+  <!-- http://lists.llvm.org/pipermail/llvm-dev/2006-August/006455.html -->
+  <tr>
+    <td>Mobileye</td>
+    <td>Compiler for stack machine architecture</td>
+  </tr>
+
+  <tr>
+    <td>National Instruments</td>
+    <td><a href="http://zone.ni.com/devzone/cda/tut/p/id/11472">Compiler for LabView 2010</a></td>
+  </tr>
+
+  <tr>
+    <td><a href="http://www.nuanti.com">Nuanti Browser Labs</a></td>
+    <td><p><a href="http://meta.webkit.net">WebKit Meta 2.0 SDK</a> includes a specialized LLVM/clang toolchain
+    for web application and game development featuring transparent C++ DOM and JavaScript bridging.</p>
+    <p><a href="http://www.atoker.com/blog/2012/04/12/llvm-europe-2012-cli-compiler/"> C++/CLI NG</a> is a
+    clang-based .NET compiler that embraces and extends the Microsoft / ECMA-372 language standard.</p></td>
+  </tr>
+
+  <!-- Personal communication and ok'd by Christopher Lamb -->
+  <tr>
+    <td>NVIDIA</td>
+    <td>OpenCL runtime compiler (Clang + LLVM)</td>
+  </tr>
+
+
+  <!-- http://rapidmind.com/News-Nov10-08-LLVM-OpenCL.php -->
+  <tr>
+    <td>Rapidmind</td>
+    <td><a href="http://rapidmind.com/News-Nov10-08-LLVM-OpenCL.php">Compiler platform</a> for their GPGPU, multicore CPU, and OpenCL runtime platforms.</td>
+  </tr>
+
+  <tr>
+    <td>REAL Software</td>
+     <td>Optimizer and code generator for <a
+     href="http://www.realsoftwareblog.com/2010/03/compiler-better-stronger-faster.html">RBScript and REAL Studio compiler</a>.</td>
+  </tr>
+
+  <!-- http://lists.llvm.org/pipermail/llvm-dev/2006-January/005150.html -->
+  <tr>
+    <td>Siemens Technology-to-Business Center</td>
+    <td>Compiler for embedded VLIW processor</td>
+  </tr>
+
+  <tr>
+    <td>Sony Interactive Entertainment</td>
+    <td>
+      CPU compiler for the
+        <a href="http://playstation.com">PlayStation&reg;4</a> system.
+    </td>
+  </tr>
+
+  <!-- Private communication to Vikram -->
+  <tr>
+    <td>Sun Microsystems Laboratories</td>
+    <td>
+      <a href="http://research.sun.com/projects/parfait">Parfait: Bug checker of C code</a>
+    </td>
+  </tr>
+
+<tr>
+<td><a href="https://www.synopsys.com">Synopsys Inc.</a></td>
+<td>
+<a href="https://www.synopsys.com/dw/ipdir.php?ds=arc-metaware-ev">DesignWare ARC MetaWare EV Development Toolkit (OpenCL)</a> – EV6x processors
+<br>
+<a href="https://www.synopsys.com/dw/ipdir.php?ds=sw_metaware">DesignWare ARC MetaWare Development Toolkit (C/C++)</a> – ARC processors
+</td>
+</tr>
+
+
+  <!-- XMOS web site: https://technology.xmos.com/open-source
+"The LLVM project provides an open source compiler for C and other languages.
+At present we have ported the back-end code generator to our architecture. It
+is our intention to work with the LLVM community and add analysis for
+multi-core code generation to the compiler."
+ -->
+  <tr>
+    <td>XMOS Technology</td>
+    <td>
+      <a href="http://www.xmos.com/open-source">Backend port for their
+       architecture</a>, also working on multicore codegen support.
+    </td>
+  </tr>
+  <tr>
+    <td>Octasic Inc</td>
+    <td>
+      <a href="http://www.octasic.com/products/opus-studio">Opus Studio next generation</a>, 
+        IDE and compiler for asynchronous DSP Architecture (in development).
+    </td>
+  </tr>
+</table>
+
+<br>
+
+<div class="www_subsection">Open Source Projects</div>
+<div class="www_text">
+
+<br>
+
+<table border="1" cellspacing="0" cellpadding="2">
+  <tr>
+    <th>Project</th>
+    <th>Description</th>
+  </tr>
+
+  <tr>
+    <td><a href="https://github.com/smackers/smack">SMACK Software Verifier</a></td>
+    <td>Software verifier that converts LLVM IR to Boogie</td>
+  </tr>
+
+  <tr>
+    <td><a href="http://objective.modula2.net">Objective Modula-2 Project</a></td>
+    <td>Modula-2 compiler w/ObjC runtime support. Targets Objective-C and LLVM.</td>
+  </tr>
+
+  <!-- http://llvm.org/ProjectsWithLLVM/#IcedTea -->
+  <!-- Authorized and described by Gary Benson, Lead on the Shark JIT
+	  within IcedTea -->
+  <tr>
+    <td><a href="/ProjectsWithLLVM/#IcedTea">
+	IcedTea Version of Sun's OpenJDK</a></td>
+    <td>Uses LLVM as JIT on architectures other than x86 and Sparc.</td>
+  </tr>
+
+  <!-- http://llvm.org/ProjectsWithLLVM/#pypy -->
+  <tr>
+    <td><a href="http://pypy.org">PyPy Project</a></td>
+    <td>Python interpreter written in Python.  Targets LLVM and C.</td>
+  </tr>
+
+  <!-- http://www.grame.fr/~letz/faust_llvm.html -->
+  <tr>
+    <td><a href="http://faust.grame.fr/">Faust Signal Processing Language</a></td>
+    <td>Signal processing language, <a href="http://www.grame.fr/~letz/faust_llvm.html">uses the LLVM JIT for runtime codegen</a>.</td>
+
+  </tr>
+
+  <!-- iPhone Tool Chain -->
+  <tr>
+    <td><a href="http://code.google.com/p/iphone-dev/wiki/Building">
+       iPhone tool chain</a></td>
+    <td>llvm-gcc Compiler for iPhone Dev Wiki toolchain.</td>
+  </tr>
+
+  <!-- http://www.quake3world.com/forum/viewtopic.php?f=7&t=36482 -->
+  <tr>
+    <td><a href="http://www.ioquake3.org">IOQuake3</a></td>
+    <td>IOQuake3 Raytracing Patch, <a href="http://www.quake3world.com/forum/viewtopic.php?f=7&amp;t=36482">uses LLVM for runtime shader compilation.</a></td>
+  </tr>
+
+  <!-- Email sent to llvm-dev -->
+  <tr>
+    <td><a href="http://mdevan.nfshost.com/llvm-py/">
+       llvm-py: Python Bindings for LLVM</a></td>
+    <td>Build compilers and VMs in Python, using the LLVM Backend.</td>
+  </tr>
+
+  <!-- Email sent to llvm-dev -->
+  <tr>
+    <td><a href="http://wiki.dlang.org/LDC">
+       LDC</a></td>
+    <td>LLVM-based <a href="http://dlang.org/">D</a> Compiler.</td>
+  </tr>
+
+  <!-- Email sent to llvm-dev -->
+  <tr>
+    <td><a href="http://code.google.com/p/unladen-swallow">
+       Unladen Swallow</a></td>
+    <td>A faster implementation of Python.</td>
+  </tr>
+
+  <!-- Email sent to llvm-dev -->
+  <tr>
+    <td><a href="http://tirania.org/blog/archive/2009/Jul-16.html">
+       Mono</a></td>
+    <td>Mono has an option to use LLVM for JIT compilation.</td>
+  </tr>
+
+  <!-- Listed in LLVM 2.6 Release Notes -->
+  <tr>
+    <td><a href="http://github.com/rubinius/rubinius">Rubinius</a></td>
+    <td>Ruby Environment.</td>
+  </tr>
+
+  <!-- Listed in LLVM 2.6 Release Notes -->
+  <tr>
+    <td><a href="http://macruby.org/">MacRuby</a></td>
+    <td>Ruby Implementation for Mac OS X.</td>
+  </tr>
+
+  <!-- Listed in LLVM 2.6 Release Notes -->
+  <tr>
+    <td><a href="http://pure-lang.googlecode.com/">Pure</a></td>
+    <td>Term rewriting algebraic/functional programming language.</td>
+  </tr>
+
+  <!-- Listed in LLVM 2.6 Release Notes -->
+  <tr>
+    <td><a href="http://code.roadsend.com/rphp">Roadsend PHP</a></td>
+    <td>PHP implementation.</td>
+  </tr>
+
+  <!-- Listed in LLVM 2.6 Release Notes -->
+  <tr>
+    <td><a href="http://code.google.com/p/llvm-lua/">LLVM-Lua</a></td>
+    <td>JIT and static compilation support for the Lua VM.</td>
+  </tr>
+
+  <tr>
+    <td><a href="http://emscripten.org">Emscripten</a></td>
+    <td>An LLVM to JavaScript compiler.</td>
+  </tr>
+
+  <!-- Requested on llvm-dev -->
+  <tr>
+    <td><a href="http://julialang.org/">Julia</a></td>
+    <td>High-level, high-performance dynamic programming language for technical
+    computing.</td>
+  </tr>
+
+  <tr>
+    <td><a href="http://www.skyeye.org/">SkyEye</a></td>
+    <td>Fast full system simulator.</td>
+  </tr>
+
+  <!-- Requested on llvm-dev by Matt Pharr -->
+  <tr>
+    <td><a href="http://ispc.github.com">Intel SPMD Compiler</a></td>
+    <td>C-based SPMD language for CPU vector units.</td>
+  </tr>
+
+  <!-- Requested on llvm-dev -->
+  <tr>
+    <td><a href="https://www.tensorflow.org/versions/master/experimental/xla/">XLA</a></td>
+    <td>XLA (Accelerated Linear Algebra) is a domain-specific compiler for linear algebra that optimizes TensorFlow computations.</td>
+  </tr>
+
+  <!-- Requested on llvm-dev by Jakub Kuderski -->
+  <tr>
+    <td><a href="http://seahorn.github.io/">SeaHorn</a></td>
+    <td>An Algorithmic Logic-Based Reasoning Framework.</td>
+  </tr>
+
+  <!-- Requested on llvm-dev by Jakub Kuderski -->
+  <tr>
+    <td><a href="https://github.com/seahorn/crab-llvm">Crab-llvm</a></td>
+    <td>A static analyzer based on abstract interpretation for LLVM.</td>
+  </tr>
+</table>
+</div>
+
+</div>
+
+<br>
+<div class="www_subsection">Academic Research Users</div>
+<div class="www_text">
+
+<br>
+<table border="1" cellspacing="0" cellpadding="2">
+  <tr>
+    <th>Organization</th>
+    <th>People</th>
+    <th>Description</th>
+  </tr>
+
+  <!-- Requested by Johan Lilius's Research Group -->
+  <tr>
+    <td><a href="http://www.abo.fi/">&Aring;bo Akademi University</a></td>
+    <td>Johan Lilius's Research Group, ES Lab</td>
+    <td><a href="http://www.abo.fi/~johan.lilius/research/page12/page0/necst.html">NECST project</a>
+    </td>
+  </tr>
+
+  <!-- Authorized by David Penry in email to Vikram -->
+  <tr>
+    <td><a href="http://www.byu.edu">Brigham Young University</a></td>
+    <td><a href="http://www.et.byu.edu/groups/bardd">David Penry's Research Group</a></td>
+    <td>Microarchitectural Simulator Partitioning and Synthesis<br>
+        Adaptive Online Parallel Optimization</td>
+  </tr>
+
+  <!-- Authorized by David Koes in email to Vikram and John -->
+  <tr>
+    <td><a href="http://www.cmu.edu">Carnegie Mellon University</a></td>
+    <td><a href="http://www.cs.cmu.edu/~dkoes/research.html">David Koes</a></td>
+    <td>Principled Compilation</td>
+  </tr>
+
+  <!-- Email from George Candea to Vikram and John -->
+  <tr>
+    <td><a href="http://www.epfl.ch">Ecole Polytechnique F&eacute;d&eacute;rale de Lausanne</a></td>
+    <td>George Candea's Research Group</td>
+    <td>
+      <ul>
+      <li><a href="http://dslab.epfl.ch/proj/cloud9">Cloud9: Software Testing
+          as a Service &amp; Parallel Symbolic Execution</a></li>
+      <li><a href="http://dslab.epfl.ch/proj/s2e">S2E: Scalable Testing with
+Selective Symbolic Execution</a></li>
+      <li><a href="http://dslab.epfl.ch/proj/esd">ESD: Automated Debugging via  Execution Synthesis</a></li>
+      </ul>
+    </td>
+  </tr>
+
+  <!-- http://lists.llvm.org/pipermail/llvm-dev/2008-October/017539.html -->
+  <tr>
+    <td><a href="http://www.ethz.ch/">ETH Zurich</a></td>
+    <td>Thomas Lenherr</td>
+    <td>Language-independent library for alias analysis</td>
+  </tr>
+
+  <tr>
+    <td><a href="https://www.fau.de">Friedrich-Alexander Universit&auml;t,
+        Erlangen-N&uuml;remberg</a></td>
+    <td>Tobias Klaus, Fabian Scheler, and Florian Franzmann</td>
+    <td><a href="http://www4.cs.fau.de/Research/RTSC/">RTSC Real-Time Systems
+        Compiler</a></td>
+  </tr>
+
+  <!-- http://lists.llvm.org/pipermail/llvm-dev/2006-July/006246.html -->
+  <tr>
+    <td><a href="http://www.ugent.be/">Ghent University</a></td>
+    <td><a href="http://www.elis.ugent.be/~kehoste">Kenneth Hoste</a></td>
+    <td>Instrumentation of software</td>
+  </tr>
+
+  <tr>
+    <td><a href="http://faramir.ugent.be/">GH-SEL, INTEC, Ghent University</a></td>
+    <td><a href="http://users.ugent.be/~badams/">Bram Adams</a></td>
+    <td>Aspect weaver for an AOP-language for C called
+      <a href="http://users.ugent.be/~badams/aspicere2/">Aspicere2</a></td>
+  </tr>
+
+  <!-- Personal email to Chris -->
+   <tr>
+    <td>Institut d'Electronique et T&eacute;l&eacute;communications de Rennes<br>
+ARTEMIS - Institut Telecom/Telecom SudParis</td>
+    <td>Micka&euml;l Raulet, Matthieu Wipliez, J&eacute;r&ocirc;me Gorin</td>
+    <td>
+      <ul>
+      <li><a href="http://orcc.sf.net">Orcc project: Open RVC-CAL Compiler</a></li>
+      <li><a href="http://sourceforge.net/apps/trac/orcc/wiki/JadeDocumentation">Jade project: JIT Adaptive Decoder Engine</a></li>
+      </ul>
+    </td>
+  </tr> 
+
+  <!-- http://lists.llvm.org/pipermail/llvm-dev/2005-July/004661.html -->
+  <tr>
+    <td><a href="http://www.nyu.edu">New York University</a></td>
+    <td>Anna Zaks </td>
+    <td>Validation of interprocedural optimizations</td>
+  </tr>
+
+  <tr>
+    <td><a href="http://www.rice.edu">Rice University</a></td>
+    <td>Keith Cooper's Research Group</td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td><a href="http://www.stanford.edu">Stanford University</a></td>
+    <td>Dawson Engler's Research Group</td>
+    <td><a href="http://klee.llvm.org">KLEE Symbolic Virtual Machine</a></td>
+  </tr>
+
+  <tr>
+    <td><a href="http://www.tut.fi">Tampere University of Technology</a></td>
+    <td><a href="http://www.tkt.cs.tut.fi/index-english.html">Jarmo Takala's research group, Department of Computer Systems</a></td>
+    <td><a href="http://tce.cs.tut.fi">The TTA Based Codesign Environment (TCE) project</a></td>
+  </tr>
+
+  <!-- http://www.cse.ucsd.edu/~mmccrack/lens -->
+  <tr>
+    <td>
+      <a href="http://www.ucsd.edu/">University of California, San Diego</a>
+    </td>
+    <td>Michael McCracken </td>
+    <td>
+    <a href="http://www.cse.ucsd.edu/~mmccrack/lens/">LENS Framework</a>
+    </td>
+  </tr>
+
+  <!-- Email from Samar Abdi: sabdi at uci.edu -->
+  <tr>
+    <td>
+      <a href="http://www.uci.edu/">University of California, Irvine</a>
+    </td>
+    <td>Samar Abdi, Dan Gajski</td>
+    <td><a href="http://www.cecs.uci.edu/~ese">Embedded System Environment project</a></td>
+  </tr>
+
+  <!-- http://lists.llvm.org/pipermail/llvm-dev/2005-November/004939.html -->
+  <tr>
+    <td>
+      <a href="http://www.ucla.edu/">University of California, Los Angeles</a>
+    </td>
+    <td>Jason Cong </td>
+    <td>xPilot behavioral synthesis system</td>
+  </tr>
+
+  <tr>
+    <td>
+      <a href="http://www.ucla.edu/">University of California, Los Angeles</a>
+    </td>
+    <td>Jens Palsberg</td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td>
+    <a href="http://www.uiuc.edu">University of Illinois at Urbana-Champaign</a>
+    </td>
+    <td>
+    <a href="http://llvm.cs.illinois.edu/~vadve/Home.html">Vikram Adve's Research Group</a>
+    </td>
+    <td>
+    <a href="http://sva.cs.illinois.edu">Secure Virtual Architecture/SAFECode
+    </a></td>
+  </tr>
+
+  <tr>
+    <td>
+    <a href="http://www.uiuc.edu">University of Illinois at Urbana-Champaign</a>
+    </td>
+    <td>Ravi Iyer's Research Group</td>
+    <td>Runtime monitoring for software reliability</td>
+  </tr>
+
+  <tr>
+    <td>
+    <a href="http://www.uiuc.edu">University of Illinois at Urbana-Champaign</a>
+    </td>
+    <td>Maria Garzaran's Research Group</td>
+    <td>Automatic replication for software reliability</td>
+  </tr>
+
+  <tr>
+    <td>
+    <a href="http://www.uiuc.edu">University of Illinois at Urbana-Champaign</a>
+    </td>
+    <td>Sanjay Patel's Research Group</td>
+    <td>Microarchitecture research</td>
+  </tr>
+
+  <!-- Email from Wesley Peck -->
+  <tr>
+    <td>
+    <a href="http://www.ku.edu">The University of Kansas</a>
+    </td>
+    <td>Wesley Peck</td>
+    <td>MicroBlaze backend for use on Xilinx FPGAs</td>
+  </tr>
+
+  <!-- SoftBound Publication on Publication Page -->
+  <tr>
+    <td>
+    <a href="http://www.upenn.edu/">The University of Pennsylvania</a>
+    </td>
+    <td>Santosh Nagarakatte, Jianzhou Zhao, Milo M K Martin, and
+        Steve Zdancewic</td>
+    <td><a href="http://www.cis.upenn.edu/acg/softbound">SoftBound</a></td>
+  </tr>
+
+  <!-- Publications on Publication Page -->
+  <tr>
+    <td>
+    <a href="http://www.utexas.edu/">University of Texas at Austin</a>
+    </td>
+    <td>Calvin Lin's Research Group</td>
+    <td><a href="http://www.cs.utexas.edu/~lin/research.html#Pointers">Turnkey Pointer Analysis</a></td>
+  </tr>
+</table>
+</div>
+
+<br>
+
+
+<div class="www_subsection">Educational Users</div>
+<div class="www_text">
+
+<br>
+
+<table border="1" cellspacing="0" cellpadding="2">
+  <tr>
+    <th>Organization</th>
+  </tr>
+
+  <tr>
+    <td>
+      <a href="http://www.annauniv.edu/">Anna University, Chennai, India</a>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <a href="http://www.ucla.edu/">University of California, Los Angeles</a>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <a href="http://www.cmu.edu/">Carnegie Mellon University</a>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+    <a href="http://www.uiuc.edu">University of Illinois at Urbana-Champaign</a>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <a href="http://www.cse.iitb.ac.in/">Indian Institute of Technology, Bombay</a>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <a href="http://www.cse.iitm.ac.in/">Indian Institute of Technology, Madras</a>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+    <a href="http://www.unsw.edu.au/">University of New South Wales, Australia</a>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+    <a href="http://www.utah.edu/">University of Utah</a>
+    </td>
+  </tr>
+
+  <!-- Go Bucky! -->
+  <tr>
+    <td>
+    <a href="http://www.wisc.edu/">University of Wisconsin, Madison</a>
+    </td>
+  </tr>
+</table>
+</div>
+
+
+<!-- *********************************************************************** -->
+<hr>
+
+<br><a href="mailto:llvm-dev@lists.llvm.org">LLVM Development List</a><br>
+<!--#include virtual="footer.incl" -->

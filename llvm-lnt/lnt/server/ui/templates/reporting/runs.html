@@ -1,0 +1,199 @@
+{% import "utils.html" as utils %}
+
+{#
+  Macro for rendering the report for either a run-to-run display or a run-to-baseline display.
+#}
+{%
+  macro add_report_changes_detail_for_field_and_bucket(
+    compare_to, field, show_perf, run_url, field_index, field_display_name, field_unit, field_unit_abbrev, bucket_name, bucket, test_names,
+    metric_name, metric_field_suffix, secondary_field_suffix, secondary_info, styles, classes
+  )
+%}
+
+{% if bucket and bucket_name != 'Unchanged Tests' %}
+    {% set small_column_width = 'width: 7%;' %}
+   <p>
+     <table style="{{ styles['table'] }}; width: 1000px;" class="{{ classes['table'] }}">
+       <thead>
+       <tr>
+         <th style="{{ styles['th'] }}; width:40%">{{ bucket_name }} - {{ field_display_name }}</th>
+       {% if not show_perf %}
+         </tr>
+         </thead>
+         <tbody class="searchable">
+         {% for name in test_names %}
+           <tr><td class="benchmark-name" style="{{ styles['td'] }}">
+               {{ name }}</td></tr>
+         {% endfor %}
+         </tbody>
+       {% else %}
+         <th style="{{ styles['th'] }}; {{ small_column_width }}">Δ {{ metric_field_suffix }}</th>
+         <th style="{{ styles['th'] }}; {{ small_column_width }}">{{ metric_name }}</th>
+         <th style="{{ styles['th'] }}; {{ small_column_width }}">Current</th>
+         <th style="{{ styles['th'] }}; {{ small_column_width }}">σ {{ metric_field_suffix }}</th>
+         {% if secondary_info %}
+         <th style="{{ styles['th'] }}; {{ small_column_width }}">Δ {{ secondary_field_suffix }}</th>
+         <th style="{{ styles['th'] }}; {{ small_column_width }}">σ {{ secondary_field_suffix }}</th>
+         {% endif %}
+         </tr>
+         </thead>
+         <tbody class="searchable">
+         
+         {% for name, cr, test_id in bucket %}
+         <tr>
+           <td class="benchmark-name" style="{{ styles['td'] }}">
+             {% if run.machine != compare_to.machine %}
+               <a href="{{ run_url }}/graph?plot.0={{run.machine_id}}.{{test_id}}.{{field_index}}&plot.1={{compare_to.machine_id}}.{{test_id}}.{{field_index}}">{{ name }}</a>
+             {% else %}
+               <a href="{{ run_url }}/graph?{{ [('test.%d' % test_id, field_index)] | urlencode }}">{{ name }}</a>
+             {% endif %}
+             {% if compare_to %}
+             {% set compare_to_id = compare_to.id %}
+             {% else %}
+             {% set compare_to_id = None %}
+             {% endif %}
+             {{ utils.render_profile_link(cr.cur_profile, cr.prev_profile, run.id, compare_to_id, test_id) }}
+           </td>
+           {{ cr.pct_delta|aspctcell(style=styles['td'] + 'text-align: right;',reverse=cr.bigger_is_better)|safe }}
+           <td class="right" style="{{ styles['td'] }}">{{ cr.previous | print_value(field_unit, field_unit_abbrev) }}</td>
+           <td class="right" style="{{ styles['td'] }}">{{ cr.current | print_value(field_unit, field_unit_abbrev) }}</td>
+           <td class="right" style="{{ styles['td'] }}">{{ cr.stddev | print_value(field_unit, field_unit_abbrev) }}</td>
+           {% if secondary_info %}
+             {% set a_cr = secondary_info[(name, field)] %}
+             {{ a_cr.pct_delta|aspctcell(style=styles['td'] + 'text-align: right;',reverse=cr.bigger_is_better)|safe }}
+             <td class="right" style="{{ styles['td'] }}">{{ a_cr.stddev | print_value(field_unit, field_unit_abbrev) }}</td>
+           {% endif %}
+         </tr>
+         {% endfor %}
+         </tbody>
+       {% endif %}
+     </table>
+   </p>
+{% endif %}
+{% endmacro %}
+
+<h1 style="{{ styles['h1'] }}">
+  <a href="{{ report_url }}">{{ subject }}</a>
+</h1>
+
+<p>
+<table style="{{ styles['table'] }}" class="{{ classes['table'] }}">
+  <thead>
+    <tr>
+      <th style="{{ styles['th'] }}">Run</th>
+      <th style="{{ styles['th'] }}">Order</th>
+      <th style="{{ styles['th'] }}">Start Time</th>
+      <th style="{{ styles['th'] }}">Duration</th>
+      {%- set show_producers = (run and 'producer' in run.parameters) or(compare_to and 'producer' in compare_to.parameters) or (baseline and 'producer' in baseline.parameters) %}
+      {% if show_producers %}
+        <th style="{{ styles['th'] }}">Produced by</th>
+      {% endif %}
+    </tr>
+  </thead>
+  <tbody>
+  {% for title, r in (('Current', run), ('Previous', compare_to), ('Baseline', baseline)) %}
+    {% if r %}
+    <tr id="run-table-{{ title }}">
+      <td style="{{ styles['td'] }}"><a href="{{ ts_url }}/{{ r.id }}">{{ title }}</a></td>
+      <td style="{{ styles['td'] }}"><a href="{{ ts_url }}/order/{{ r.order.id }}">{{ r.order.llvm_project_revision }}</a></td>
+      <td style="{{ styles['td'] }}"><span class="utctime">{{ r.start_time.isoformat() }}</span></td>
+      <td style="{{ styles['td'] }}">{{ r.end_time - r.start_time }}</td>
+      {% if show_producers %}
+        <td style="{{ styles['td'] }}">
+          {{ r.parameters.producer|producerAsHTML|safe if 'producer' in r.parameters else "" }}
+        </td>
+      {% endif %}
+    </tr>
+    {% else %}
+    <tr id="run-table-{{ title }}">
+      <td style="{{ styles['td'] }}" colspan="5">No {{ title }} Run</td>
+    </tr>
+    {% endif %}
+  {% endfor %}
+ </tbody>
+</table>
+</p>
+
+{% if compare_to and run.machine != compare_to.machine %}
+<p><b>
+*** WARNING ***: comparison is against a different machine ({{compare_to.machine.name}},{{compare_to.machine.id}})
+</b></p>
+{% endif %}
+{% if baseline and run.machine != baseline.machine %}
+<p><b>
+*** WARNING ***: baseline is against a different machine ({{baseline.machine.name}},{{baseline.machine.id}})
+</b></p>
+{% endif %}
+
+<hr/>
+<h3>Tests Summary</h3>
+<table style="{{ styles['table'] }}" class="{{ classes['table'] }}">
+  <thead>
+    <tr>
+      <th style="{{ styles['th'] }}">Status Group</th>
+      <th style="{{ styles['th'] }}; text-align:right">#</th>
+      {% if baseline %}
+        <th style="{{ styles['th'] }}; text-align:right"># (B)</th>
+      {% endif %}
+    </tr>
+  </thead>
+  <tbody>
+  {% for i, name, num_items, num_items_vs_baseline in num_item_buckets %}
+    {% if num_items or num_items_vs_baseline %}
+      <tr>
+        <td style="{{ styles['td'] }}">{{ name }}</td>
+        <td style="{{ styles['td'] }}; text-align:right">{{ num_items }}</td>
+        {% if baseline %}
+        <td style="{{ styles['td'] }}; text-align:right">{{ num_items_vs_baseline }}</td>
+        {% endif %}
+      </tr>
+    {% endif %}
+  {% endfor %}
+  </tbody>
+  <tfoot>
+    <tr>
+      <td style="{{ styles['td'] }}"><b>Total Tests</b></td>
+      <td style="{{ styles['td'] }}; text-align:right"><b>{{ num_total_tests }}</b></td>
+      {% if baseline %}
+      <td></td>
+      {% endif %}
+    </tr>
+  </tfoot>
+</table>
+
+
+<section id="run_over_run">
+  {{ utils.render_popup_begin('run_over_run', 'Run-Over-Run Changes Detail', false, 'h3') }}
+    <p>
+    {% for _, field, bucket_name, sorted_bucket, test_names, show_perf in prioritized_buckets_run_over_run %}
+      {% set field_index = ts.get_field_index(field) %}
+      {{
+        add_report_changes_detail_for_field_and_bucket(compare_to, field, show_perf, run_url, field_index, field.display_name,
+                                                       field.unit, field.unit_abbrev, bucket_name, sorted_bucket, test_names,
+                                                       'Previous', '', ' (B)', run_to_baseline_info, styles, classes)
+      }}
+    {% endfor %}
+    </p>
+  {{ utils.render_popup_end() }}
+</section>
+
+
+<section id="run_over_baseline">
+  {{ utils.render_popup_begin('run_over_baseline', 'Run-Over-Baseline Changes Detail', false, 'h3') }}
+    <p>
+{% if baseline %}
+{% for _, field, bucket_name, sorted_bucket, test_names, show_perf in prioritized_buckets_run_over_baseline %}
+  {% set field_index = ts.get_field_index(field) %}
+  {{
+    add_report_changes_detail_for_field_and_bucket(baseline, field, show_perf, run_url, field_index, field.display_name, field.unit,
+                                                   field.unit_abbrev, bucket_name, sorted_bucket, test_names,
+                                                   'Baseline', '(B)', '', run_to_run_info, styles, classes)
+  }}
+{% endfor %}
+{% endif %}
+    </p>
+  {{ utils.render_popup_end() }}
+</section>
+
+<hr/>
+<b>Report Time</b>: {{ start_time | timedelta }}

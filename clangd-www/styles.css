@@ -1,0 +1,212 @@
+html {
+  font-family: 'Helvetica', sans-serif;
+  background-color: #eeeeee;
+  margin: 0;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: overlay;
+  display: flex;
+  justify-content: center;
+}
+body {
+  background-color: white;
+  max-width: 1100px;
+  margin: 0;
+  box-shadow: 0 0 30px #888;
+  display: flex;
+}
+h1, h2, h3, h4 { font-family: 'Nunito', sans-serif; }
+aside header {
+  background-color: #3399dd;
+  color: white;
+  margin: 0;
+  margin-bottom: 1em;
+  padding: 1.5em 2em;
+}
+header h1 {
+  font-size: 3em;
+  margin: 0;
+}
+header h1 a {
+  display: flex;
+  white-space: nowrap;
+}
+header #logo-text {
+  flex-grow: 1;
+}
+header #logo {
+  height: 1em;
+  align-self: center;
+  margin-left: 0.2em;
+}
+header h2 {
+  opacity: 0.7;
+  font-size: 1em;
+  margin: 0;
+}
+header a, nav a {
+  text-decoration: none;
+  color: inherit;
+}
+aside {
+  background-color: rgba(50, 150, 220, 0.1);
+  flex: 0 0 250px;
+}
+nav {
+  display: flex;
+  flex-direction: column;
+}
+nav a {
+  padding: 0.8em 2em;
+  /* text ------- [icon] */
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+}
+nav a.selected {
+  background-color: rgba(50, 150, 220, 0.3);
+}
+nav a:hover:not(.selected) {
+  background-color: rgba(50, 150, 220, 0.1);
+}
+nav a .icon {
+  /* icons should be vertically and horizontally centered. */
+  display: inline-block;
+  font-size: 180%;
+  line-height: 1em;
+  text-align: center;
+  width: 1.2em;
+  /* Get color emoji if we can */
+  font-family: "Noto Color Emoji", "Apple Color Emoji", "Segoe UI Emoji", Times, Symbola, Aegyptus, Code2000, Code2001, Code2002, Musica, serif, LastResort;
+}
+main {
+  padding: 0 4em;
+  flex: 1 1 700px;
+}
+main img {
+  max-width: 100%;
+}
+main h1, main h2 {
+  color: rgb(0, 0, 128);
+  border-bottom: 1px solid #def;
+}
+main h3 {
+  color: rgb(64, 64, 64);
+}
+hr {
+  border: none;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 100%;
+}
+details {
+  background-color: rgba(50, 150, 220, 0.08);
+  margin-bottom: 0.5em;
+  padding: 0 1em;
+  overflow-y: hidden; /* Suppress margin-collapsing */
+}
+details[open] {
+  border-bottom: 1px solid rgba(0, 0, 128, 0.2);
+  margin-bottom: 1em;
+}
+details summary {
+  font-weight: bold;
+  background-color: rgba(50, 150, 220, 0.1);
+  border-color: rgba(0, 0, 128, 0.2);
+  border-width: 1px;
+  border-style: solid none;
+  padding: 0.2em;
+  margin: 0 -1em;
+}
+details summary:hover {
+  background-color: rgba(50, 150, 220, 0.2);
+  cursor: pointer;
+}
+pre > code { display: block; }
+code {
+  background-color: #ffe;
+  border: 1px solid #feb;
+  padding: 1px;
+}
+a[href^="https://code.woboq.org/"] {
+  font-family: monospace;
+}
+
+.tip {
+  color: #00796b;
+}
+
+/* Version marker ornaments */
+.v6::before, .v7::before, .v8::before, .v9::before, .v10::before, .v11::before {
+  color: #008;
+  border-radius: 3px;
+  padding: 0.2em 0.6em;
+  font-family: sans-serif;
+  font-weight: 500;
+  background-color: rgba(0, 128, 255, 0.2);
+  float: right;
+  line-height: 1.5em;
+  text-align: center;
+  font-size: x-small;
+}
+.v6::before { content: "clangd-6"; }
+.v7::before { content: "clangd-7"; }
+.v8::before { content: "clangd-8"; }
+.v9::before { content: "clangd-9"; }
+.v10::before { content: "clangd-10"; }
+.v11::before { content: "clangd-11"; }
+
+.main-article {
+  text-align: center;
+  font-style: italic;
+  background-color: rgba(0,0,0,0.05);
+  padding: 0.3em 0;
+  margin: -0.5em 0;
+  text-decoration: none;
+}
+.main-article::before {
+  content: "→ Main article: ";
+}
+
+/* Mini layout, for phones */
+@media (max-width: 600px) {
+  body {
+    flex-direction: column;
+    max-width: 100%;
+  }
+  main { padding: 0 1em; }
+  aside {
+    font-size: 80%;
+    flex: 0 1 auto;
+  }
+  aside header {
+    margin-bottom: 0;
+    padding: 1em;
+  }
+  aside header h2 {
+    display: none;
+  }
+  nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  /* [Icon] Text ---- */
+  nav a {
+    padding: 0.8em 1em;
+    margin: 0;
+    flex-direction: row;
+    white-space: nowrap;
+    justify-content: left;
+    flex: 1 1 0;
+    min-width: 115px;
+  }
+  nav a .icon {
+    margin-right: 0.1em;
+  }
+  nav hr {
+    margin: 0;
+  }
+  pre { white-space: pre-wrap; }
+  code { overflow-wrap: break-word; }
+}

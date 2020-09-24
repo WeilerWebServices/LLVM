@@ -1,0 +1,234 @@
+{% extends "layout.html" %}
+{% import "utils.html" as utils %}
+{% import "local.html" as local %}
+{% set db = request.get_db() %}
+
+{% set components = [(testsuite_name, v4_url_for(".v4_recent_activity")),
+                      ("Tracking", v4_url_for(".v4_regression_list"))] %}
+{% block title %}Regression Details{% endblock %}
+
+{% block head %}
+  <script src="{{ url_for('.static', filename='popup.js') }}"></script>
+  <script language="javascript" type="text/javascript"
+          src="{{ url_for('.static',
+                          filename='flot/jquery.flot.min.js') }}"> </script>
+  <script language="javascript" type="text/javascript"
+          src="{{ url_for('.static',
+                         filename='flot/jquery.flot.symbol.min.js') }}"> </script>  
+  <script language="javascript" type="text/javascript"
+          src="{{ url_for('.static',
+                          filename='flot/jquery.flot.errorbars.min.js') }}"> </script>
+  <script language="javascript" type="text/javascript"
+          src="{{ url_for('.static',
+                          filename='flot/jquery.flot.navigate.min.js') }}"> </script>
+  <script language="javascript" type="text/javascript"
+          src="{{ url_for('.static',
+                          filename='flot/jquery.flot.selection.min.js') }}"> </script>
+  <script language="javascript" type="text/javascript"
+          src="{{ url_for('.static',
+                          filename='flot/jquery.flot.highlight.min.js') }}"></script>
+  <script src="{{ url_for('.static', filename='lnt_graph.js') }}"></script>
+{% endblock %}
+
+
+
+
+{% block javascript %}
+var g = {};
+var test_suite_name = "{{ testsuite_name }}";
+var db_name = "{{ request.view_args.get('db_name','') }}";
+var max_samples = {{ request.args.get('limit', 350) }};
+var changes = [
+{% for form_change in form.field_changes%}
+    {% set fc = changes[loop.index -1] %}
+    {% set fc_ri_field_index = ts.get_field_index(fc.ri.field) %}
+    {"url": "{{fc.ri.machine.id}}/{{fc.ri.test.id}}/{{fc_ri_field_index}}",
+     "start": {{fc.ri.start_order.llvm_project_revision}},
+     "end": {{fc.ri.end_order.llvm_project_revision}}
+ },
+{% endfor %}
+];
+
+{% endblock %}
+
+{% block body %}
+<section id="regression_detail" />
+<h3>Regression: {{regression.title}}</h3>
+<div id="graphbox">
+    <div id="graph" style="height:250px"></div>
+    <div id="zoombar" style="width:40px;z-index: 999;">
+        <button id="in" type="button" class="btn btn-default" style="width:100%;text-align:center;">+</button>
+        <br/>
+        <button id="out" type="button" class="btn btn-default" style="width:100%; text-align:center;">-</button>
+        <br/>
+        <button id="normalize" type="button" class="btn btn-default" style="width:100%; text-align:center;">%</button>
+    </div>
+    <div id="yaxis">Metric</div>
+    <div id="xaxis">Order</div>
+</div>
+
+{% if regression.bug %}
+<a href="{{regression.bug}}">{{regression.bug}}</a>
+{% endif %}
+
+
+<form method="POST" action="">
+    {{ form.hidden_tag() }}
+
+<table id="changes_table" class="display">
+  
+  <thead>
+  <tr>
+    <th></th>
+    <th>Δ ID</th>
+    <th>Machine</th>
+    <th>Metric</th>
+    <th>Test</th>
+    <th>Good, Bad</th>
+    <th>Old</th><th>New</th>
+    <th>%Δ</th>
+    <th>Now</th>
+    <th>Current</th>
+    <th>Age</th>
+
+  </tr>
+  </thead>
+  <tbody>
+    {% set graph_base=v4_url_for('.v4_graph') %}
+    {# Show the active submissions. #}
+    {% for form_change in form.field_changes%}
+        {% set fc = changes[loop.index -1] %}
+        {% set fc_ri_field_index = ts.get_field_index(fc.ri.field) %}
+    <tr class="change-row" data-order-start="{{ fc.ri.start_order.llvm_project_revision }}"
+        data-order-end="{{fc.ri.end_order.llvm_project_revision}}">
+        <td>
+            
+            <table>
+                <tr style="background:transparent;">
+                    <td style="background:transparent;"></td><td>{{ form_change }}</td>
+                </tr>
+            </table>
+        <td class="change_id">{{fc.ri.id}}</td>
+        <td class="machine">{{utils.render_machine(fc.ri.machine)}}</td>
+        <td class="metric"> {{ fc.ri.field.name }} </td>
+         {% set graph_base=v4_url_for('.v4_graph', highlight_run=fc.run.id) %}
+        <td><a href="{{graph_base}}&amp;plot.{{fc.ri.test.id}}={{ fc.ri.machine.id}}.{{fc.ri.test.id}}.{{fc_ri_field_index}}">{{ fc.ri.test.name }}</a></td>
+        <td>{{local.prefix}}{{ fc.ri.start_order.llvm_project_revision }}, {{local.render_order_link(fc.ri.end_order)}}</td>
+        <td>{{ fc.cr.previous }}</td><td>{{ fc.cr.current }}</td>
+        {{ utils.get_regression_cell_value(fc.cr, analysis)}}
+        <td>{{ fc.latest_cr.current }}</td>
+
+        {{ utils.get_regression_cell_value(fc.latest_cr, analysis)}}
+
+        <td><span class="reltime" data-time="{{fc.run.end_time.isoformat()}}" data-toggle="tooltip" title="{{fc.run.end_time}}">{{ fc.run.end_time.isoformat() }}</span></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<button id="all" type="button" class="btn btn-default" onclick="all_checks()">Check Visible</button>
+<button id="clear" type="button" class="btn btn-default" onclick="clear_checks()">Clear Visible</button>
+
+
+<!-- Button to trigger modal -->
+<a id="editButton" href="#editRegressionModal" role="button" class="btn" data-toggle="modal">Change State</a>
+ 
+<!-- Modal -->
+<div id="editRegressionModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="editRegressionModal" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="editRegressionModal">Edit Regression</h3>
+  </div>
+
+     
+      <div class="modal-body">
+          <p>{{ form.title.label }}{{ form.title }}</p>
+          <p>{{ form.bug.label }}{{form.bug }}</p>
+          <p>{{ form.state.label }}{{form.state}}</p>
+      </div>
+      <div class="modal-footer">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+          <input  name="save_btn" class="btn btn-primary" type="submit" value="Save Changes">
+
+  </div>
+</div>
+
+
+<!-- Button to trigger modal -->
+<a href="#splitRegressionModal" role="button" class="btn" data-toggle="modal">Split</a>
+ 
+<!-- Modal -->
+<div id="splitRegressionModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="splitRegressionModal" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="editRegressionModal">Split Regression</h3>
+  </div>
+     
+      <div class="modal-body">
+      Split selected changes into new regression. Are you sure?
+      </div>
+      <div class="modal-footer">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+          <input name="save_btn" class="btn btn-primary" type="submit" value="Split Regression">
+
+  </div>
+</div>
+
+<!-- Button to trigger modal -->
+<a href="#deleteRegressionModal" role="button" class="btn" data-toggle="modal">Delete</a>
+ 
+<!-- Modal -->
+<div id="deleteRegressionModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="deleteRegressionModal" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="editRegressionModal">Delete Regression</h3>
+  </div>
+     
+      <div class="modal-body">
+      Remove all traces of this regression from the database. Are you sure?
+      </div>
+      <div class="modal-footer">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+          <input name="save_btn" class="btn btn-primary" type="submit" value="Delete">
+
+  </div>
+</div>
+</form> 
+
+<script language="javascript" type="text/javascript"
+        src="{{ url_for('.static', filename='v4_regression_detail.js') }}"></script>
+
+<script type="text/javascript">
+var dt = null;
+
+$(document).ready( function () {
+    dt = $('#changes_table').DataTable({
+    "dom": '<"top">rt<"bottom">',
+    "drawCallback": function( settings ) {
+        register_checkboxes();
+    },
+    "aLengthMenu": [[-1, 50],
+                    ["All", 50]],
+
+    });
+
+    for (var i = 0; i < changes.length; i++) {
+        is_checked[i] = false;
+    }
+      
+    register_checkboxes();
+
+    init_axis();
+
+    /* Only check boxes if we don't have lots of regressions. */
+    if ({{check_all}}) {
+        all_checks();
+    }
+    update_graph();
+    update_order_summary();
+  
+    
+} );
+</script>
+
+{% endblock %}

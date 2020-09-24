@@ -1,0 +1,4 @@
+add_subdirectory(StandardToHandshake)
+add_subdirectory(HandshakeToFIRRTL)
+add_subdirectory(LLHDToLLVM)
+add_subdirectory(StandardToStaticLogic)
